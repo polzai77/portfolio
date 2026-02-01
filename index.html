@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Amirul Arif — OS Engineer & Systems Architect</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: #12121a;
+    --bg-card-hover: #1a1a2a;
+    --accent: #00e5ff;
+    --accent-dim: rgba(0,229,255,0.15);
+    --accent2: #b388ff;
+    --text: #e2e2e8;
+    --text-dim: #6b6b78;
+    --border: rgba(255,255,255,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:999;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top:0; width:100%; z-index:100;
+    padding: 1.2rem 2rem;
+    display: flex; justify-content:space-between; align-items:center;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family:'Syne',sans-serif;
+    font-weight:700; font-size:1.1rem;
+    color: var(--accent);
+    text-decoration:none;
+    letter-spacing:-0.02em;
+  }
+  .nav-links { display:flex; gap:1.8rem; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration:none;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    justify-content:center; align-items:flex-start;
+    padding: 6rem 2rem 2rem;
+    max-width:1100px; margin:0 auto; width:100%;
+    position:relative;
+  }
+  .hero-tag {
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.2em;
+    color: var(--accent);
+    margin-bottom:1rem;
+    display:flex; align-items:center; gap:0.6rem;
+  }
+  .hero-tag::before {
+    content:'';
+    display:block; width:28px; height:1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family:'Syne',sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-0.03em;
+    color:#fff;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-sub {
+    margin-top:1.5rem;
+    font-size:0.88rem;
+    color: var(--text-dim);
+    max-width:520px;
+    line-height:1.8;
+  }
+  .hero-links {
+    margin-top:2.2rem;
+    display:flex; gap:1rem; flex-wrap:wrap;
+  }
+  .btn {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    padding:0.7rem 1.4rem;
+    border-radius:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    transition: all 0.3s;
+    cursor:pointer; border:none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color:#0a0a0f;
+    font-weight:600;
+  }
+  .btn-primary:hover { box-shadow: 0 0 24px rgba(0,229,255,0.35); transform:translateY(-1px); }
+  .btn-ghost {
+    background:transparent;
+    color: var(--text);
+    border:1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── GLOW BLOB ─── */
+  .glow-blob {
+    position:absolute;
+    width:500px; height:500px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.12;
+    pointer-events:none;
+    top:10%; right:-10%;
+    background: var(--accent);
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
+  .section-label {
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    color: var(--accent);
+    margin-bottom:0.6rem;
+    display:flex; align-items:center; gap:0.6rem;
+  }
+  .section-label::before {
+    content:''; display:block; width:18px; height:1px; background:var(--accent);
+  }
+  .section-title {
+    font-family:'Syne',sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight:700;
+    color:#fff;
+    letter-spacing:-0.02em;
+    margin-bottom:2.5rem;
+  }
+
+  /* ─── EXPERIENCE TIMELINE ─── */
+  .timeline { position:relative; padding-left:2rem; }
+  .timeline::before {
+    content:'';
+    position:absolute; left:0; top:0; bottom:0;
+    width:1px; background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    position:relative;
+    padding:1.8rem 0 2.4rem;
+    opacity:0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .timeline-item::before {
+    content:'';
+    position:absolute;
+    left:-2rem; top:2rem;
+    width:9px; height:9px;
+    border-radius:50%;
+    background: var(--accent);
+    border:2px solid var(--bg);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .timeline-date {
+    font-size:0.68rem;
+    color: var(--accent);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:0.35rem;
+  }
+  .timeline-company {
+    font-family:'Syne',sans-serif;
+    font-size:1.15rem;
+    font-weight:600;
+    color:#fff;
+  }
+  .timeline-role {
+    font-size:0.78rem;
+    color: var(--accent-dim);
+    color: var(--text-dim);
+    margin-bottom:0.8rem;
+  }
+  .timeline-desc {
+    font-size:0.78rem;
+    color: var(--text-dim);
+    line-height:1.9;
+  }
+  .timeline-desc li { margin-bottom:0.3rem; list-style:none; padding-left:1rem; position:relative; }
+  .timeline-desc li::before { content:'›'; position:absolute; left:0; color:var(--accent); }
+  .timeline-tags {
+    display:flex; flex-wrap:wrap; gap:0.4rem;
+    margin-top:0.9rem;
+  }
+  .tag {
+    font-size:0.62rem;
+    padding:0.25rem 0.6rem;
+    border-radius:20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap:0.7rem;
+  }
+  .skill-card {
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:1rem 0.9rem;
+    text-align:center;
+    font-size:0.72rem;
+    color: var(--text-dim);
+    transition: all 0.3s;
+    cursor:default;
+  }
+  .skill-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform:translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,229,255,0.1);
+  }
+  .skill-icon { font-size:1.3rem; margin-bottom:0.4rem; display:block; }
+
+  /* ─── EDUCATION ─── */
+  .edu-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap:1rem;
+  }
+  .edu-card {
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:1.6rem;
+    transition: all 0.3s;
+  }
+  .edu-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 24px rgba(0,229,255,0.08);
+  }
+  .edu-year {
+    font-size:0.65rem;
+    color: var(--accent);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:0.4rem;
+  }
+  .edu-name {
+    font-family:'Syne',sans-serif;
+    font-size:0.95rem;
+    font-weight:600;
+    color:#fff;
+    margin-bottom:0.3rem;
+  }
+  .edu-detail {
+    font-size:0.72rem;
+    color: var(--text-dim);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-wrapper {
+    text-align:center;
+    padding:4rem 2rem 6rem;
+    max-width:600px; margin:0 auto;
+  }
+  .contact-wrapper .section-label { justify-content:center; }
+  .contact-wrapper .section-title { text-align:center; }
+  .contact-sub {
+    font-size:0.8rem;
+    color: var(--text-dim);
+    margin-bottom:2rem;
+    line-height:1.8;
+  }
+  .contact-links { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align:center;
+    padding:2rem;
+    font-size:0.65rem;
+    color: var(--text-dim);
+    border-top:1px solid var(--border);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .timeline-item:nth-child(1){animation-delay:0.1s}
+  .timeline-item:nth-child(2){animation-delay:0.25s}
+  .timeline-item:nth-child(3){animation-delay:0.4s}
+  .timeline-item:nth-child(4){animation-delay:0.55s}
+  .timeline-item:nth-child(5){animation-delay:0.7s}
+  .timeline-item:nth-child(6){animation-delay:0.85s}
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:600px){
+    nav { padding:1rem 1.2rem; }
+    .nav-links { gap:1rem; }
+    .nav-links a { font-size:0.65rem; }
+    .hero { padding:5rem 1.2rem 2rem; }
+    section { padding:3.5rem 1.2rem; }
+    .skills-grid { grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AA/</a>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="glow-blob"></div>
+  <div class="hero-tag">OS Engineer · Dell Technologies</div>
+  <h1>Amirul<br/><span class="accent">Arif.</span></h1>
+  <p class="hero-sub">
+    L3 OS Engineer specializing in Linux &amp; Windows infrastructure, automation tooling, and web-based systems. Building reliability at scale — one script at a time.
+  </p>
+  <div class="hero-links">
+    <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn btn-primary" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/amirul-arif-49994b155/" class="btn btn-ghost" target="_blank">LinkedIn</a>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+
+    <!-- Dell L3 -->
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 2025 – Present</div>
+      <div class="timeline-company">Dell Technologies</div>
+      <div class="timeline-role">OS Engineering (L3) · Cyberjaya, On-site</div>
+      <ul class="timeline-desc">
+        <li>Next-level escalation support for Linux &amp; Windows, including on-call MIM standby.</li>
+        <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated CVE scope-list generation to streamline patch management.</li>
+        <li><strong style="color:var(--text)">Mass Matter</strong> — Built a compliance dashboard visualising agent versions by server category.</li>
+        <li><strong style="color:var(--text)">Multi Connection Manager</strong> — Self-initiated web app enabling bulk actions across connections for the Ops team.</li>
+        <li>Integrated &amp; enhanced internal tools to align with company standards.</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="tag">Python</span><span class="tag">React.js</span><span class="tag">Ansible</span>
+        <span class="tag">Jira</span><span class="tag">GitLab</span><span class="tag">IT Automation</span>
+      </div>
+    </div>
+
+    <!-- Dell Analyst -->
+    <div class="timeline-item">
+      <div class="timeline-date">Apr 2022 – Mar 2025 · 3 yrs</div>
+      <div class="timeline-company">Dell Technologies</div>
+      <div class="timeline-role">Analyst, IT Technical Services – Linux &amp; Windows · Hybrid</div>
+      <ul class="timeline-desc">
+        <li>In-depth Linux &amp; Windows server support with incident management and root-cause analysis.</li>
+        <li>Developed <strong style="color:var(--text)">Interactive Console Linux</strong> — a zero-touch remote web console via Bi-Frost.</li>
+        <li>Achieved 29% incident reduction across the COE Server team (FY24Q1–Q2).</li>
+        <li>Consistently ranked Top 3 performer in FY24 &amp; FY25 for incident resolution volume.</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="tag">VMware vCenter</span><span class="tag">PowerShell</span><span class="tag">RHEL</span>
+        <span class="tag">Power Automate</span><span class="tag">Hyper-V</span><span class="tag">SRE</span>
+      </div>
+    </div>
+
+    <!-- TelcoHubX -->
+    <div class="timeline-item">
+      <div class="timeline-date">May 2020 – Apr 2022 · 2 yrs</div>
+      <div class="timeline-company">TelcoHubX · Velo Technologies</div>
+      <div class="timeline-role">System Engineer · Cyberjaya, On-site</div>
+      <ul class="timeline-desc">
+        <li>Full-stack infra support: servers, networking, structured cabling &amp; data centers.</li>
+        <li>Administered Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi, Cisco IOS, and open-source tools (Zabbix, LibreNMS, OpenNebula, Netbox).</li>
+        <li>IT asset management, vendor coordination, and technical documentation.</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="tag">VMware vSphere</span><span class="tag">Linux</span><span class="tag">Cisco IOS</span>
+        <span class="tag">Zabbix</span><span class="tag">Netbox</span><span class="tag">LibreNMS</span><span class="tag">OpenNebula</span>
+      </div>
+    </div>
+
+    <!-- Stardocs -->
+    <div class="timeline-item">
+      <div class="timeline-date">Nov 2019 – Mar 2020 · 5 mos</div>
+      <div class="timeline-company">Stardocs Sdn Bhd</div>
+      <div class="timeline-role">System Programmer &amp; Support · Subang, On-site (Contract)</div>
+      <ul class="timeline-desc">
+        <li>Pre &amp; post-sales technical support; managed in-house systems and application software.</li>
+        <li>Delivered billable IT consulting services to business partners and end-users.</li>
+      </ul>
+    </div>
+
+    <!-- MOH -->
+    <div class="timeline-item">
+      <div class="timeline-date">Jan 2019 – Oct 2019 · 10 mos</div>
+      <div class="timeline-company">Ministry of Health, Malaysia (KKM)</div>
+      <div class="timeline-role">IT / Administrative Officer · Putrajaya (Contract)</div>
+      <ul class="timeline-desc">
+        <li>Diagnosed &amp; resolved IT issues; coordinated vendor repairs and hardware procurement.</li>
+        <li>Handled documentation, record-keeping, and IT-related administrative tasks.</li>
+      </ul>
+    </div>
+
+    <!-- Intern -->
+    <div class="timeline-item">
+      <div class="timeline-date">Jun 2017 – Sep 2017 · 4 mos</div>
+      <div class="timeline-company">Pacific Engineering Sdn Bhd</div>
+      <div class="timeline-role">Intern – R&amp;D Engineer · Petaling Jaya</div>
+      <ul class="timeline-desc">
+        <li>Built a DIY Arduino-based controller to monitor industrial machinery.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Toolkit</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><span class="skill-icon">🐍</span>Python</div>
+    <div class="skill-card"><span class="skill-icon">⚛️</span>React.js</div>
+    <div class="skill-card"><span class="skill-icon">🤖</span>Ansible</div>
+    <div class="skill-card"><span class="skill-icon">🐧</span>Linux</div>
+    <div class="skill-card"><span class="skill-icon">🪟</span>PowerShell</div>
+    <div class="skill-card"><span class="skill-icon">📦</span>VMware vSphere</div>
+    <div class="skill-card"><span class="skill-icon">🖥️</span>VMware vCenter</div>
+    <div class="skill-card"><span class="skill-icon">⚡</span>Hyper-V</div>
+    <div class="skill-card"><span class="skill-icon">🔁</span>IT Automation</div>
+    <div class="skill-card"><span class="skill-icon">🚀</span>System Deployment</div>
+    <div class="skill-card"><span class="skill-icon">🛡️</span>Incident Mgmt</div>
+    <div class="skill-card"><span class="skill-icon">🔧</span>RHEL</div>
+    <div class="skill-card"><span class="skill-icon">🌐</span>Web Development</div>
+    <div class="skill-card"><span class="skill-icon">📊</span>Jira</div>
+    <div class="skill-card"><span class="skill-icon">🔀</span>GitLab</div>
+    <div class="skill-card"><span class="skill-icon">⚙️</span>Power Automate</div>
+    <div class="skill-card"><span class="skill-icon">🛡️</span>SRE</div>
+    <div class="skill-card"><span class="skill-icon">🌱</span>Virtualization</div>
+    <div class="skill-card"><span class="skill-icon">🧮</span>Feature Tools</div>
+    <div class="skill-card"><span class="skill-icon">🤖</span>OLAM</div>
+    <div class="skill-card"><span class="skill-icon">💻</span>Software Dev</div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Background</div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2014 – 2018</div>
+      <div class="edu-name">National University of Malaysia (UKM)</div>
+      <div class="edu-detail">Bachelor's Degree</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2013 – 2014</div>
+      <div class="edu-name">Penang Matriculation College</div>
+      <div class="edu-detail">Matriculation · Physics</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact" class="contact-wrapper">
+  <div class="section-label">Get in touch</div>
+  <h2 class="section-title">Let's work<br/>together.</h2>
+  <p class="contact-sub">Open to new opportunities and collaborations.<br/>Feel free to reach out anytime.</p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/amirul-arif-49994b155/" class="btn btn-primary" target="_blank">LinkedIn</a>
+    <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn btn-ghost" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>© 2026 Amirul Arif. All rights reserved.</footer>
+
+</body>
+</html>
