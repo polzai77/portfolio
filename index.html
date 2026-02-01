@@ -712,14 +712,15 @@
       <ul class="timeline-desc">
         <li>Next-level escalation support for Linux &amp; Windows environments, including on-call standby for Major Incident Management (MIM).</li>
         <li>Execute OS and application-level CTASKs to ensure system stability and performance.</li>
-        <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated CVE scope-list generation using internal tools to streamline patch management.</li>
-        <li><strong style="color:var(--text)">Mass Matter</strong> — Prepared target server lists for agent deployment and built a dashboard to visualise agent versions and compliance status by server category.</li>
-        <li><strong style="color:var(--text)">Multi Connection Manager</strong> — Self-initiated web app enabling the Ops team to perform bulk actions across multiple connections, significantly reducing daily workload.</li>
+        <li><strong style="color:var(--text)">Multi Connection Manager (MCM)</strong> — Self-created centralised web-based tool for the Ops team. Features include: Linux SSH Terminal (single &amp; multi-server), Windows RDP, Get Root Password (via vCenter API with auto-login console), LAPS Password Retrieval (via WinRM), iDRAC Query, PowerCLI Commands, Server Health Monitoring (ping + RDP checks), Windows &amp; Linux Agent Dashboards, Admin Panel with usage analytics, and Mass Matter (bulk operations across 1000+ servers simultaneously).</li>
+        <li><strong style="color:var(--text)">Bi-Frost — Multiple SSH</strong> — Assisted in completing the backlog for the Multiple-SSH feature of the in-house Bi-Frost tool.</li>
+        <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated kernel CVE scope-list generation and patch validation pipeline with cycle-based tracking, integrated with GitLab and OLAM for automated artifact retrieval.</li>
         <li>Integrated and enhanced existing internal tools to align with company standards for a more maintainable and standardised solution.</li>
       </ul>
       <div class="timeline-tags">
         <span class="tag">Python</span><span class="tag">React.js</span><span class="tag">Ansible</span>
         <span class="tag">Jira</span><span class="tag">GitLab</span><span class="tag">IT Automation</span><span class="tag">OLAM</span>
+        <span class="tag">VMware</span><span class="tag">FastAPI</span>
       </div>
     </div>
 
@@ -732,9 +733,9 @@
         <li>Provided in-depth support for over 30,000 Linux servers and 25,000 Windows servers, escalating complex issues to the Engineering Team when necessary.</li>
         <li>Incident Management — worked with support teams to troubleshoot issues and attend MIM for recovery and root cause analysis.</li>
         <li>Change support — participated in change activities from the Change Coordinator to ensure smooth transitions with minimal operational impact.</li>
-        <li>Developed scripts via the in-house tool <strong style="color:var(--text)">Bi-Frost</strong> to automate tasks and reduce manual workload.</li>
+        <li>Developed automation scripts via the in-house tool <strong style="color:var(--text)">Bi-Frost</strong> to reduce manual workload and incident counts.</li>
         <li>Supported critical activities including Major Data Center Maintenance, Power Maintenance, and Black Friday holiday readiness.</li>
-        <li><strong style="color:var(--text)">Interactive Console Linux</strong> — Built a web console for zero-touch remote access as a Bi-Frost addon feature.</li>
+        <li><strong style="color:var(--text)">Interactive Console Linux</strong> — Built a web-based interactive console for zero-touch remote access as a Bi-Frost addon feature.</li>
         <li>Achieved a <strong style="color:var(--text)">29% incident reduction</strong> across the COE Server team (FY24Q1–Q2).</li>
         <li>Consistently ranked <strong style="color:var(--text)">Top 3 performer</strong> in FY24 &amp; FY25 for incident resolution and task creation volume.</li>
       </ul>
@@ -889,13 +890,14 @@ const skillsData = {
   },
   reactjs: {
     icon:"⚛️", title:"React.js", where:"Dell Technologies – OS Engineering (L3)",
-    desc:"Used React.js to build the front-end for internal dashboards and web-based tools at Dell, including the Multi Connection Manager and the Mass Matter compliance dashboard.",
+    desc:"Used React.js to build the entire frontend for Multi Connection Manager (MCM) — your own centralised web tool at Dell — including dashboards, terminals, and admin panels.",
     points:[
-      "Built the Multi Connection Manager web app — a bulk-action tool for the Ops team.",
-      "Developed the Mass Matter dashboard to visualise agent versions and compliance status by server category.",
-      "Integrated React components with backend APIs to deliver real-time server data."
+      "Built the MCM frontend: SSH terminals, RDP interface, LAPS/iDRAC/PowerCLI panels, and bulk operations UI.",
+      "Developed Windows and Linux Agent Dashboards with real-time data, health checks, and CSV export.",
+      "Created the Admin Panel with feature usage analytics across daily/monthly/yearly views.",
+      "Integrated React components with FastAPI backend and WebSocket connections for real-time terminal sessions."
     ],
-    tags:["React.js","Web App","Dashboard","Dell","Frontend"]
+    tags:["React.js","MCM","Dashboard","WebSocket","Dell","Frontend"]
   },
   powershell: {
     icon:"🪟", title:"PowerShell", where:"Dell Technologies · Certified",
@@ -1020,25 +1022,25 @@ const skillsData = {
   },
   webdev: {
     icon:"🌐", title:"Web Development", where:"Dell Technologies – OS Engineering (L3)",
-    desc:"Built multiple internal web-based tools at Dell from scratch — from interactive dashboards to bulk-action management interfaces — using modern frontend and backend technologies.",
+    desc:"Built the Multi Connection Manager (MCM) — a full centralised web-based tool for the Ops team — from scratch at Dell. Covers frontend dashboards, backend APIs, and real-time WebSocket terminals.",
     points:[
-      "Developed the Multi Connection Manager — a full web app for bulk server operations.",
-      "Built the Mass Matter compliance dashboard with real-time agent status visualisation.",
-      "Created the Interactive Console Linux web interface via Bi-Frost for zero-touch remote access.",
-      "Integrated frontend React components with Python backends and internal APIs."
+      "Developed MCM featuring Linux SSH Terminal, Windows RDP, Get Root Password, LAPS retrieval, iDRAC queries, and PowerCLI execution.",
+      "Built Windows and Linux Agent Dashboards with file-based caching, health checks, and CSV export.",
+      "Created an Admin Panel with usage analytics (daily/monthly/yearly breakdowns).",
+      "Integrated React.js frontend with Python/FastAPI backend and real-time WebSocket connections."
     ],
-    tags:["React.js","Python","Dashboard","Web App","Dell","Full-Stack"]
+    tags:["React.js","Python","FastAPI","WebSocket","Dashboard","Dell","MCM"]
   },
   automation: {
     icon:"🔁", title:"IT Automation", where:"Dell Technologies · Nebula Systems",
-    desc:"Automation is central to my work — from writing scripts via Bi-Frost at Dell to deploying open-source tools at Nebula. Focused on reducing manual effort and improving consistency at scale.",
+    desc:"Automation is central to my work — from building MCM as my own tool at Dell, to completing Bi-Frost backlog items and deploying open-source tools at Nebula. Focused on reducing manual effort and improving consistency at scale.",
     points:[
-      "Developed Bi-Frost scripts at Dell to automate server tasks and reduce incident counts.",
-      "Automated CVE scope-list generation (Patchy Porter) for patch management.",
-      "Prepared target server lists and automated agent deployment workflows (Mass Matter).",
-      "Implemented open-source automation tools including Ansible and Kubernetes at Dell."
+      "Built Multi Connection Manager (MCM) — a full web-based tool for automating and centralising server operations across SSH, RDP, LAPS, iDRAC, and PowerCLI.",
+      "Assisted in finishing the Multiple-SSH backlog for the in-house Bi-Frost tool.",
+      "Automated kernel CVE scope-list generation via Patchy Porter for patch management.",
+      "Built Mass Matter — multithreaded bulk server operations processing 1000+ servers simultaneously with live progress tracking."
     ],
-    tags:["Ansible","Python","Bash","Bi-Frost","Dell","OLAM","Patchy Porter"]
+    tags:["MCM","Bi-Frost","Patchy Porter","Mass Matter","Python","React.js","Dell","OLAM"]
   },
   sre: {
     icon:"🛡️", title:"Site Reliability Engineering", where:"Dell Technologies · Certified",
