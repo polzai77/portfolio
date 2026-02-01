@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Amirul Arif — OS Engineer & Systems Architect</title>
+<title>Amirul Arif — OS Engineer & Infrastructure Specialist</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
 
@@ -20,7 +20,6 @@
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -101,7 +100,7 @@
     margin-top:1.5rem;
     font-size:0.88rem;
     color: var(--text-dim);
-    max-width:520px;
+    max-width:560px;
     line-height:1.8;
   }
   .hero-links {
@@ -205,7 +204,6 @@
   }
   .timeline-role {
     font-size:0.78rem;
-    color: var(--accent-dim);
     color: var(--text-dim);
     margin-bottom:0.8rem;
   }
@@ -245,7 +243,8 @@
     font-size:0.72rem;
     color: var(--text-dim);
     transition: all 0.3s;
-    cursor:default;
+    cursor:pointer;
+    position:relative;
   }
   .skill-card:hover {
     background: var(--bg-card-hover);
@@ -254,7 +253,144 @@
     transform:translateY(-2px);
     box-shadow: 0 4px 20px rgba(0,229,255,0.1);
   }
+  .skill-card.active {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+    color: var(--accent);
+    box-shadow: 0 0 16px rgba(0,229,255,0.18);
+  }
   .skill-icon { font-size:1.3rem; margin-bottom:0.4rem; display:block; }
+  .skill-click-hint {
+    font-size:0.55rem;
+    color: var(--text-dim);
+    margin-top:0.3rem;
+    opacity:0.6;
+    letter-spacing:0.05em;
+  }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position:fixed; inset:0; z-index:500;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    display:flex; align-items:center; justify-content:center;
+    padding:1.5rem;
+    opacity:0; pointer-events:none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.open {
+    opacity:1; pointer-events:all;
+  }
+  .modal {
+    background: var(--bg-card);
+    border:1px solid var(--accent);
+    border-radius:14px;
+    max-width:520px; width:100%;
+    max-height:80vh; overflow-y:auto;
+    padding:2rem;
+    position:relative;
+    box-shadow: 0 0 40px rgba(0,229,255,0.15);
+    transform: translateY(18px) scale(0.97);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal {
+    transform: translateY(0) scale(1);
+  }
+  .modal-close {
+    position:absolute; top:1rem; right:1rem;
+    background:none; border:none;
+    color: var(--text-dim);
+    font-size:1.3rem; cursor:pointer;
+    transition: color 0.2s;
+    line-height:1;
+  }
+  .modal-close:hover { color: var(--accent); }
+  .modal-header {
+    display:flex; align-items:center; gap:1rem;
+    margin-bottom:1.2rem;
+  }
+  .modal-icon { font-size:2rem; }
+  .modal-title {
+    font-family:'Syne',sans-serif;
+    font-size:1.3rem;
+    font-weight:700;
+    color:#fff;
+  }
+  .modal-where {
+    font-size:0.65rem;
+    color: var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-top:0.15rem;
+  }
+  .modal-desc {
+    font-size:0.76rem;
+    color: var(--text-dim);
+    line-height:1.9;
+    margin-bottom:1rem;
+  }
+  .modal-points { list-style:none; margin-bottom:1rem; }
+  .modal-points li {
+    font-size:0.73rem;
+    color: var(--text-dim);
+    padding:0.28rem 0 0.28rem 1rem;
+    position:relative;
+    line-height:1.7;
+  }
+  .modal-points li::before {
+    content:'›'; position:absolute; left:0; color:var(--accent);
+  }
+  .modal-tags { display:flex; flex-wrap:wrap; gap:0.35rem; }
+  .modal-tag {
+    font-size:0.6rem;
+    padding:0.2rem 0.55rem;
+    border-radius:20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+  }
+
+  /* ─── SKILLS CATEGORY LABEL ─── */
+  .skills-cat {
+    font-size:0.65rem;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color: var(--text-dim);
+    margin-top:2rem;
+    margin-bottom:0.7rem;
+    padding-bottom:0.4rem;
+    border-bottom:1px solid var(--border);
+  }
+  .skills-cat:first-of-type { margin-top:0; }
+
+  /* ─── CERTIFICATIONS ─── */
+  .cert-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap:0.8rem;
+  }
+  .cert-card {
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    display:flex; align-items:center; gap:1rem;
+    transition: all 0.3s;
+  }
+  .cert-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 24px rgba(0,229,255,0.08);
+  }
+  .cert-icon {
+    font-size:1.4rem;
+    flex-shrink:0;
+  }
+  .cert-name {
+    font-size:0.76rem;
+    color: var(--text);
+    line-height:1.5;
+  }
 
   /* ─── EDUCATION ─── */
   .edu-grid {
@@ -348,6 +484,7 @@
   <div class="nav-links">
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
+    <a href="#certifications">Certs</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
@@ -359,10 +496,10 @@
   <div class="hero-tag">OS Engineer · Dell Technologies</div>
   <h1>Amirul<br/><span class="accent">Arif.</span></h1>
   <p class="hero-sub">
-    L3 OS Engineer specializing in Linux &amp; Windows infrastructure, automation tooling, and web-based systems. Building reliability at scale — one script at a time.
+    Infrastructure Specialist with 5+ years of expertise in Linux administration, data center operations, and automation. Proficient in deploying and managing Linux-based systems, configuring hardware, and building internal tools that reduce workload at scale.
   </p>
   <div class="hero-links">
-    <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn btn-primary" target="_blank">GitHub</a>
+    <a href="https://github.com/polzai77" class="btn btn-primary" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/amirul-arif-49994b155/" class="btn btn-ghost" target="_blank">LinkedIn</a>
   </div>
 </section>
@@ -379,15 +516,16 @@
       <div class="timeline-company">Dell Technologies</div>
       <div class="timeline-role">OS Engineering (L3) · Cyberjaya, On-site</div>
       <ul class="timeline-desc">
-        <li>Next-level escalation support for Linux &amp; Windows, including on-call MIM standby.</li>
-        <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated CVE scope-list generation to streamline patch management.</li>
-        <li><strong style="color:var(--text)">Mass Matter</strong> — Built a compliance dashboard visualising agent versions by server category.</li>
-        <li><strong style="color:var(--text)">Multi Connection Manager</strong> — Self-initiated web app enabling bulk actions across connections for the Ops team.</li>
-        <li>Integrated &amp; enhanced internal tools to align with company standards.</li>
+        <li>Next-level escalation support for Linux &amp; Windows environments, including on-call standby for Major Incident Management (MIM).</li>
+        <li>Execute OS and application-level CTASKs to ensure system stability and performance.</li>
+        <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated CVE scope-list generation using internal tools to streamline patch management.</li>
+        <li><strong style="color:var(--text)">Mass Matter</strong> — Prepared target server lists for agent deployment and built a dashboard to visualise agent versions and compliance status by server category.</li>
+        <li><strong style="color:var(--text)">Multi Connection Manager</strong> — Self-initiated web app enabling the Ops team to perform bulk actions across multiple connections, significantly reducing daily workload.</li>
+        <li>Integrated and enhanced existing internal tools to align with company standards for a more maintainable and standardised solution.</li>
       </ul>
       <div class="timeline-tags">
         <span class="tag">Python</span><span class="tag">React.js</span><span class="tag">Ansible</span>
-        <span class="tag">Jira</span><span class="tag">GitLab</span><span class="tag">IT Automation</span>
+        <span class="tag">Jira</span><span class="tag">GitLab</span><span class="tag">IT Automation</span><span class="tag">OLAM</span>
       </div>
     </div>
 
@@ -397,41 +535,48 @@
       <div class="timeline-company">Dell Technologies</div>
       <div class="timeline-role">Analyst, IT Technical Services – Linux &amp; Windows · Hybrid</div>
       <ul class="timeline-desc">
-        <li>In-depth Linux &amp; Windows server support with incident management and root-cause analysis.</li>
-        <li>Developed <strong style="color:var(--text)">Interactive Console Linux</strong> — a zero-touch remote web console via Bi-Frost.</li>
-        <li>Achieved 29% incident reduction across the COE Server team (FY24Q1–Q2).</li>
-        <li>Consistently ranked Top 3 performer in FY24 &amp; FY25 for incident resolution volume.</li>
+        <li>Provided in-depth support for over 30,000 Linux servers and 25,000 Windows servers, escalating complex issues to the Engineering Team when necessary.</li>
+        <li>Incident Management — worked with support teams to troubleshoot issues and attend MIM for recovery and root cause analysis.</li>
+        <li>Change support — participated in change activities from the Change Coordinator to ensure smooth transitions with minimal operational impact.</li>
+        <li>Developed scripts via the in-house tool <strong style="color:var(--text)">Bi-Frost</strong> to automate tasks and reduce manual workload.</li>
+        <li>Supported critical activities including Major Data Center Maintenance, Power Maintenance, and Black Friday holiday readiness.</li>
+        <li><strong style="color:var(--text)">Interactive Console Linux</strong> — Built a web console for zero-touch remote access as a Bi-Frost addon feature.</li>
+        <li>Achieved a <strong style="color:var(--text)">29% incident reduction</strong> across the COE Server team (FY24Q1–Q2).</li>
+        <li>Consistently ranked <strong style="color:var(--text)">Top 3 performer</strong> in FY24 &amp; FY25 for incident resolution and task creation volume.</li>
       </ul>
       <div class="timeline-tags">
         <span class="tag">VMware vCenter</span><span class="tag">PowerShell</span><span class="tag">RHEL</span>
-        <span class="tag">Power Automate</span><span class="tag">Hyper-V</span><span class="tag">SRE</span>
+        <span class="tag">Power Automate</span><span class="tag">Hyper-V</span><span class="tag">SRE</span><span class="tag">ServiceNOW</span>
       </div>
     </div>
 
-    <!-- TelcoHubX -->
+    <!-- Velo + Nebula -->
     <div class="timeline-item">
       <div class="timeline-date">May 2020 – Apr 2022 · 2 yrs</div>
-      <div class="timeline-company">TelcoHubX · Velo Technologies</div>
+      <div class="timeline-company">Velo Technologies &amp; Nebula Systems</div>
       <div class="timeline-role">System Engineer · Cyberjaya, On-site</div>
       <ul class="timeline-desc">
-        <li>Full-stack infra support: servers, networking, structured cabling &amp; data centers.</li>
-        <li>Administered Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi, Cisco IOS, and open-source tools (Zabbix, LibreNMS, OpenNebula, Netbox).</li>
-        <li>IT asset management, vendor coordination, and technical documentation.</li>
+        <li><strong style="color:var(--text)">Velo Technologies</strong> — IT infrastructure support for desktops, networks, security, and data center operations. Delivered first-level user support, IT asset management, and vendor coordination.</li>
+        <li><strong style="color:var(--text)">Nebula Systems</strong> — Server &amp; network administration including installation, configuration, and maintenance of Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi, Cisco IOS, PFSense, OPNSense, and HP ArubaOS.</li>
+        <li>Researched, developed, and implemented open-source solutions: Zabbix, LibreNMS, OpenNebula, VyOS, oVirt, and Netbox.</li>
+        <li>Hands-on data center operations — installing and maintaining physical servers, networking equipment, and structured cabling in in-house and customer-owned facilities.</li>
+        <li>Proactively monitored environments, performed P2V and V2V migrations using Veeam and vCenter Converter.</li>
       </ul>
       <div class="timeline-tags">
         <span class="tag">VMware vSphere</span><span class="tag">Linux</span><span class="tag">Cisco IOS</span>
-        <span class="tag">Zabbix</span><span class="tag">Netbox</span><span class="tag">LibreNMS</span><span class="tag">OpenNebula</span>
+        <span class="tag">Zabbix</span><span class="tag">Netbox</span><span class="tag">LibreNMS</span><span class="tag">OpenNebula</span><span class="tag">Veeam</span>
       </div>
     </div>
 
     <!-- Stardocs -->
     <div class="timeline-item">
-      <div class="timeline-date">Nov 2019 – Mar 2020 · 5 mos</div>
+      <div class="timeline-date">Nov 2019 – Jan 2020 · 3 mos</div>
       <div class="timeline-company">Stardocs Sdn Bhd</div>
       <div class="timeline-role">System Programmer &amp; Support · Subang, On-site (Contract)</div>
       <ul class="timeline-desc">
-        <li>Pre &amp; post-sales technical support; managed in-house systems and application software.</li>
-        <li>Delivered billable IT consulting services to business partners and end-users.</li>
+        <li>Managed in-house systems including application software (Solimar Software), antivirus, printers, PCs, and servers.</li>
+        <li>Delivered pre &amp; post-sales technical support and billable IT consulting services to business partners and end-users.</li>
+        <li>Submitted daily activity reports and maintained diligent progress tracking.</li>
       </ul>
     </div>
 
@@ -439,10 +584,11 @@
     <div class="timeline-item">
       <div class="timeline-date">Jan 2019 – Oct 2019 · 10 mos</div>
       <div class="timeline-company">Ministry of Health, Malaysia (KKM)</div>
-      <div class="timeline-role">IT / Administrative Officer · Putrajaya (Contract)</div>
+      <div class="timeline-role">Administrative &amp; IT Officer – Grade N41 · Putrajaya (Contract)</div>
       <ul class="timeline-desc">
-        <li>Diagnosed &amp; resolved IT issues; coordinated vendor repairs and hardware procurement.</li>
-        <li>Handled documentation, record-keeping, and IT-related administrative tasks.</li>
+        <li>Diagnosed and resolved common IT issues including connectivity problems, system crashes, and hardware/software malfunctions.</li>
+        <li>Coordinated with external vendors for device replacements, hardware repairs, and procurement.</li>
+        <li>Handled documentation, record-keeping, data entry, and IT-related administrative coordination.</li>
       </ul>
     </div>
 
@@ -452,7 +598,7 @@
       <div class="timeline-company">Pacific Engineering Sdn Bhd</div>
       <div class="timeline-role">Intern – R&amp;D Engineer · Petaling Jaya</div>
       <ul class="timeline-desc">
-        <li>Built a DIY Arduino-based controller to monitor industrial machinery.</li>
+        <li>Developed a DIY Arduino-based controller to monitor industrial machinery as part of a supervisor-assigned project.</li>
       </ul>
     </div>
 
@@ -463,28 +609,440 @@
 <section id="skills">
   <div class="section-label">Toolkit</div>
   <h2 class="section-title">Skills</h2>
+
+  <div class="skills-cat">Software</div>
   <div class="skills-grid">
-    <div class="skill-card"><span class="skill-icon">🐍</span>Python</div>
-    <div class="skill-card"><span class="skill-icon">⚛️</span>React.js</div>
-    <div class="skill-card"><span class="skill-icon">🤖</span>Ansible</div>
-    <div class="skill-card"><span class="skill-icon">🐧</span>Linux</div>
-    <div class="skill-card"><span class="skill-icon">🪟</span>PowerShell</div>
-    <div class="skill-card"><span class="skill-icon">📦</span>VMware vSphere</div>
-    <div class="skill-card"><span class="skill-icon">🖥️</span>VMware vCenter</div>
-    <div class="skill-card"><span class="skill-icon">⚡</span>Hyper-V</div>
-    <div class="skill-card"><span class="skill-icon">🔁</span>IT Automation</div>
-    <div class="skill-card"><span class="skill-icon">🚀</span>System Deployment</div>
-    <div class="skill-card"><span class="skill-icon">🛡️</span>Incident Mgmt</div>
-    <div class="skill-card"><span class="skill-icon">🔧</span>RHEL</div>
-    <div class="skill-card"><span class="skill-icon">🌐</span>Web Development</div>
-    <div class="skill-card"><span class="skill-icon">📊</span>Jira</div>
-    <div class="skill-card"><span class="skill-icon">🔀</span>GitLab</div>
-    <div class="skill-card"><span class="skill-icon">⚙️</span>Power Automate</div>
-    <div class="skill-card"><span class="skill-icon">🛡️</span>SRE</div>
-    <div class="skill-card"><span class="skill-icon">🌱</span>Virtualization</div>
-    <div class="skill-card"><span class="skill-icon">🧮</span>Feature Tools</div>
-    <div class="skill-card"><span class="skill-icon">🤖</span>OLAM</div>
-    <div class="skill-card"><span class="skill-icon">💻</span>Software Dev</div>
+    <div class="skill-card" data-skill="linux"><span class="skill-icon">🐧</span>Linux<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="python"><span class="skill-icon">🐍</span>Python<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="reactjs"><span class="skill-icon">⚛️</span>React.js<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="powershell"><span class="skill-icon">🪟</span>PowerShell<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="bash"><span class="skill-icon">💬</span>Bash<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="ansible"><span class="skill-icon">🤖</span>Ansible<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="kubernetes"><span class="skill-icon">☸️</span>Kubernetes<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="vmware"><span class="skill-icon">📦</span>VMware<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="proxmox"><span class="skill-icon">🖥️</span>Proxmox<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="ovirt"><span class="skill-icon">🔄</span>oVirt<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="zabbix"><span class="skill-icon">📊</span>Zabbix<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="librenms"><span class="skill-icon">📡</span>LibreNMS<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="servicenow"><span class="skill-icon">🎫</span>ServiceNOW<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="zammad"><span class="skill-icon">🎟️</span>Zammad<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="mariadb"><span class="skill-icon">🗄️</span>MariaDB / MySQL<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="webdev"><span class="skill-icon">🌐</span>Web Development<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="automation"><span class="skill-icon">🔁</span>IT Automation<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="sre"><span class="skill-icon">🛡️</span>SRE<div class="skill-click-hint">click for details</div></div>
+  </div>
+
+  <div class="skills-cat">Hardware</div>
+  <div class="skills-grid">
+    <div class="skill-card" data-skill="poweredge"><span class="skill-icon">🖨️</span>Dell PowerEdge<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="proliant"><span class="skill-icon">🖨️</span>HP ProLiant<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="raid"><span class="skill-icon">💾</span>RAID Config<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="idrac"><span class="skill-icon">🔌</span>iDRAC / iLO<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="migration"><span class="skill-icon">🔀</span>P2V / V2V Migration<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="veeam"><span class="skill-icon">📦</span>Veeam<div class="skill-click-hint">click for details</div></div>
+  </div>
+
+  <div class="skills-cat">Networking</div>
+  <div class="skills-grid">
+    <div class="skill-card" data-skill="cisco"><span class="skill-icon">🌐</span>Cisco IOS<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="pfsense"><span class="skill-icon">🔒</span>PFSense<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="opnsense"><span class="skill-icon">🔒</span>OPNSense<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="aruba"><span class="skill-icon">🛜</span>HP ArubaOS<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="fsos"><span class="skill-icon">🛜</span>FSOS<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="netbox"><span class="skill-icon">🗺️</span>Netbox<div class="skill-click-hint">click for details</div></div>
+  </div>
+</section>
+
+<!-- SKILL DETAIL MODAL -->
+<div class="modal-overlay" id="skillModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-header">
+      <span class="modal-icon" id="modalIcon"></span>
+      <div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-where" id="modalWhere"></div>
+      </div>
+    </div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <ul class="modal-points" id="modalPoints"></ul>
+    <div class="modal-tags" id="modalTags"></div>
+  </div>
+</div>
+
+<script>
+const skillsData = {
+  linux: {
+    icon:"🐧", title:"Linux", where:"Dell Technologies · Velo · Nebula Systems",
+    desc:"Core OS across my entire career. Managed large-scale Linux environments at Dell covering RHEL, OL, Debian, Ubuntu, SUSE, and CentOS — both on-prem and virtual.",
+    points:[
+      "Supported 30,000+ Linux servers at Dell as an Analyst and L3 Engineer.",
+      "Performed installation, configuration, and maintenance on Ubuntu, CentOS, Debian at Nebula Systems.",
+      "Built automation scripts and internal tools (Bi-Frost) to reduce incident counts.",
+      "Hands-on experience with server OS deployments across physical and virtual environments."
+    ],
+    tags:["RHEL","OL","Debian","Ubuntu","SUSE","CentOS","Dell","Nebula"]
+  },
+  python: {
+    icon:"🐍", title:"Python", where:"Dell Technologies – OS Engineering (L3)",
+    desc:"Used Python to build automation scripts and internal tooling at Dell, particularly for CVE scope-list generation and server compliance workflows.",
+    points:[
+      "Automated CVE scope-list generation as part of the Patchy Porter project.",
+      "Developed scripts to support patch management and server compliance processes.",
+      "Built backend logic for internal web-based tools used by the Operations team."
+    ],
+    tags:["Automation","Scripting","Dell","Patchy Porter","Internal Tools"]
+  },
+  reactjs: {
+    icon:"⚛️", title:"React.js", where:"Dell Technologies – OS Engineering (L3)",
+    desc:"Used React.js to build the front-end for internal dashboards and web-based tools at Dell, including the Multi Connection Manager and the Mass Matter compliance dashboard.",
+    points:[
+      "Built the Multi Connection Manager web app — a bulk-action tool for the Ops team.",
+      "Developed the Mass Matter dashboard to visualise agent versions and compliance status by server category.",
+      "Integrated React components with backend APIs to deliver real-time server data."
+    ],
+    tags:["React.js","Web App","Dashboard","Dell","Frontend"]
+  },
+  powershell: {
+    icon:"🪟", title:"PowerShell", where:"Dell Technologies · Certified",
+    desc:"Used PowerShell extensively for Windows server management and automation at Dell. Completed two official certifications to strengthen scripting proficiency.",
+    points:[
+      "Managed and automated tasks across 25,000+ Windows servers at Dell.",
+      "Completed 'Introduction to Windows PowerShell 5.1' certification.",
+      "Completed 'Windows PowerShell: IT Management' certification.",
+      "Developed automation scripts to reduce repetitive manual operations."
+    ],
+    tags:["PowerShell 5.1","Windows Server","Automation","Dell","Certified"]
+  },
+  bash: {
+    icon:"💬", title:"Bash", where:"Dell Technologies · Nebula Systems",
+    desc:"Used Bash scripting for server automation, task scheduling, and quick troubleshooting across Linux environments at Dell and Nebula Systems.",
+    points:[
+      "Wrote Bash scripts via the Bi-Frost in-house tool to automate repetitive server tasks.",
+      "Used Bash for log parsing, health checks, and incident response procedures.",
+      "Supported automation workflows alongside Python for Linux server management."
+    ],
+    tags:["Scripting","Linux","Automation","Dell","Bi-Frost"]
+  },
+  ansible: {
+    icon:"🤖", title:"Ansible", where:"Dell Technologies – OS Engineering (L3)",
+    desc:"Used Ansible for configuration management and automation of Linux environments at Dell. Supports OLAM (Oracle Linux Automation Manager) workflows.",
+    points:[
+      "Applied Ansible playbooks for consistent server configuration and deployment.",
+      "Worked alongside OLAM for Oracle Linux automation tasks.",
+      "Used for streamlining patch management and compliance across large server fleets."
+    ],
+    tags:["Ansible","OLAM","Configuration Mgmt","Dell","Linux"]
+  },
+  kubernetes: {
+    icon:"☸️", title:"Kubernetes", where:"Dell Technologies (Limited Exposure)",
+    desc:"Gained exposure to Kubernetes container orchestration as part of broader automation and infrastructure work at Dell.",
+    points:[
+      "Explored Kubernetes for container orchestration in the context of infrastructure automation.",
+      "Limited hands-on exposure — used alongside other automation and virtualisation tools."
+    ],
+    tags:["Containers","Orchestration","Dell","Automation"]
+  },
+  vmware: {
+    icon:"📦", title:"VMware", where:"Dell Technologies · Nebula Systems",
+    desc:"Extensive hands-on experience with VMware across multiple roles — from deploying and maintaining virtual machines to performing migrations and managing vCenter environments.",
+    points:[
+      "Managed VMware vCenter and vSphere environments at Dell and Nebula Systems.",
+      "Performed V2V migrations using vCenter Converter at Nebula Systems.",
+      "Installed and configured VMware ESXi for server virtualisation.",
+      "Monitored and maintained virtual infrastructure as part of daily operations."
+    ],
+    tags:["VMware ESXi","vCenter","vSphere","Virtualisation","Dell","Nebula"]
+  },
+  proxmox: {
+    icon:"🖥️", title:"Proxmox", where:"Personal / Lab Environment",
+    desc:"Used Proxmox as a virtualisation platform for hands-on lab environments, supporting learning and testing of server and networking configurations.",
+    points:[
+      "Set up and managed Proxmox VE clusters for local lab and testing purposes.",
+      "Deployed virtual machines and containers to practice infrastructure scenarios.",
+      "Used alongside VMware and oVirt as part of a broader virtualisation skillset."
+    ],
+    tags:["Proxmox VE","Virtualisation","Lab","Containers"]
+  },
+  ovirt: {
+    icon:"🔄", title:"oVirt", where:"Nebula Systems",
+    desc:"Researched, developed, and implemented oVirt as an open-source virtualisation solution at Nebula Systems, linked with VMware workflows.",
+    points:[
+      "Implemented oVirt as part of open-source infrastructure at Nebula Systems.",
+      "Managed virtual machine deployments and migrations using oVirt.",
+      "Integrated oVirt workflows with VMware for a hybrid virtualisation environment."
+    ],
+    tags:["oVirt","Open-Source","Virtualisation","Nebula","VMware"]
+  },
+  zabbix: {
+    icon:"📊", title:"Zabbix", where:"Nebula Systems",
+    desc:"Deployed and used Zabbix as a monitoring solution at Nebula Systems to proactively track server and network health across on-prem environments.",
+    points:[
+      "Researched, developed, and implemented Zabbix for infrastructure monitoring.",
+      "Configured dashboards and alerts for proactive incident detection.",
+      "Monitored both physical and virtual server environments."
+    ],
+    tags:["Monitoring","Zabbix","Nebula","Infrastructure","Alerts"]
+  },
+  librenms: {
+    icon:"📡", title:"LibreNMS", where:"Nebula Systems",
+    desc:"Deployed LibreNMS as an open-source network monitoring tool at Nebula Systems to track network devices and structured cabling across data centres.",
+    points:[
+      "Implemented LibreNMS for network device monitoring at Nebula Systems.",
+      "Configured network topology discovery and health dashboards.",
+      "Used alongside Zabbix for comprehensive infrastructure observability."
+    ],
+    tags:["Network Monitoring","LibreNMS","Open-Source","Nebula","Data Centre"]
+  },
+  servicenow: {
+    icon:"🎫", title:"ServiceNOW", where:"Dell Technologies",
+    desc:"Used ServiceNOW as the primary ticketing and incident management platform at Dell to track, prioritise, and resolve server incidents across large-scale operations.",
+    points:[
+      "Managed and resolved incident tickets for 30,000+ Linux and 25,000+ Windows servers.",
+      "Tracked change requests and coordinated with the Change Coordinator via ServiceNOW.",
+      "Consistently ranked Top 3 performer in FY24 &amp; FY25 for ticket resolution volume."
+    ],
+    tags:["Ticketing","Incident Mgmt","Dell","ServiceNOW","Operations"]
+  },
+  zammad: {
+    icon:"🎟️", title:"Zammad", where:"Nebula Systems / Velo Technologies",
+    desc:"Used Zammad as an open-source ticketing tool for IT support and help desk operations during the Velo/Nebula period.",
+    points:[
+      "Managed help desk tickets and tracked issue resolution via Zammad.",
+      "Updated ticket statuses and ensured timely user support workflows.",
+      "Used as part of the IT support ecosystem alongside other internal tools."
+    ],
+    tags:["Ticketing","Open-Source","Help Desk","Velo","Nebula"]
+  },
+  mariadb: {
+    icon:"🗄️", title:"MariaDB / MySQL", where:"Personal / Lab",
+    desc:"Hands-on experience with MariaDB and MySQL for basic database administration — creating databases, managing privileges, and querying data.",
+    points:[
+      "Created and managed databases for internal tools and lab projects.",
+      "Configured user privileges and access controls.",
+      "Used for backend data storage in web-based tooling projects."
+    ],
+    tags:["MariaDB","MySQL","Database","Privileges","SQL"]
+  },
+  webdev: {
+    icon:"🌐", title:"Web Development", where:"Dell Technologies – OS Engineering (L3)",
+    desc:"Built multiple internal web-based tools at Dell from scratch — from interactive dashboards to bulk-action management interfaces — using modern frontend and backend technologies.",
+    points:[
+      "Developed the Multi Connection Manager — a full web app for bulk server operations.",
+      "Built the Mass Matter compliance dashboard with real-time agent status visualisation.",
+      "Created the Interactive Console Linux web interface via Bi-Frost for zero-touch remote access.",
+      "Integrated frontend React components with Python backends and internal APIs."
+    ],
+    tags:["React.js","Python","Dashboard","Web App","Dell","Full-Stack"]
+  },
+  automation: {
+    icon:"🔁", title:"IT Automation", where:"Dell Technologies · Nebula Systems",
+    desc:"Automation is central to my work — from writing scripts via Bi-Frost at Dell to deploying open-source tools at Nebula. Focused on reducing manual effort and improving consistency at scale.",
+    points:[
+      "Developed Bi-Frost scripts at Dell to automate server tasks and reduce incident counts.",
+      "Automated CVE scope-list generation (Patchy Porter) for patch management.",
+      "Prepared target server lists and automated agent deployment workflows (Mass Matter).",
+      "Implemented open-source automation tools including Ansible and Kubernetes at Dell."
+    ],
+    tags:["Ansible","Python","Bash","Bi-Frost","Dell","OLAM","Patchy Porter"]
+  },
+  sre: {
+    icon:"🛡️", title:"Site Reliability Engineering", where:"Dell Technologies · Certified",
+    desc:"Holds an SRE Foundation Certification. Applied SRE principles in daily operations at Dell — focusing on system reliability, incident response, and reducing operational toil.",
+    points:[
+      "Completed the SRE Foundation Certification.",
+      "Applied SRE practices to support 30,000+ Linux and 25,000+ Windows servers.",
+      "Contributed to a 29% incident reduction via automation and process improvements.",
+      "Participated in Major Incident Management (MIM) for critical system recovery."
+    ],
+    tags:["SRE","Incident Mgmt","Reliability","Dell","Certified","Automation"]
+  },
+  poweredge: {
+    icon:"🖨️", title:"Dell PowerEdge", where:"Dell Technologies · Nebula Systems",
+    desc:"Hands-on experience installing, configuring, and maintaining Dell PowerEdge servers from hardware to software — across data centre and virtualised environments.",
+    points:[
+      "Installed and configured Dell PowerEdge servers based on specific requirement needs.",
+      "Configured RAID, iDRAC, and related hardware components on PowerEdge systems.",
+      "Maintained physical and virtual server fleets across in-house and customer data centres."
+    ],
+    tags:["Dell PowerEdge","Hardware","RAID","iDRAC","Data Centre"]
+  },
+  proliant: {
+    icon:"🖨️", title:"HP ProLiant", where:"Nebula Systems · Velo Technologies",
+    desc:"Worked with HP ProLiant servers during infrastructure support and data centre operations at Nebula and Velo.",
+    points:[
+      "Installed and maintained HP ProLiant servers in customer and in-house data centres.",
+      "Configured iLO for remote management and monitoring.",
+      "Supported hardware-to-software installation based on client requirements."
+    ],
+    tags:["HP ProLiant","Hardware","iLO","Data Centre","Nebula"]
+  },
+  raid: {
+    icon:"💾", title:"RAID Configuration", where:"Nebula Systems · Velo Technologies",
+    desc:"Configured and maintained RAID arrays on Dell PowerEdge and HP ProLiant servers to ensure data redundancy and performance in data centre environments.",
+    points:[
+      "Configured RAID 0, 1, 5, and 10 arrays based on workload requirements.",
+      "Managed RAID controllers on both Dell and HP server platforms.",
+      "Ensured data redundancy and storage performance for production systems."
+    ],
+    tags:["RAID","Storage","Dell","HP","Hardware","Data Centre"]
+  },
+  idrac: {
+    icon:"🔌", title:"iDRAC / iLO", where:"Nebula Systems · Velo Technologies",
+    desc:"Configured and used Dell iDRAC and HP iLO for out-of-band server management, remote monitoring, and maintenance across data centre operations.",
+    points:[
+      "Configured iDRAC on Dell PowerEdge servers for remote management and KVM access.",
+      "Set up iLO on HP ProLiant systems for out-of-band monitoring.",
+      "Used for remote troubleshooting and maintenance without physical data centre access."
+    ],
+    tags:["iDRAC","iLO","Remote Mgmt","Dell","HP","Out-of-Band"]
+  },
+  migration: {
+    icon:"🔀", title:"P2V / V2V Migration", where:"Nebula Systems",
+    desc:"Performed physical-to-virtual and virtual-to-virtual migrations using Veeam and VMware vCenter Converter at Nebula Systems to modernise and consolidate server infrastructure.",
+    points:[
+      "Executed P2V migrations to move physical servers into VMware virtual environments.",
+      "Performed V2V migrations using vCenter Converter for platform consolidation.",
+      "Used Veeam for backup and migration workflows to ensure data integrity.",
+      "Validated migrated systems for performance and stability post-migration."
+    ],
+    tags:["P2V","V2V","Veeam","vCenter Converter","VMware","Nebula"]
+  },
+  veeam: {
+    icon:"📦", title:"Veeam", where:"Nebula Systems",
+    desc:"Used Veeam for backup, recovery, and migration workflows at Nebula Systems to protect and move server workloads across virtualised environments.",
+    points:[
+      "Configured Veeam backup jobs for VMware virtual machines.",
+      "Used Veeam for P2V and V2V migration tasks alongside vCenter Converter.",
+      "Ensured data protection and recovery readiness for production systems."
+    ],
+    tags:["Veeam","Backup","Migration","VMware","Nebula","Recovery"]
+  },
+  cisco: {
+    icon:"🌐", title:"Cisco IOS", where:"Nebula Systems",
+    desc:"Installed, configured, and maintained Cisco IOS network devices as part of data centre networking at Nebula Systems.",
+    points:[
+      "Configured Cisco switches and routers for in-house and customer data centres.",
+      "Managed network routing and switching using Cisco IOS commands.",
+      "Supported structured cabling and network infrastructure maintenance."
+    ],
+    tags:["Cisco IOS","Networking","Switches","Routers","Nebula","Data Centre"]
+  },
+  pfsense: {
+    icon:"🔒", title:"PFSense", where:"Nebula Systems",
+    desc:"Configured and maintained PFSense as a firewall and network security appliance at Nebula Systems for data centre and client environments.",
+    points:[
+      "Set up PFSense firewalls for network segmentation and security.",
+      "Configured routing, NAT, and firewall rules based on client requirements.",
+      "Maintained network security policies across in-house environments."
+    ],
+    tags:["PFSense","Firewall","Security","Networking","Nebula"]
+  },
+  opnsense: {
+    icon:"🔒", title:"OPNSense", where:"Nebula Systems",
+    desc:"Deployed and configured OPNSense as an open-source firewall and network management platform at Nebula Systems.",
+    points:[
+      "Installed and configured OPNSense for network security and routing.",
+      "Managed firewall rules and network policies for data centre environments.",
+      "Used alongside PFSense as part of a flexible networking toolkit."
+    ],
+    tags:["OPNSense","Open-Source","Firewall","Networking","Nebula"]
+  },
+  aruba: {
+    icon:"🛜", title:"HP ArubaOS", where:"Nebula Systems",
+    desc:"Configured and maintained HP Aruba wireless access points and network switches using ArubaOS at Nebula Systems.",
+    points:[
+      "Configured HP Aruba access points for wireless network coverage.",
+      "Managed ArubaOS settings for SSID, security, and traffic management.",
+      "Supported wireless infrastructure in data centre and office environments."
+    ],
+    tags:["HP ArubaOS","Wireless","Networking","Nebula","Access Points"]
+  },
+  fsos: {
+    icon:"🛜", title:"FSOS", where:"Nebula Systems",
+    desc:"Worked with FSOS (FS.com Network Operating System) for switch configuration and management as part of data centre networking at Nebula Systems.",
+    points:[
+      "Configured FS switches running FSOS for data centre connectivity.",
+      "Managed port configurations and VLANs based on infrastructure requirements.",
+      "Maintained switch health and performance as part of network operations."
+    ],
+    tags:["FSOS","Switches","Networking","Nebula","Data Centre"]
+  },
+  netbox: {
+    icon:"🗺️", title:"Netbox", where:"Nebula Systems",
+    desc:"Implemented and used Netbox as an open-source IPAM and infrastructure documentation tool at Nebula Systems to track and manage network and server assets.",
+    points:[
+      "Deployed Netbox for IP address management (IPAM) and network documentation.",
+      "Maintained accurate records of servers, network devices, and rack layouts.",
+      "Used as the single source of truth for infrastructure asset tracking."
+    ],
+    tags:["Netbox","IPAM","Documentation","Open-Source","Nebula","Asset Mgmt"]
+  }
+};
+
+const modal = document.getElementById('skillModal');
+const modalClose = document.getElementById('modalClose');
+let activeCard = null;
+
+document.querySelectorAll('.skill-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.getAttribute('data-skill');
+    const s = skillsData[key];
+    if (!s) return;
+
+    // populate modal
+    document.getElementById('modalIcon').textContent = s.icon;
+    document.getElementById('modalTitle').textContent = s.title;
+    document.getElementById('modalWhere').textContent = s.where;
+    document.getElementById('modalDesc').textContent = s.desc;
+
+    const pts = document.getElementById('modalPoints');
+    pts.innerHTML = s.points.map(p => '<li>' + p + '</li>').join('');
+
+    const tags = document.getElementById('modalTags');
+    tags.innerHTML = s.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
+
+    // highlight active card
+    if (activeCard) activeCard.classList.remove('active');
+    card.classList.add('active');
+    activeCard = card;
+
+    // open
+    modal.classList.add('open');
+  });
+});
+
+function closeModal() {
+  modal.classList.remove('open');
+  if (activeCard) { activeCard.classList.remove('active'); activeCard = null; }
+}
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <span class="cert-icon">🏅</span>
+      <div class="cert-name">Site Reliability Engineering (SRE) – Foundation Certification</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">🏅</span>
+      <div class="cert-name">Red Hat System Administration I (RH124)</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">🏅</span>
+      <div class="cert-name">Introduction to Windows PowerShell 5.1</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">🏅</span>
+      <div class="cert-name">Windows PowerShell: IT Management</div>
+    </div>
   </div>
 </section>
 
@@ -496,12 +1054,12 @@
     <div class="edu-card">
       <div class="edu-year">2014 – 2018</div>
       <div class="edu-name">National University of Malaysia (UKM)</div>
-      <div class="edu-detail">Bachelor's Degree</div>
+      <div class="edu-detail">Bachelor's Degree in Computer &amp; Communication Engineering</div>
     </div>
     <div class="edu-card">
       <div class="edu-year">2013 – 2014</div>
       <div class="edu-name">Penang Matriculation College</div>
-      <div class="edu-detail">Matriculation · Physics</div>
+      <div class="edu-detail">Matriculation · Physics (Module 2)</div>
     </div>
   </div>
 </section>
@@ -512,13 +1070,14 @@
   <h2 class="section-title">Let's work<br/>together.</h2>
   <p class="contact-sub">Open to new opportunities and collaborations.<br/>Feel free to reach out anytime.</p>
   <div class="contact-links">
-    <a href="https://www.linkedin.com/in/amirul-arif-49994b155/" class="btn btn-primary" target="_blank">LinkedIn</a>
-    <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn btn-ghost" target="_blank">GitHub</a>
+    <a href="mailto:amirularif9577@gmail.com" class="btn btn-primary">Email</a>
+    <a href="https://github.com/polzai77" class="btn btn-ghost" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/amirul-arif-49994b155/" class="btn btn-ghost" target="_blank">LinkedIn</a>
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer>© 2026 Amirul Arif. All rights reserved.</footer>
+<footer>© 2026 Amirul Arif · Cyberjaya, Selangor</footer>
 
 </body>
 </html>
