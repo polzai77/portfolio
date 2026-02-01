@@ -465,6 +465,197 @@
   .timeline-item:nth-child(5){animation-delay:0.7s}
   .timeline-item:nth-child(6){animation-delay:0.85s}
 
+  /* ─── GAMES ─── */
+  .game-tabs {
+    display:flex; gap:0.5rem; flex-wrap:wrap;
+    margin-bottom:2rem;
+  }
+  .game-tab {
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:0.55rem 1rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;
+    color: var(--text-dim);
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    transition: all 0.3s;
+    border:none;
+  }
+  .game-tab:hover { border-color: var(--accent); color: var(--accent); }
+  .game-tab.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .game-panel { display:none; }
+  .game-panel.active { display:block; }
+
+  /* typing test */
+  .typing-meta {
+    display:flex; gap:1.5rem; flex-wrap:wrap;
+    margin-bottom:1.2rem;
+  }
+  .typing-meta span {
+    font-size:0.68rem;
+    color: var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+  }
+  .typing-meta strong { color: var(--accent); font-size:0.85rem; }
+  .typing-text {
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:1.4rem 1.6rem;
+    font-size:0.82rem;
+    line-height:2.2;
+    color: var(--text-dim);
+    user-select:none;
+    min-height:120px;
+    position:relative;
+    outline:none;
+  }
+  .typing-text .char { transition: color 0.1s ease, background 0.1s ease; }
+  .typing-text .char.correct { color: var(--accent); }
+  .typing-text .char.wrong { color: #ff5f6b; background: rgba(255,95,107,0.12); border-radius:2px; }
+  .typing-text .char.cursor { border-left:2px solid var(--accent); animation: blink 1s step-end infinite; }
+  .typing-text .char.pending { color: var(--text-dim); }
+  @keyframes blink {
+    0%, 100% { border-left-color: var(--accent); }
+    50% { border-left-color: transparent; }
+  }
+  .typing-btn {
+    margin-top:1rem;
+    background: var(--accent);
+    color:#0a0a0f;
+    border:none;
+    border-radius:6px;
+    padding:0.6rem 1.3rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    cursor:pointer;
+    transition: all 0.3s;
+  }
+  .typing-btn:hover { box-shadow: 0 0 18px rgba(0,229,255,0.3); }
+  .typing-result {
+    margin-top:1.2rem;
+    display:none;
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+  }
+  .typing-result.show { display:block; }
+  .result-row {
+    display:flex; justify-content:space-between;
+    padding:0.35rem 0;
+    font-size:0.72rem;
+    border-bottom:1px solid var(--border);
+  }
+  .result-row:last-child { border-bottom:none; }
+  .result-row span:first-child { color: var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; }
+  .result-row span:last-child { color: var(--accent); font-weight:600; }
+
+  /* quiz shared */
+  .quiz-question {
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:1.4rem 1.6rem;
+    margin-bottom:1rem;
+  }
+  .quiz-label {
+    font-size:0.62rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color: var(--accent);
+    margin-bottom:0.5rem;
+  }
+  .quiz-q {
+    font-size:0.82rem;
+    color:#fff;
+    font-weight:500;
+    line-height:1.6;
+  }
+  .quiz-options { display:flex; flex-direction:column; gap:0.5rem; margin-top:1rem; }
+  .quiz-option {
+    background: var(--bg-card-hover);
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:0.65rem 1rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.74rem;
+    color: var(--text-dim);
+    cursor:pointer;
+    transition: all 0.25s;
+    text-align:left;
+  }
+  .quiz-option:hover { border-color: var(--accent); color: var(--accent); }
+  .quiz-option.correct { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+  .quiz-option.wrong { border-color: #ff5f6b; background: rgba(255,95,107,0.1); color: #ff5f6b; }
+  .quiz-option:disabled { cursor:default; }
+  .quiz-feedback {
+    margin-top:0.8rem;
+    font-size:0.72rem;
+    display:none;
+    line-height:1.6;
+  }
+  .quiz-feedback.show { display:block; }
+  .quiz-feedback.correct-fb { color: var(--accent); }
+  .quiz-feedback.wrong-fb { color: #ff5f6b; }
+  .quiz-score {
+    display:flex; gap:1.5rem; margin-bottom:1rem; flex-wrap:wrap;
+  }
+  .quiz-score span { font-size:0.68rem; color: var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; }
+  .quiz-score strong { color: var(--accent); }
+  .quiz-nav {
+    display:flex; gap:0.7rem; margin-top:1rem; flex-wrap:wrap;
+  }
+
+  /* port match */
+  .port-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+    margin-top:0.5rem;
+  }
+  .port-col-label {
+    font-size:0.62rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color: var(--accent);
+    margin-bottom:0.6rem;
+    text-align:center;
+  }
+  .port-item {
+    background: var(--bg-card-hover);
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:0.6rem 0.8rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.73rem;
+    color: var(--text-dim);
+    cursor:pointer;
+    text-align:center;
+    transition: all 0.25s;
+    margin-bottom:0.45rem;
+  }
+  .port-item:hover { border-color: var(--accent); color: var(--accent); }
+  .port-item.selected { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+  .port-item.matched { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); opacity:0.5; pointer-events:none; }
+  .port-item.wrong-flash { border-color: #ff5f6b; background: rgba(255,95,107,0.1); color: #ff5f6b; }
+  .port-item:disabled { cursor:default; }
+  .port-score-row {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;
+  }
+
   /* ─── RESPONSIVE ─── */
   @media(max-width:600px){
     nav { padding:1rem 1.2rem; }
@@ -473,6 +664,7 @@
     .hero { padding:5rem 1.2rem 2rem; }
     section { padding:3.5rem 1.2rem; }
     .skills-grid { grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); }
+    .port-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -488,6 +680,7 @@
     <a href="#education">Education</a>
     <a href="#references">References</a>
     <a href="#contact">Contact</a>
+    <a href="#games">Games</a>
   </div>
 </nav>
 
@@ -1104,6 +1297,417 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
     <a href="https://github.com/polzai77" class="btn btn-ghost" target="_blank">GitHub</a>
   </div>
 </div>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="section-label">Fun zone</div>
+  <h2 class="section-title">Mini Games</h2>
+
+  <div class="game-tabs">
+    <button class="game-tab active" data-tab="typing">⌨️ Typing Test</button>
+    <button class="game-tab" data-tab="linux">🐧 Linux Quiz</button>
+    <button class="game-tab" data-tab="ports">🔌 Port Match</button>
+  </div>
+
+  <!-- TYPING TEST -->
+  <div class="game-panel active" id="panel-typing">
+    <div class="typing-meta">
+      <span>WPM: <strong id="wpm">0</strong></span>
+      <span>Accuracy: <strong id="accuracy">—</strong></span>
+      <span>Time: <strong id="timer">30s</strong></span>
+    </div>
+    <div class="typing-text" id="typingText" tabindex="0"></div>
+    <button class="typing-btn" id="typingStart">Start</button>
+    <div class="typing-result" id="typingResult">
+      <div class="result-row"><span>WPM</span><span id="reswpm">0</span></div>
+      <div class="result-row"><span>Accuracy</span><span id="resacc">0%</span></div>
+      <div class="result-row"><span>Correct</span><span id="rescorrect">0</span></div>
+      <div class="result-row"><span>Wrong</span><span id="reswrong">0</span></div>
+      <div class="result-row"><span>Time</span><span>30s</span></div>
+    </div>
+    <button class="typing-btn" id="typingRestart" style="display:none; margin-left:0.5rem;">Restart</button>
+  </div>
+
+  <!-- LINUX QUIZ -->
+  <div class="game-panel" id="panel-linux">
+    <div class="quiz-score">
+      <span>Score: <strong id="linuxScore">0</strong></span>
+      <span>Question: <strong id="linuxNum">1 / 10</strong></span>
+    </div>
+    <div class="quiz-question">
+      <div class="quiz-label">What does this command do?</div>
+      <div class="quiz-q" id="linuxCmd"></div>
+      <div class="quiz-options" id="linuxOptions"></div>
+      <div class="quiz-feedback" id="linuxFeedback"></div>
+    </div>
+    <div class="quiz-nav">
+      <button class="typing-btn" id="linuxNext" style="display:none;">Next →</button>
+      <button class="typing-btn" id="linuxRestart" style="display:none;">Play Again</button>
+    </div>
+  </div>
+
+  <!-- PORT MATCH -->
+  <div class="game-panel" id="panel-ports">
+    <div class="port-score-row">
+      <div>
+        <span style="font-size:0.68rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em;">
+          Matched: <strong style="color:var(--accent);" id="portScore">0</strong> / <strong style="color:var(--accent);" id="portTotal">8</strong>
+        </span>
+      </div>
+      <button class="typing-btn" id="portRestart" style="padding:0.45rem 0.9rem; font-size:0.65rem;">↻ Reset</button>
+    </div>
+    <div class="port-grid">
+      <div>
+        <div class="port-col-label">Service</div>
+        <div id="portServices"></div>
+      </div>
+      <div>
+        <div class="port-col-label">Port Number</div>
+        <div id="portNumbers"></div>
+      </div>
+    </div>
+    <div style="margin-top:1rem; font-size:0.68rem; color:var(--text-dim); line-height:1.8;">
+      Click a service, then click the matching port number.
+    </div>
+  </div>
+</section>
+
+<script>
+// ─── TAB SWITCHING ───
+document.querySelectorAll('.game-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.game-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ─── TYPING SPEED TEST ───
+(function() {
+  const sentences = [
+    "The quick brown fox jumps over the lazy dog near the riverbank at dawn.",
+    "Linux servers power most of the internet infrastructure we rely on daily.",
+    "Automation scripts can reduce repetitive tasks and improve system reliability.",
+    "Cloud computing has transformed how engineers deploy and manage applications.",
+    "Network monitoring tools help detect and resolve issues before they escalate.",
+    "Virtual machines allow us to run multiple operating systems on one physical host.",
+    "Incident management requires quick thinking and structured root cause analysis.",
+    "Open source software provides flexibility and transparency for modern teams.",
+    "Patch management ensures systems stay secure against known vulnerabilities.",
+    "Data centers require careful planning for cooling, power, and redundancy."
+  ];
+
+  let text, index, correct, wrong, startTime, interval, running = false, finished = false;
+  let states = [];
+  let spans = [];
+
+  const textEl = document.getElementById('typingText');
+  const wpmEl = document.getElementById('wpm');
+  const accEl = document.getElementById('accuracy');
+  const timerEl = document.getElementById('timer');
+  const startBtn = document.getElementById('typingStart');
+  const restartBtn = document.getElementById('typingRestart');
+  const resultEl = document.getElementById('typingResult');
+
+  // Build spans once, update classes directly after that
+  function buildSpans() {
+    textEl.innerHTML = '';
+    spans = [];
+    text.split('').forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'char pending';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      textEl.appendChild(span);
+      spans.push(span);
+    });
+    // set initial cursor
+    if (spans[0]) spans[0].classList.add('cursor');
+  }
+
+  // Only update the 3 spans that change per keystroke: prev, current, next
+  function updateChar(prev, curr) {
+    // previous char: remove cursor, set correct/wrong
+    if (prev >= 0 && spans[prev]) {
+      spans[prev].classList.remove('cursor');
+      spans[prev].classList.remove('pending');
+      spans[prev].classList.add(states[prev] === 'correct' ? 'correct' : 'wrong');
+    }
+    // current char: add cursor
+    if (curr < spans.length && spans[curr]) {
+      spans[curr].classList.add('cursor');
+      spans[curr].scrollIntoView({ block:'nearest', inline:'nearest' });
+    }
+  }
+
+  function init() {
+    text = sentences[Math.floor(Math.random() * sentences.length)];
+    index = 0; correct = 0; wrong = 0; states = [];
+    running = false; finished = false;
+    wpmEl.textContent = '0';
+    accEl.textContent = '—';
+    timerEl.textContent = '30s';
+    startBtn.style.display = 'inline-flex';
+    restartBtn.style.display = 'none';
+    resultEl.classList.remove('show');
+    buildSpans();
+  }
+
+  function startGame() {
+    running = true; finished = false;
+    index = 0; correct = 0; wrong = 0; states = [];
+    startBtn.style.display = 'none';
+    resultEl.classList.remove('show');
+    restartBtn.style.display = 'none';
+    buildSpans();
+    textEl.focus();
+    let remaining = 30;
+    timerEl.textContent = remaining + 's';
+    interval = setInterval(() => {
+      remaining--;
+      timerEl.textContent = remaining + 's';
+      if (remaining <= 0) { clearInterval(interval); endGame(); }
+    }, 1000);
+    startTime = Date.now();
+  }
+
+  function endGame() {
+    running = false; finished = true;
+    clearInterval(interval);
+    // remove cursor from last position
+    if (spans[index]) spans[index].classList.remove('cursor');
+    let elapsed = 30;
+    let wpm = Math.round((correct / 5) / (elapsed / 60));
+    let total = correct + wrong;
+    let acc = total > 0 ? Math.round((correct / total) * 100) : 0;
+    wpmEl.textContent = wpm;
+    accEl.textContent = acc + '%';
+    document.getElementById('reswpm').textContent = wpm;
+    document.getElementById('resacc').textContent = acc + '%';
+    document.getElementById('rescorrect').textContent = correct;
+    document.getElementById('reswrong').textContent = wrong;
+    resultEl.classList.add('show');
+    restartBtn.style.display = 'inline-flex';
+  }
+
+  textEl.addEventListener('keydown', (e) => {
+    if (!running || finished) return;
+    if (e.key.length !== 1) return;
+    e.preventDefault();
+    if (index >= text.length) return;
+
+    states.push(e.key === text[index] ? 'correct' : 'wrong');
+    if (states[index] === 'correct') correct++; else wrong++;
+
+    let prev = index;
+    index++;
+
+    // live update stats
+    let total = correct + wrong;
+    accEl.textContent = (total > 0 ? Math.round((correct / total) * 100) : 0) + '%';
+    let elapsed = (Date.now() - startTime) / 1000 / 60;
+    wpmEl.textContent = Math.round((correct / 5) / elapsed) || 0;
+
+    // only touch the spans that changed
+    updateChar(prev, index);
+
+    if (index >= text.length) endGame();
+  });
+
+  startBtn.addEventListener('click', startGame);
+  restartBtn.addEventListener('click', () => { init(); });
+  init();
+})();
+
+// ─── LINUX TERMINAL QUIZ ───
+(function() {
+  const questions = [
+    { cmd: "ls -la", correct: "List all files including hidden ones with details", options: ["List only directories", "List all files including hidden ones with details", "Remove all files", "Log into a server"] },
+    { cmd: "chmod 755 script.sh", correct: "Set read/write/execute for owner, read/execute for others", options: ["Delete the file permissions", "Set read/write/execute for owner, read/execute for others", "Change file ownership", "Compress the file"] },
+    { cmd: "grep -r 'error' /var/log/", correct: "Search recursively for 'error' in all log files", options: ["Search recursively for 'error' in all log files", "Replace 'error' in log files", "Delete lines with 'error'", "Copy log files to another directory"] },
+    { cmd: "ssh user@192.168.1.10", correct: "Connect remotely to a server via SSH", options: ["Transfer a file to a server", "Connect remotely to a server via SSH", "Ping a remote host", "Mount a remote directory"] },
+    { cmd: "top", correct: "Display a real-time list of running processes", options: ["Show disk usage", "Display a real-time list of running processes", "List open network ports", "Show system uptime only"] },
+    { cmd: "scp file.txt user@server:/home/", correct: "Securely copy a file to a remote server", options: ["Securely copy a file to a remote server", "Synchronise folders between servers", "Stream logs from a remote server", "Remove a file from a remote server"] },
+    { cmd: "iptables -L", correct: "List all current firewall rules", options: ["Block all incoming traffic", "List all current firewall rules", "Flush DNS cache", "Restart the network service"] },
+    { cmd: "df -h", correct: "Show disk space usage in human-readable format", options: ["Show disk space usage in human-readable format", "Display file permissions", "List mounted devices only", "Format a disk partition"] },
+    { cmd: "cron -e", correct: "Open the cron job editor for the current user", options: ["Run a command immediately", "Open the cron job editor for the current user", "List all system users", "Stop all scheduled tasks"] },
+    { cmd: "docker ps -a", correct: "List all containers including stopped ones", options: ["Remove all Docker containers", "List all containers including stopped ones", "Build a new Docker image", "Start all stopped containers"] },
+    { cmd: "systemctl status nginx", correct: "Check the current status of the nginx service", options: ["Restart the nginx service", "Install nginx on the system", "Check the current status of the nginx service", "Remove nginx from the system"] },
+    { cmd: "tar -xzf archive.tar.gz", correct: "Extract a gzip-compressed tar archive", options: ["Compress a folder into a tar file", "Extract a gzip-compressed tar archive", "List contents of a tar file", "Delete a tar archive"] },
+    { cmd: "netstat -tulpn", correct: "Show all listening TCP/UDP ports with process IDs", options: ["Show all listening TCP/UDP ports with process IDs", "Block a specific network port", "Reset all network connections", "Display routing table only"] },
+    { cmd: "apt-get update", correct: "Update the package index list from repositories", options: ["Install all available updates", "Update the package index list from repositories", "Remove unused packages", "Upgrade the operating system"] },
+    { cmd: "journalctl -u sshd --since '1 hour ago'", correct: "View SSH service logs from the last hour", options: ["Restart the SSH service", "View SSH service logs from the last hour", "Block SSH access temporarily", "Change the SSH port number"] }
+  ];
+
+  let pool, current, score, answered;
+  const scoreEl = document.getElementById('linuxScore');
+  const numEl = document.getElementById('linuxNum');
+  const cmdEl = document.getElementById('linuxCmd');
+  const optionsEl = document.getElementById('linuxOptions');
+  const feedbackEl = document.getElementById('linuxFeedback');
+  const nextBtn = document.getElementById('linuxNext');
+  const restartBtn = document.getElementById('linuxRestart');
+
+  function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+  function init() {
+    pool = shuffle(questions).slice(0, 10);
+    current = 0; score = 0; answered = false;
+    scoreEl.textContent = '0';
+    nextBtn.style.display = 'none';
+    restartBtn.style.display = 'none';
+    loadQuestion();
+  }
+
+  function loadQuestion() {
+    answered = false;
+    const q = pool[current];
+    numEl.textContent = (current + 1) + ' / ' + pool.length;
+    cmdEl.textContent = q.cmd;
+    feedbackEl.className = 'quiz-feedback';
+    feedbackEl.textContent = '';
+
+    let opts = shuffle(q.options);
+    optionsEl.innerHTML = opts.map((o, i) =>
+      '<button class="quiz-option" data-answer="' + i + '">' + o + '</button>'
+    ).join('');
+
+    optionsEl.querySelectorAll('.quiz-option').forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        optionsEl.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+        if (opts[i] === q.correct) {
+          btn.classList.add('correct');
+          score++;
+          scoreEl.textContent = score;
+          feedbackEl.textContent = '✓ Correct!';
+          feedbackEl.className = 'quiz-feedback show correct-fb';
+        } else {
+          btn.classList.add('wrong');
+          feedbackEl.textContent = '✗ Wrong. The answer is: ' + q.correct;
+          feedbackEl.className = 'quiz-feedback show wrong-fb';
+          optionsEl.querySelectorAll('.quiz-option').forEach(b => {
+            if (opts[Array.from(optionsEl.querySelectorAll('.quiz-option')).indexOf(b)] === q.correct) b.classList.add('correct');
+          });
+        }
+        if (current + 1 < pool.length) { nextBtn.style.display = 'inline-flex'; }
+        else { restartBtn.style.display = 'inline-flex'; }
+      });
+    });
+  }
+
+  nextBtn.addEventListener('click', () => { current++; nextBtn.style.display = 'none'; loadQuestion(); });
+  restartBtn.addEventListener('click', init);
+  init();
+})();
+
+// ─── PORT MATCHING GAME ───
+(function() {
+  const allPorts = [
+    { service:"HTTP", port:80 },
+    { service:"HTTPS", port:443 },
+    { service:"SSH", port:22 },
+    { service:"FTP", port:21 },
+    { service:"SMTP", port:25 },
+    { service:"DNS", port:53 },
+    { service:"Telnet", port:23 },
+    { service:"POP3", port:110 },
+    { service:"IMAP", port:143 },
+    { service:"MySQL", port:3306 },
+    { service:"PostgreSQL", port:5432 },
+    { service:"RDP", port:3389 },
+    { service:"SFTP", port:22 },
+    { service:"LDAP", port:389 },
+    { service:"MongoDB", port:27017 },
+    { service:"Redis", port:6379 }
+  ];
+
+  // pick 8 unique-port entries
+  function pickSet() {
+    let used = new Set();
+    let picked = [];
+    let shuffled = [...allPorts].sort(() => Math.random() - 0.5);
+    for (let item of shuffled) {
+      if (!used.has(item.port) && picked.length < 8) {
+        used.add(item.port);
+        picked.push(item);
+      }
+    }
+    return picked;
+  }
+
+  let set, matched, selectedService;
+  const servicesEl = document.getElementById('portServices');
+  const numbersEl = document.getElementById('portNumbers');
+  const scoreEl = document.getElementById('portScore');
+  const totalEl = document.getElementById('portTotal');
+  const resetBtn = document.getElementById('portRestart');
+
+  function init() {
+    set = pickSet();
+    matched = new Set();
+    selectedService = null;
+    scoreEl.textContent = '0';
+    totalEl.textContent = set.length;
+    render();
+  }
+
+  function render() {
+    let ports = set.map(s => s.port).sort(() => Math.random() - 0.5);
+    servicesEl.innerHTML = set.map(s =>
+      '<div class="port-item" data-service="' + s.service + '" data-port="' + s.port + '">' + s.service + '</div>'
+    ).join('');
+    numbersEl.innerHTML = ports.map(p =>
+      '<div class="port-item" data-port="' + p + '">' + p + '</div>'
+    ).join('');
+
+    servicesEl.querySelectorAll('.port-item').forEach(el => {
+      el.addEventListener('click', () => selectService(el));
+    });
+    numbersEl.querySelectorAll('.port-item').forEach(el => {
+      el.addEventListener('click', () => selectPort(el));
+    });
+  }
+
+  function selectService(el) {
+    if (matched.has(el.dataset.service)) return;
+    servicesEl.querySelectorAll('.port-item').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedService = el;
+  }
+
+  function selectPort(el) {
+    if (!selectedService) return;
+    if (matched.has(selectedService.dataset.service)) return;
+
+    let correctPort = selectedService.dataset.port;
+    let clickedPort = el.dataset.port;
+
+    if (correctPort === clickedPort) {
+      // correct
+      selectedService.classList.remove('selected');
+      selectedService.classList.add('matched');
+      el.classList.add('matched');
+      matched.add(selectedService.dataset.service);
+      scoreEl.textContent = matched.size;
+      selectedService = null;
+      if (matched.size === set.length) {
+        setTimeout(() => { alert('🎉 You matched all ' + set.length + ' ports! Nice work!'); }, 400);
+      }
+    } else {
+      // wrong flash
+      el.classList.add('wrong-flash');
+      selectedService.classList.remove('selected');
+      setTimeout(() => { el.classList.remove('wrong-flash'); }, 500);
+      selectedService = null;
+    }
+  }
+
+  resetBtn.addEventListener('click', init);
+  init();
+})();
+</script>
 
 <!-- FOOTER -->
 <footer>© 2026 Amirul Arif · Cyberjaya, Selangor</footer>
