@@ -228,6 +228,66 @@
     text-transform:uppercase;
   }
 
+  /* ─── ACHIEVEMENTS TOGGLE ─── */
+  .achieve-btn {
+    display:inline-flex; align-items:center; gap:0.4rem;
+    margin-top:0.9rem;
+    background:none;
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:0.42rem 0.8rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.65rem;
+    color: var(--accent);
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    transition: all 0.25s;
+  }
+  .achieve-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .achieve-btn .achieve-arrow {
+    display:inline-block;
+    transition: transform 0.3s;
+  }
+  .achieve-btn.open .achieve-arrow { transform:rotate(90deg); }
+
+  .achievements-panel {
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .achievements-panel.open { max-height:400px; }
+
+  .achievements-inner {
+    margin-top:0.9rem;
+    padding:1rem 1.1rem;
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:8px;
+  }
+  .achievements-inner .achieve-label {
+    font-size:0.6rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color: var(--accent);
+    margin-bottom:0.6rem;
+  }
+  .achievements-inner li {
+    font-size:0.73rem;
+    color: var(--text-dim);
+    padding:0.4rem 0 0.4rem 1rem;
+    position:relative;
+    line-height:1.7;
+    list-style:none;
+  }
+  .achievements-inner li::before {
+    content:'🏆'; position:absolute; left:0; font-size:0.6rem; top:0.45rem;
+  }
+  .achievements-inner li strong { color: var(--text); }
+
   /* ─── SKILLS ─── */
   .skills-grid {
     display:grid;
@@ -714,7 +774,6 @@
         <li>Execute OS and application-level CTASKs to ensure system stability and performance.</li>
         <li><strong style="color:var(--text)">Multi Connection Manager (MCM)</strong> — Self-created centralised web-based tool for the Ops team. Features include: Linux SSH Terminal (single &amp; multi-server), Windows RDP, Get Root Password (via vCenter API with auto-login console), LAPS Password Retrieval (via WinRM), iDRAC Query, PowerCLI Commands, Server Health Monitoring (ping + RDP checks), Windows &amp; Linux Agent Dashboards, and Admin Panel with usage analytics.</li>
         <li><strong style="color:var(--text)">Mass Matter</strong> — Prepared target server lists for agent deployment. Developed and maintained a web-based dashboard to visualise agent versions and compliance status by server category. Built multithreaded bulk server operations supporting simultaneous processing of 1000+ servers with live progress tracking. Integrated into MCM for easier maintenance.</li>
-        <li><strong style="color:var(--text)">Bi-Frost — Multiple SSH</strong> — Assisted in completing the backlog for the Multiple-SSH feature of the in-house Bi-Frost tool.</li>
         <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated kernel CVE scope-list generation and patch validation pipeline with cycle-based tracking, integrated with GitLab and OLAM for automated artifact retrieval.</li>
         <li>Integrated and enhanced existing internal tools to align with company standards for a more maintainable and standardised solution.</li>
       </ul>
@@ -734,12 +793,22 @@
         <li>Provided in-depth support for over 30,000 Linux servers and 25,000 Windows servers, escalating complex issues to the Engineering Team when necessary.</li>
         <li>Incident Management — worked with support teams to troubleshoot issues and attend MIM for recovery and root cause analysis.</li>
         <li>Change support — participated in change activities from the Change Coordinator to ensure smooth transitions with minimal operational impact.</li>
-        <li>Developed automation scripts via the in-house tool <strong style="color:var(--text)">Bi-Frost</strong> to reduce manual workload and incident counts.</li>
+        <li>Developed automation scripts via the in-house tool <strong style="color:var(--text)">Bi-Frost</strong> to reduce manual workload and incident counts. Also assisted in completing the backlog for the <strong style="color:var(--text)">Multiple-SSH</strong> feature.</li>
         <li>Supported critical activities including Major Data Center Maintenance, Power Maintenance, and Black Friday holiday readiness.</li>
-        <li><strong style="color:var(--text)">Interactive Console Linux</strong> — Built a web-based interactive console for zero-touch remote access as a Bi-Frost addon feature.</li>
-        <li>Achieved a <strong style="color:var(--text)">29% incident reduction</strong> across the COE Server team (FY24Q1–Q2).</li>
-        <li>Consistently ranked <strong style="color:var(--text)">Top 3 performer</strong> in FY24 &amp; FY25 for incident resolution and task creation volume.</li>
       </ul>
+      <button class="achieve-btn" onclick="toggleAchievements(this)">
+        <span class="achieve-arrow">›</span> Achievements
+      </button>
+      <div class="achievements-panel">
+        <div class="achievements-inner">
+          <div class="achieve-label">Key Achievements</div>
+          <ul>
+            <li><strong>GICC Bi-Frost Tools — Interactive Console Linux</strong> — Developed a web console addon for in-house users to connect remotely via a zero-touch approach.</li>
+            <li><strong>FY24Q2 Excellent COE Server INC Delivery</strong> — Together with two other team members, contributed to overall Server/Server Tool INC operation support from FY24Q1–Q2, achieving a significant <strong>29% incident reduction</strong> across the COE Server team.</li>
+            <li><strong>Top 3 Performer — FY24 &amp; FY25</strong> — Consistently ranked among the top performers for resolving user incidents and task creation, demonstrating efficiency in handling a high volume of incident tickets.</li>
+          </ul>
+        </div>
+      </div>
       <div class="timeline-tags">
         <span class="tag">VMware vCenter</span><span class="tag">PowerShell</span><span class="tag">RHEL</span>
         <span class="tag">Power Automate</span><span class="tag">Hyper-V</span><span class="tag">SRE</span><span class="tag">ServiceNOW</span>
@@ -1376,6 +1445,12 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 </section>
 
 <script>
+// ─── ACHIEVEMENTS TOGGLE ───
+function toggleAchievements(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
 // ─── TAB SWITCHING ───
 document.querySelectorAll('.game-tab').forEach(tab => {
   tab.addEventListener('click', () => {
