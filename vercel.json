@@ -4,5 +4,11 @@
       "source": "/api/(.*)",
       "destination": "/api/main.py"
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
   ]
 }
