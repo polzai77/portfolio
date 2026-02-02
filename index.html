@@ -1068,25 +1068,12 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <!-- INVISIBLE VISITOR TRACKER -->
 <script>
 (function() {
-  // FIXED: Correct API URL
-  const API_URL = 'https://myportfolio-l91xx0u65-polzai77s-projects.vercel.app';
+  const API_URL = 'https://portfolio-tracker.onrender.com';
   
-  async function trackVisit() {
-    try {
-      await fetch(`${API_URL}/api/track`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-    } catch (error) {
-      // Silently fail - visitors never see errors
-      console.log('Analytics tracking failed');
-    }
-  }
-  
-  // Track page view when loaded
-  trackVisit();
+  fetch(`${API_URL}/api/track`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'}
+  }).catch(() => {});
 })();
 </script>
 
