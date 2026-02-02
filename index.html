@@ -1068,12 +1068,12 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <!-- INVISIBLE VISITOR TRACKER -->
 <script>
 (function() {
-  // CHANGE THIS URL AFTER DEPLOYMENT!
-  const API_URL = 'https://myportfolio-l91xx0u65-polzai77s-projects.vercel.app/stats-secret-x7k2j9m.html';
+  // FIXED: Correct API URL
+  const API_URL = 'https://myportfolio-l91xx0u65-polzai77s-projects.vercel.app';
   
   async function trackVisit() {
     try {
-      await fetch(`${API_URL}/track`, {
+      await fetch(`${API_URL}/api/track`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
