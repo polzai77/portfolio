@@ -1,5 +1,13 @@
 {
-  "total_visits": 0,
-  "unique_visitors": [],
-  "visits": []
+  "total_visits": 1,
+  "unique_visitors": [
+    "175.139.100.69"
+  ],
+  "visits": [
+    {
+      "timestamp": "2026-02-02T17:22:38.608030",
+      "ip": "175.139.100.69",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+    }
+  ]
 }
