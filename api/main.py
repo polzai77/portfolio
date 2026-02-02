@@ -1,6 +1,5 @@
 """
-Serverless API for Vercel - Visitor Tracker
-This is optimized for Vercel's serverless functions
+Visitor Tracker API - For Render.com
 """
 
 from fastapi import FastAPI, Request
@@ -20,8 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Use /tmp directory for Vercel (it's the only writable location)
-DATA_FILE = "/tmp/visitor_data.json"
+# Use current directory for data file (Render.com persistent storage)
+DATA_FILE = "visitor_data.json"
 
 def load_data():
     """Load visitor data from JSON file"""
