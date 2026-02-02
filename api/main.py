@@ -152,8 +152,8 @@ async def get_stats():
     total_visits = data["total_visits"]
     unique_visitors = len(data["unique_visitors"])
     
-    # Get recent visits (last 10)
-    recent_visits = data["visits"][-10:] if data["visits"] else []
+    # Get recent visits (last 50 for dashboard)
+    recent_visits = data["visits"][-50:] if data["visits"] else []
     
     # Count visits today
     today = datetime.now().date().isoformat()
@@ -163,5 +163,6 @@ async def get_stats():
         "total_visits": total_visits,
         "unique_visitors": unique_visitors,
         "visits_today": visits_today,
-        "recent_visits": recent_visits
+        "visits": data["visits"],  # Return ALL visits for dashboard
+        "recent_visits": recent_visits  # Keep for backward compatibility
     }
