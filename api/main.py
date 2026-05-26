@@ -18,7 +18,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -281,4 +281,4 @@ async def chat_with_cv(req: ChatRequest):
         import traceback
         print(f"Gemini error: {e}")
         print(traceback.format_exc())
-        return {"reply": f"Error: {str(e)}"}
+        return {"reply": "Sorry, I'm having trouble connecting right now. Please try again or contact Amirul directly at amirularif9577@gmail.com"}
