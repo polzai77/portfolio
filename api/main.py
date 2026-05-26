@@ -191,19 +191,42 @@ CONTACT:
 """
 
 JD_MATCH_PROMPT = """
-You are a professional HR analyst and technical recruiter. 
-A visitor has pasted a Job Description and wants to know how well 
-Amirul Arif's profile matches it.
+You are a brutally honest senior technical recruiter with 15+ years of experience.
+A visitor has pasted a Job Description and wants to know how well Amirul Arif's profile matches it.
+
+CRITICAL RULES FOR SCORING:
+- A skill being "listed" on a CV does NOT mean expertise. Dig into context and depth.
+- If a skill appears once in a short role 3+ years ago, it's NOT a strong match — mark it partial or gap.
+- Primary job titles and day-to-day responsibilities matter MORE than one-off mentions.
+- If the JD requires X as a PRIMARY skill but Amirul only used it occasionally, mark it partial (⚠️) not strong (✅).
+- Be realistic about years of experience depth — 6 months of exposure ≠ 3 years of hands-on.
+- If the JD's core focus is fundamentally different from Amirul's core expertise, reflect that in the score.
+- Don't inflate scores to be nice. A 60% match should be scored 60%, not 75%.
+- Consider: is this role playing to Amirul's STRENGTHS or asking him to stretch significantly?
+
+Amirul's CORE strengths (where he is genuinely strong):
+- Linux/OS administration at scale (30,000+ servers, L3 escalation)
+- Infrastructure automation (Python, Bash, Ansible, internal tooling)
+- Building internal web platforms (MCM, AskMyServer)
+- Incident Management and MIM
+- VMware/virtualisation
+
+Amirul's SECONDARY skills (exposure but not primary expertise):
+- Networking (Cisco, PFSense, ArubaOS) — used at Nebula Systems 2020-2022, not his primary focus
+- Windows server management — supporting role, not specialist
+- Database (MariaDB/MySQL) — basic usage only
+- Kubernetes — limited exposure explicitly stated
 
 Analyze the JD against Amirul's CV and provide:
-1. Overall match percentage (be realistic and honest)
-2. Strong matches (✅) — skills/experience that clearly match
-3. Partial matches (⚠️) — some overlap but not perfect
-4. Gaps (❌) — requirements not found in CV
-5. A short honest recommendation
+1. Overall match percentage (be realistic and brutally honest — if it's 50%, say 50%)
+2. Strong matches (✅) — only if Amirul has GENUINE depth, not just a mention
+3. Partial matches (⚠️) — skills he has but not at the depth/focus the JD requires
+4. Gaps (❌) — missing skills OR skills where his exposure is too shallow for the role
+5. A short brutally honest recommendation — is this role playing to his strengths or not?
+   If it's not a good fit, say so clearly and suggest what type of role WOULD suit him better.
 
 Format it clearly with emojis and sections.
-Keep it concise but thorough.
+Be concise but thorough. Honesty helps Amirul target the RIGHT roles.
 
 === AMIRUL'S CV ===
 {cv}
@@ -312,10 +335,15 @@ async def chat_with_cv(req: ChatRequest):
         return {"reply": "AI chat is not configured yet. Please contact Amirul directly at amirularif9577@gmail.com"}
 
     try:
+        # Truncate message if too long (PDF uploads can be huge)
+        message = req.message
+        if len(message) > 15000:
+            message = message[:15000] + "\n\n[Content truncated for length...]"
+
         if req.is_jd_match:
-            prompt = JD_MATCH_PROMPT.format(cv=CV_CONTEXT, jd=req.message)
+            prompt = JD_MATCH_PROMPT.format(cv=CV_CONTEXT, jd=message)
         else:
-            prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{req.message}"
+            prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{message}"
 
         response = gemini_client.models.generate_content(
             model="gemini-2.5-flash",
