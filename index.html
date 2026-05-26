@@ -16,6 +16,47 @@
   padding-bottom:0.3rem;
   border-bottom:1px solid var(--border);
 }
+
+/* ─── LIGHT MODE OVERRIDES ─── */
+body.light {
+  --bg: #f0f2f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #e8edf5;
+  --accent: #0077aa;
+  --accent-dim: rgba(0,119,170,0.12);
+  --accent2: #7c4dff;
+  --text: #1a1a2e;
+  --text-dim: #555566;
+  --border: rgba(0,0,0,0.08);
+}
+body.light .glow-blob { background: var(--accent); opacity: 0.07; }
+body.light body::before { opacity: 0.015; }
+body.light nav { background: rgba(240,242,245,0.85); }
+body.light .timeline::before { background: linear-gradient(to bottom, var(--accent), transparent); }
+body.light .timeline-item::before { background: var(--accent); border-color: var(--bg); }
+body.light .btn-primary { color: #fff; }
+
+/* ─── THEME TOGGLE BUTTON ─── */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 12px rgba(0,229,255,0.2);
+}
 </style>
 </head>
 <body>
@@ -32,6 +73,7 @@
     <a href="#contact">Contact</a>
     <a href="#games">Games</a>
   </div>
+  <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
 </nav>
 
 <!-- HERO -->
@@ -1069,6 +1111,22 @@ document.querySelectorAll('.game-tab').forEach(tab => {
     } catch (error) { console.log('Analytics tracking failed'); }
   }
   trackVisit();
+})();
+</script>
+
+<!-- THEME TOGGLE SCRIPT -->
+<script>
+(function() {
+  const btn = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { body.classList.add('light'); btn.textContent = '☀️'; }
+
+  btn.addEventListener('click', () => {
+    const isLight = body.classList.toggle('light');
+    btn.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
 })();
 </script>
 
