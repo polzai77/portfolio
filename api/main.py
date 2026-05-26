@@ -27,6 +27,8 @@ app.add_middleware(
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
+import warnings
+warnings.filterwarnings("ignore")
 
 # ─── CV CONTEXT ───
 CV_CONTEXT = """
@@ -267,14 +269,18 @@ async def chat_with_cv(req: ChatRequest):
         return {"reply": "AI chat is not configured yet. Please contact Amirul directly at amirularif9577@gmail.com"}
 
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        from google import genai as new_genai
+        client = new_genai.Client(api_key=GEMINI_API_KEY)
 
         if req.is_jd_match:
             prompt = JD_MATCH_PROMPT.format(cv=CV_CONTEXT, jd=req.message)
         else:
             prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{req.message}"
 
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt
+        )
         return {"reply": response.text}
 
     except Exception as e:
