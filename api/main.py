@@ -272,11 +272,13 @@ async def chat_with_cv(req: ChatRequest):
             prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{req.message}"
 
         response = gemini_client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=prompt
         )
         return {"reply": response.text}
 
     except Exception as e:
+        import traceback
         print(f"Gemini error: {e}")
-        return {"reply": "Sorry, I'm having trouble connecting right now. Please try again or contact Amirul directly at amirularif9577@gmail.com"}
+        print(traceback.format_exc())
+        return {"reply": f"Error: {str(e)}"}
