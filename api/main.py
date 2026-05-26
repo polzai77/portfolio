@@ -39,93 +39,130 @@ the visitor contact Amirul directly.
 
 Name: Mohamad Amirul 'Arif bin Tajul Hasnan
 Location: Cyberjaya, Selangor, Malaysia
+Phone: +601124005710
 Email: amirularif9577@gmail.com
 LinkedIn: https://www.linkedin.com/in/amirul-arif-49994b155/
 GitHub: https://github.com/polzai77
+Portfolio: https://polzai77.github.io/portfolio/
 
 PROFESSIONAL SUMMARY:
 Experienced Infrastructure Specialist with over 5 years of expertise as a Linux Administrator.
 Proficient in deploying and managing Linux-based systems, installing and configuring hardware
 in data centers including servers and network switches. Skilled in software installation for
-both physical and virtual machines. Passionate about continuous learning and emerging technologies.
+both physical and virtual machines. Passionate about continuous learning and staying up to date
+with emerging technologies to enhance skills and drive innovation.
 
 EXPERIENCE:
 
-1. Dell Technologies — Senior Analyst, OS Engineering (L3)
+1. Dell Technologies (Dell IT)— Senior Analyst, OS Engineering (L3)
    March 2025 – Present | Cyberjaya, On-site
    Roles:
    - Provide next-level escalation support for Linux & Windows environments, including on-call standby for Major Incident Management (MIM)
    - Execute OS and application (process-level) CTASKs to ensure system stability and performance
-   - Integrate and enhance existing internal tools to align with company standards, incorporating automation practices
-   
+   - Integrate and enhance existing internal tools to align with company standards, incorporating automation practices to replace legacy manual methods
+
    Official Projects:
    - Patchy-Porter: Automated kernel CVE scope-list generation and patch validation pipeline with cycle-based tracking, integrated with GitLab & OLAM for automated artifact retrieval
-   - Mass Matter: Agent deployment automation pipeline featuring server filtering for both OS types, environment-based deployment targeting, ECN email generator, MECM deployment status tracking (Windows), agent classification, and Windows & Linux agent dashboards embedded into Grafana
-   - CHG-A-BOT: Common CTASKs Automation (Expand Capacity / Mount Validation)
-   
+   - Mass Matter: Agent deployment automation pipeline featuring server filtering for both OS types, environment-based deployment targeting, ECN email generator, MECM deployment status tracking (Windows), agent classification, and Windows & Linux agent dashboards embedded into Grafana covering agent version compliance, server health, TO tracking, and owner data enrichment. Historical data tracking included.
+   - CHG-A-BOT: Common CTASKs Automation (e.g. Expand Capacity / Mount Validation)
+
    Self-Initiated Projects:
-   - MCM (Multi Connection Manager): Centralised role-based web platform for server operations featuring Windows RDP, LAPS Password Retrieval (WinRM), Linux Multi-SSH Terminal, Get Root Password (vCenter API), SCP Browser, iDRAC Query, Redfish API Explorer, PowerCLI, Root Access Audit, PCI Server Console, Mount Activity Checker, VM Disk Add & Expand, Access Control Manager, Usage Analytics, User Command Tracking
-   - AskMyServer (Dell Hackathon): AI-powered natural language server diagnostics platform built on MCP (Model Context Protocol) architecture. Adopted by team, senior consultant, and manager. Backend uses Dell GenAI Gateway with dual-model routing (GPT-Powerful-120B and LLaMA 3.3-70B). Reduced server diagnostic time to under a minute.
-   
-   Achievements:
-   - Oracle DB Server CPU & RAM Resizing: Resolved kernel panic, reclaimed 1,956 CPUs & 15.6 TB RAM, ~USD 312K cost savings
-   - Top performer for MCM adoption and Grafana Agent Dashboard deployment
+   - MCM (Multi Connection Manager): Centralised role-based web platform for server operations featuring:
+     Windows: RDP Connections, LAPS Password Retrieval (WinRM), Windows Disk Expand & Search, File Share Browser (SMB)
+     Linux: Multi-SSH Terminal (single & multi-server), Get Root Password (vCenter API with auto-login console), SCP Browser
+     Misc: iDRAC Query, Redfish API Explorer, PowerCLI (vCenter), Root Access Audit, PCI Server Console
+     CHGTASK: Mount Activity Checker, Implementation Step Manager
+     Deployments (Mass Matter): Server Deployment Filtering, Agent Classification, ECN Email Generator, MECM Deployment Status Tracking, Historical Data
+     Admin: Access Control Manager (group & user-level permissions), Usage Analytics, User Command Tracking, Kickout Session, Feedback
+     Currently extending with VM Disk Add & Expand (multi-VM, SCSI-aware) — planned for OLAM conversion and ServiceNow integration
+   - AskMyServer (Dell Hackathon Project): Solely designed, architected, and developed an AI-powered natural language server diagnostics platform built on MCP (Model Context Protocol) architecture. Adopted by team, senior consultant, and manager for day-to-day operations.
+     Target Users: Non-technical app/server owners — enabling self-service diagnostics and vulnerability checks without CLI knowledge or SME involvement
+     Backend: Dell GenAI Gateway as LLM proxy with dual-model routing — GPT-Powerful-120B for complex queries & Zabbix graph generation, LLaMA 3.3-70B for live diagnostics and bulk server queries
+     MCP Tool Servers: Linux SSH (multi-server), Windows WinRM, OS Info/Inventory API, Zabbix MCP (prod & nonprod)
+     Frontend: Open WebUI with tool server integration, served via nginx SSL termination
+     Infrastructure: Podman + systemd deployment
+     Impact: Reduced server diagnostic time to under a minute — empowering server/app owners to investigate issues and check vulnerabilities independently, directly reducing unnecessary INC creation across the full supported fleet
 
-2. Dell Technologies — Analyst, IT Technical Services (Linux & Windows)
+   Achievements:
+   - Oracle DB Server CPU & RAM Resizing: Resolved kernel panic at the Linux/OS layer during system resizing. Collaborated cross-team with DBEs and SEs to reclaim 1,956 CPUs & 15.6 TB of RAM, resulting in approximately USD 312K in cost savings
+   - Multi Connection Manager: Bigger audience, simplifies day-to-day work in bulk operations, applying pre-automation before implementing full automation
+   - Grafana Agent Dashboard: Displaying agent status for both Windows and Linux across supported servers, server health, trending, history
+
+2. Dell Technologies — Analyst, IT Technical Services (Linux & Windows Operation Support)
    April 2022 – March 2025 | 3 years | Hybrid
-   - Supported 30,000+ Linux servers and 25,000+ Windows servers
-   - Incident Management, Change Support, Major Incident Management (MIM)
-   - Developed automation scripts via Bi-Frost in-house tool
-   - Supported Major Data Center Maintenance, Power Maintenance, Black Friday readiness
+   Roles:
+   - Provided in-depth support for over 30,000 Linux servers and 25,000 Windows servers, following established processes and escalating complex issues to the Engineering Team when necessary
+   - Incident Management: Work with support teams to troubleshoot issues and attend Major Incident Management (MIM) when needed to ensure recovery and assist on providing root cause analysis
+   - Change support: Participate in change activity given by "Change Coordinator" based on client/user needs to ensure smooth transitions with minimal impact on operations
+   - Vendor support: Work with vendors and IT teams to resolve server related issues
+   - Develop scripts using the in-house tool "Bi-Frost" to automate tasks, reduce manual work, and assist team members in reducing incident count
+   - Support during critical activity: Major Data Center Maintenance, Power Maintenance and Black Friday holiday readiness
    Achievements:
-   - GICC Bi-Frost Tools: Interactive Console Linux web console for zero-touch remote access
-   - FY24Q2: 29% incident reduction across COE Server team
-   - Consistently Top 3 performer FY24 & FY25 for incident resolution
+   - GICC Bi-Frost Tools addon Features — Interactive Console Linux: Developing a web console for in-house users to connect remotely for zero touch approach
+   - FY24Q2: Excellent COE Server INC Delivery Results — Combined with two other team members contributed to overall Server/Server Tool INC operation support from FY24Q1-Q2, achieving 29% incidents reduction
+   - Consistently ranked among the Top 3 performers in FY24 and FY25 for resolving user incidents and task creation, demonstrating efficiency in handling a high volume of incident tickets
 
-3. Velo Technologies & Nebula Systems — System Engineer
+3. Velo Technologies Sdn. Bhd and Nebula Systems Sdn. Bhd (Outsource) — System Engineer
    May 2020 – April 2022 | 2 years | On-site
-   Velo Technologies:
-   - IT infrastructure support for desktops, networks, security, basic data center operations
-   - User support, IT asset management, vendor coordination, help desk
-   Nebula Systems:
-   - Server & network administration: Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi
+   Roles for Velo Technologies:
+   - Technical Support & Maintenance: Provide IT infrastructure support for desktops, networks, security, and basic data center operations. Identify opportunities for infrastructure and process improvements.
+   - User Support & Account Management: Deliver first-level user support, including IT setup and account administration.
+   - IT Asset Management: Maintain IT inventory, conduct routine equipment audits, and ensure accurate tracking of desktops, laptops, network devices, and mobile assets.
+   - Vendor & Supplier Coordination: Liaise with external vendors, suppliers, and contractors for repairs, services, and procurement.
+   - Help Desk & Ticketing Support: Work closely with the help desk team to update ticket statuses and ensure timely issue resolution.
+   - Administrative & Operational Support: Perform IT administrative duties.
+   - On-Site & Standby Support: Available for on-site support and urgent troubleshooting as required.
+   Roles for Nebula Systems:
+   - Server & Network Administration: Installation, configuration, and maintenance of operating environments, including servers and network devices.
+   - Server OS: Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi
    - Network OS: Cisco IOS, PFSense, OPNSense, FSOS, HP ArubaOS
-   - Open-source solutions: Zabbix, LibreNMS, OpenNebula, VyOS, oVirt, Netbox
-   - Data center hands-on: servers, networking equipment, structured cabling
+   - Open-Source Solutions: Research, development, and implementation of tools such as Zabbix, LibreNMS, OpenNebula, VyOS, oVirt, and Netbox.
+   - System Maintenance & Security: Regular software and hardware updates, ensuring system security and stability.
+   - Monitoring & Incident Response: Proactively monitoring physical and virtual environments, troubleshooting.
+   - Data Center Operations: Hands-on experience in installing and maintaining physical hardware, including servers, networking equipment, and structured cabling in both in-house and customer-owned data centers.
+   - Technical Support & Documentation: Providing training, support, and maintaining detailed records of system changes and issue resolutions.
    - P2V and V2V migrations using Veeam and vCenter Converter
 
 4. Stardocs Sdn Bhd — System Programmer & Support
-   November 2019 – January 2020 | Contract
-   - Managed in-house systems, Solimar Software, antivirus, printers, PCs, servers
-   - Pre & post-sales technical support
+   November 2019 – January 2020 | Contract | Subang
+   Roles:
+   - Software & Hardware Proficiency: Attain and maintain expertise in software products, related hardware, and system integration.
+   - Pre & Post-Sales Support: Provide timely and high-quality support for both internal teams and external customers, ensuring smooth delivery of assignments.
+   - System & Application Support: Manage in-house systems for office and outsourcing operations, including application software (Solimar Software), antivirus solutions, printers, PCs, servers, and related accessories.
+   - Professional IT Services: Deliver technical support and consulting services to business partners and end-users, including billable services as required.
+   - Reporting & Documentation: Submit daily activity reports outlining completed tasks, delays, and planned activities.
 
-5. Ministry of Health Malaysia — Administrative & IT Officer Grade N41
-   January 2019 – October 2019 | Contract
-   - IT troubleshooting, hardware/software support, vendor coordination
+5. Ministry of Health Malaysia (KKM) — Administrative & IT Officer Grade N41
+   January 2019 – October 2019 | Contract | Putrajaya
+   Roles:
+   - Technical Troubleshooting: Diagnose and resolve common IT issues, including internet connectivity problems, system crashes, and hardware/software malfunctions.
+   - Hardware & Software Support: Conduct damage assessments and recommend repairs or replacements as needed.
+   - Vendor Coordination: Liaise with external vendors for device replacements, hardware repairs, and procurement when required.
+   - Administrative Work: Handle documentation, record-keeping, data entry, and IT-related coordination to ensure smooth operations.
 
 6. Pacific Engineering Sdn Bhd — Intern R&D Engineer
-   June 2017 – September 2017
-   - Developed Arduino-based controller to monitor industrial machinery
+   June 2017 – September 2017 | 4 months | Petaling Jaya
+   - Developed a DIY Arduino-based controller to monitor industrial machinery as part of a supervisor-assigned project.
 
 SKILLS:
 Software:
 - Linux: RHEL, OL, Debian, Ubuntu, SUSE, CentOS
 - Scripting: PowerShell, Bash, Python
-- Automation: Kubernetes (limited), Ansible, OLAM
-- Virtualisation: VMware vCenter/vSphere/ESXi, Proxmox, oVirt, OpenNebula
+- Automation: Kubernetes (limited exposure), Ansible, OLAM
+- Virtualisation: VMware vCenter/vSphere/ESXi, Proxmox, oVirt, OpenNebula (linked with VMware)
 - Monitoring: LibreNMS, Zabbix, Grafana
 - Ticketing: Zammad, ServiceNow
-- Database: MariaDB, MySQL, PostgreSQL
+- Database: MariaDB, MySQL, PostgreSQL (create simple DB, provide privilege, view tasks)
 - Web Development: React.js, FastAPI, Python, WebSocket, nginx
-- AI/MCP: Model Context Protocol, LLM integration, GenAI
+- AI/MCP: Model Context Protocol, LLM integration, GenAI, Podman
 
 Hardware:
-- Dell PowerEdge, HP ProLiant
-- RAID configuration, iDRAC, iLO
-- P2V/V2V migration using Veeam
+- Dell PowerEdge, HP ProLiant, FS Switch configuration from hardware to software installation based on requirement needs
+- Configure RAID, iDRAC and iLO Card
+- P2V and V2V migration using Veeam and vCenter Converter
 
 Networking:
-- Cisco IOS, PFSense, OPNSense, HP ArubaOS, FSOS, Netbox
+- Cisco IOS, PFSense, OPNSense, FSOS, HP ArubaOS, Netbox, VyOS
 
 CERTIFICATIONS:
 - Site Reliability Engineering (SRE) Foundation Certification
@@ -137,7 +174,16 @@ EDUCATION:
 - Bachelor's Degree in Computer & Communication Engineering — National University of Malaysia (UKM), 2014-2018
 - Matriculation in Physics (Module 2) — Penang Matriculation College, 2013-2014
 
+REFERENCES (6 total):
+1. Jesse Chan — Senior Consultant, IT Infrastructure · Dell | +6019-2632171 | Jesse.Chan@dell.com (Engineering Counterpart, current)
+2. Chris Ong — Senior Manager, IT Infrastructure · Dell | +6012-3358530 | Chris.Ong@dell.com (Manager, current)
+3. Aqmal Zaki — Senior Advisor, IT Infrastructure · Dell | +6011-23546008 | aqmal.zaki@dell.com (Teammate, current)
+4. Shahmat Dahlan — Consultant, IT Infrastructure · Dell | +6016-8826130 | shahmat.dahlan@dell.com (Co-Worker, current)
+5. Ben Chin — CEO · Velo Technologies | +6012-2055522 | ben.chin@velo-technologies.com (Ex-Manager, Velo Technologies)
+6. Javier Wong — CEO · Nebula Systems | +6012-2086226 | javier.wong@nebula-sys.com (Ex-Manager, Nebula Systems)
+
 CONTACT:
+- Phone: +601124005710
 - Email: amirularif9577@gmail.com
 - LinkedIn: https://www.linkedin.com/in/amirul-arif-49994b155/
 - GitHub: https://github.com/polzai77
