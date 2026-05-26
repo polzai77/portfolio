@@ -91,7 +91,8 @@ body.light .btn-primary { color: #fff; }
   bottom: 5.5rem;
   right: 2rem;
   width: 360px;
-  height: 520px;
+  min-height: 420px;
+  max-height: 80vh;
   background: var(--bg-card);
   border: 1px solid var(--accent);
   border-radius: 16px;
@@ -222,7 +223,8 @@ body.light .btn-primary { color: #fff; }
   resize: none;
   outline: none;
   transition: border-color 0.2s;
-  max-height: 80px;
+  max-height: 160px;
+  overflow-y: auto;
 }
 .chat-input:focus { border-color: var(--accent); }
 .chat-input::placeholder { color: var(--text-dim); }
@@ -1367,7 +1369,7 @@ document.querySelectorAll('.game-tab').forEach(tab => {
     Hey! <strong>Got questions?</strong><br/>
     Ask anything about my experience, or paste a <strong>Job Description</strong> to see how well I match the role!
   </div>
-  <button class="chat-bubble-btn" id="chatBubbleBtn" title="Chat with my CV">Chat</button>
+  <button class="chat-bubble-btn" id="chatBubbleBtn" title="Chat with my CV">💬</button>
 </div>
 
 <div class="chat-panel" id="chatPanel" style="display:none;">
@@ -1400,7 +1402,9 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   </div>
   <div class="chat-input-row">
     <textarea class="chat-input" id="chatInput" placeholder="Ask me anything about Amirul..." rows="1"></textarea>
-    <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()">Send</button>
+    <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
   </div>
 </div>
 
@@ -1498,7 +1502,7 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 
   chatInput.addEventListener('input', function() {
     this.style.height = 'auto';
-    this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+    this.style.height = Math.min(this.scrollHeight, currentMode === 'jd' ? 160 : 80) + 'px';
   });
   chatInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
