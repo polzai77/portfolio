@@ -10,7 +10,7 @@ import json
 import os
 import requests
 import base64
-import google.generativeai as genai
+from google import genai
 
 app = FastAPI()
 
@@ -25,10 +25,7 @@ app.add_middleware(
 
 # ─── GEMINI SETUP ───
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
-import warnings
-warnings.filterwarnings("ignore")
+gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
 
 # ─── CV CONTEXT ───
 CV_CONTEXT = """
@@ -265,19 +262,16 @@ async def get_stats():
 # ─── CHAT ENDPOINT ───
 @app.post("/api/chat")
 async def chat_with_cv(req: ChatRequest):
-    if not GEMINI_API_KEY:
+    if not gemini_client:
         return {"reply": "AI chat is not configured yet. Please contact Amirul directly at amirularif9577@gmail.com"}
 
     try:
-        from google import genai as new_genai
-        client = new_genai.Client(api_key=GEMINI_API_KEY)
-
         if req.is_jd_match:
             prompt = JD_MATCH_PROMPT.format(cv=CV_CONTEXT, jd=req.message)
         else:
             prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{req.message}"
 
-        response = client.models.generate_content(
+        response = gemini_client.models.generate_content(
             model="gemini-2.0-flash",
             contents=prompt
         )
