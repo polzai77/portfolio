@@ -91,6 +91,7 @@ body.light .btn-primary { color: #fff; }
   bottom: 5.5rem;
   right: 2rem;
   width: 480px;
+  max-width: 90vw;
   min-height: 420px;
   max-height: 80vh;
   background: var(--bg-card);
@@ -102,6 +103,7 @@ body.light .btn-primary { color: #fff; }
   z-index: 999;
   animation: slideUp 0.3s ease;
   overflow: hidden;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 .chat-panel-header {
   padding: 1rem 1.2rem;
@@ -145,16 +147,19 @@ body.light .btn-primary { color: #fff; }
 .chat-messages {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   scroll-behavior: smooth;
+  width: 100%;
+  box-sizing: border-box;
 }
 .chat-messages::-webkit-scrollbar { width: 4px; }
 .chat-messages::-webkit-scrollbar-track { background: transparent; }
 .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-.chat-msg { display: flex; flex-direction: column; gap: 0.2rem; animation: fadeUp 0.3s ease; }
+.chat-msg { display: flex; flex-direction: column; gap: 0.2rem; animation: fadeUp 0.3s ease; width: 100%; }
 .chat-msg.user { align-items: flex-end; }
 .chat-msg.ai { align-items: flex-start; }
 .chat-msg-bubble {
@@ -163,6 +168,10 @@ body.light .btn-primary { color: #fff; }
   border-radius: 12px;
   font-size: 0.73rem;
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
 }
 .chat-msg.user .chat-msg-bubble {
   background: var(--accent);
@@ -176,6 +185,9 @@ body.light .btn-primary { color: #fff; }
   border-radius: 12px 12px 12px 0;
   border: 1px solid var(--border);
   white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .chat-typing {
   display: flex;
@@ -1532,6 +1544,7 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   chatCloseBtn.addEventListener('click', function() {
     chatOpen = false;
     chatPanel.style.display = 'none';
+    chatPanel.style.width = '480px';
     bubbleBtn.innerHTML = '&#128172;';
     bubbleBtn.classList.remove('open');
   });
@@ -1592,6 +1605,18 @@ document.querySelectorAll('.game-tab').forEach(tab => {
     div.innerHTML = '<div class="chat-msg-bubble">' + text.split('\n').join('<br/>') + '</div>';
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Auto-expand panel width for long AI responses
+    if (role === 'ai') {
+      var panel = document.getElementById('chatPanel');
+      if (text.length > 800) {
+        panel.style.width = Math.min(window.innerWidth * 0.85, 900) + 'px';
+      } else if (text.length > 400) {
+        panel.style.width = Math.min(window.innerWidth * 0.75, 680) + 'px';
+      } else {
+        panel.style.width = '480px';
+      }
+    }
   }
 
   function addTyping() {
