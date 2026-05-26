@@ -90,7 +90,7 @@ body.light .btn-primary { color: #fff; }
   position: fixed;
   bottom: 5.5rem;
   right: 2rem;
-  width: 360px;
+  width: 480px;
   min-height: 420px;
   max-height: 80vh;
   background: var(--bg-card);
@@ -266,6 +266,37 @@ body.light .btn-primary { color: #fff; }
 @media(max-width: 600px) {
   .chat-panel { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; height: 70vh; }
   .chat-bubble { bottom: 1.2rem; right: 1.2rem; }
+}
+.chat-attach-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  align-self: flex-end;
+  color: var(--text-dim);
+}
+.chat-attach-btn:hover { border-color: var(--accent); color: var(--accent); }
+.chat-pdf-badge {
+  font-size: 0.58rem;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  margin: 0 0.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+}
+.chat-pdf-badge-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--accent); font-size: 0.7rem; padding: 0; line-height: 1;
 }
 
 /* ─── THEME TOGGLE BUTTON ─── */
@@ -1366,8 +1397,8 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <div class="chat-bubble" id="chatBubble">
   <div class="chat-teaser" id="chatTeaser" style="display:none;">
     <button class="chat-teaser-close" id="teaserClose">x</button>
-    Hey! <strong>Got questions?</strong><br/>
-    Ask anything about my experience, or paste a <strong>Job Description</strong> to see how well I match the role!
+    Hey! <strong>Hiring or just curious?</strong><br/>
+    Paste a Job Description — or upload a PDF — and I'll instantly score how well Amirul fits. Strengths, gaps, and a match percentage. 💼
   </div>
   <button class="chat-bubble-btn" id="chatBubbleBtn" title="Chat with my CV">💬</button>
 </div>
@@ -1401,6 +1432,8 @@ document.querySelectorAll('.game-tab').forEach(tab => {
     <button class="chat-quick-btn" onclick="quickAsk('What is his biggest achievement?')">Achievement</button>
   </div>
   <div class="chat-input-row">
+    <input type="file" id="pdfFileInput" accept=".pdf" style="display:none;"/>
+    <button class="chat-attach-btn" id="attachBtn" title="Upload PDF (JD or resume)">📎</button>
     <textarea class="chat-input" id="chatInput" placeholder="Ask me anything about Amirul..." rows="1"></textarea>
     <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -1408,6 +1441,7 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 (function() {
   var API_URL = 'https://portfolio-8kk4.onrender.com';
@@ -1424,6 +1458,64 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   var chatSendBtn = document.getElementById('chatSendBtn');
   var jdHint = document.getElementById('jdHint');
   var quickBtns = document.getElementById('quickBtns');
+  var attachBtn = document.getElementById('attachBtn');
+  var pdfFileInput = document.getElementById('pdfFileInput');
+  var pdfText = null;
+  var pdfBadge = null;
+
+  // PDF.js worker
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+
+  // Attach button click
+  attachBtn.addEventListener('click', function() {
+    pdfFileInput.click();
+  });
+
+  // PDF file selected
+  pdfFileInput.addEventListener('change', async function() {
+    var file = this.files[0];
+    if (!file) return;
+
+    attachBtn.textContent = '⏳';
+    attachBtn.disabled = true;
+
+    try {
+      var arrayBuffer = await file.arrayBuffer();
+      var pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      var text = '';
+      for (var i = 1; i <= pdf.numPages; i++) {
+        var page = await pdf.getPage(i);
+        var content = await page.getTextContent();
+        text += content.items.map(function(item) { return item.str; }).join(' ') + '\n';
+      }
+      pdfText = text.trim();
+
+      // Show badge
+      if (pdfBadge) pdfBadge.remove();
+      pdfBadge = document.createElement('div');
+      pdfBadge.className = 'chat-pdf-badge';
+      pdfBadge.innerHTML = '📄 ' + file.name + ' <button class="chat-pdf-badge-close" onclick="removePdf()">✕</button>';
+      chatSendBtn.parentElement.before(pdfBadge);
+
+      // Auto switch to JD mode
+      switchMode('jd');
+      addMessage('ai', 'PDF loaded! I can see "' + file.name + '". Click Send to analyze how well Amirul matches this document.');
+
+    } catch(err) {
+      addMessage('ai', 'Could not read the PDF. Try copying and pasting the text directly instead.');
+    }
+
+    attachBtn.textContent = '📎';
+    attachBtn.disabled = false;
+    pdfFileInput.value = '';
+  });
+
+  window.removePdf = function() {
+    pdfText = null;
+    if (pdfBadge) { pdfBadge.remove(); pdfBadge = null; }
+  };
 
   setTimeout(function() { chatTeaser.style.display = 'block'; }, 3000);
   teaserClose.addEventListener('click', function(e) { e.stopPropagation(); chatTeaser.style.display = 'none'; });
@@ -1458,8 +1550,20 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 
   window.sendMessage = async function() {
     var msg = chatInput.value.trim();
-    if (!msg || isLoading) return;
-    addMessage('user', msg);
+    var finalMsg = msg;
+    var isJD = currentMode === 'jd';
+
+    // If PDF is loaded, use it as the message content
+    if (pdfText && !msg) {
+      finalMsg = pdfText;
+      isJD = true;
+    } else if (pdfText && msg) {
+      finalMsg = msg + '\n\n=== PDF CONTENT ===\n' + pdfText;
+      isJD = true;
+    }
+
+    if (!finalMsg || isLoading) return;
+    addMessage('user', pdfText && !msg ? '📄 Analyzing uploaded PDF...' : msg);
     chatInput.value = '';
     chatInput.style.height = 'auto';
     isLoading = true; chatSendBtn.disabled = true;
@@ -1468,11 +1572,13 @@ document.querySelectorAll('.game-tab').forEach(tab => {
       var res = await fetch(API_URL + '/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg, is_jd_match: currentMode === 'jd' })
+        body: JSON.stringify({ message: finalMsg, is_jd_match: isJD })
       });
       var data = await res.json();
       removeTyping(tid);
       addMessage('ai', data.reply || 'Sorry, could not get a response. Try again!');
+      // Clear PDF after use
+      if (pdfText) removePdf();
     } catch(err) {
       removeTyping(tid);
       addMessage('ai', 'Connection error. Please try again or contact Amirul at amirularif9577@gmail.com');
