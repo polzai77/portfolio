@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amirul Arif — OS Engineer & Infrastructure Specialist</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.proj-label {
+  font-size:0.62rem;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--accent);
+  margin-top:1rem;
+  margin-bottom:0.4rem;
+  padding-bottom:0.3rem;
+  border-bottom:1px solid var(--border);
+}
+</style>
 </head>
 <body>
 
@@ -28,7 +40,7 @@
   <div class="hero-tag">OS Engineer · Dell Technologies</div>
   <h1>Amirul<br/><span class="accent">Arif.</span></h1>
   <p class="hero-sub">
-    Infrastructure Specialist with 7+ years of expertise in Linux administration, data center operations, and automation. Proficient in deploying and managing Linux-based systems, configuring hardware, and building internal tools that reduce workload at scale.
+    Infrastructure Specialist with 5+ years of expertise as a Linux Administrator. Proficient in deploying and managing Linux-based systems, configuring hardware in data centers, and building internal tools that reduce workload at scale. Passionate about continuous learning and emerging technologies.
   </p>
   <div class="hero-links">
     <a href="https://github.com/polzai77" class="btn btn-primary" target="_blank">GitHub</a>
@@ -46,19 +58,60 @@
     <div class="timeline-item">
       <div class="timeline-date">Mar 2025 – Present</div>
       <div class="timeline-company">Dell Technologies</div>
-      <div class="timeline-role">OS Engineering (L3) · Cyberjaya, On-site</div>
+      <div class="timeline-role">Senior Analyst, OS Engineering (L3) · Cyberjaya, On-site</div>
       <ul class="timeline-desc">
         <li>Next-level escalation support for Linux &amp; Windows environments, including on-call standby for Major Incident Management (MIM).</li>
-        <li>Execute OS and application-level CTASKs to ensure system stability and performance.</li>
-        <li><strong style="color:var(--text)">Multi Connection Manager (MCM)</strong> — Self-created centralised web-based tool for the Ops team. Features include: Linux SSH Terminal (single &amp; multi-server), Windows RDP, Get Root Password (via vCenter API with auto-login console), LAPS Password Retrieval (via WinRM), iDRAC Query, PowerCLI Commands, Server Health Monitoring (ping + RDP checks), Windows &amp; Linux Agent Dashboards, and Admin Panel with usage analytics.</li>
-        <li><strong style="color:var(--text)">Mass Matter</strong> — Prepared target server lists for agent deployment. Developed and maintained a web-based dashboard to visualise agent versions and compliance status by server category. Built multithreaded bulk server operations supporting simultaneous processing of 1000+ servers with live progress tracking. Integrated into MCM for easier maintenance.</li>
-        <li><strong style="color:var(--text)">Patchy Porter</strong> — Automated kernel CVE scope-list generation and patch validation pipeline with cycle-based tracking, integrated with GitLab and OLAM for automated artifact retrieval.</li>
-        <li>Integrated and enhanced existing internal tools to align with company standards for a more maintainable and standardised solution.</li>
+        <li>Execute OS and application (process-level) CTASKs to ensure system stability and performance.</li>
+        <li>Integrate and enhance existing internal tools to align with company standards, incorporating automation practices to replace legacy manual methods.</li>
       </ul>
+
+      <div class="proj-label">Official Projects</div>
+      <ul class="timeline-desc">
+        <li><strong style="color:var(--text)">Patchy-Porter</strong> — Automated kernel CVE scope-list generation and patch validation pipeline with cycle-based tracking, integrated with GitLab &amp; OLAM for automated artifact retrieval.</li>
+        <li><strong style="color:var(--text)">Mass Matter</strong> — Agent deployment automation pipeline featuring server filtering for both OS types, environment-based deployment targeting, ECN email generator, MECM deployment status tracking (Windows), agent classification, and Windows &amp; Linux agent dashboards embedded into Grafana covering agent version compliance, server health, TO tracking, and owner data enrichment. Historical data tracking included.</li>
+        <li><strong style="color:var(--text)">CHG-A-BOT</strong> — Common CTASKs automation (e.g. Expand Capacity / Mount Validation).</li>
+      </ul>
+
+      <div class="proj-label">Self-Initiated Projects</div>
+      <ul class="timeline-desc">
+        <li><strong style="color:var(--text)">MCM (Multi Connection Manager)</strong> — Centralised role-based web platform for server operations, featuring:
+          <br/>— <em>Windows:</em> RDP Connections, LAPS Password Retrieval (WinRM), Windows Disk Expand &amp; Search, File Share Browser (SMB)
+          <br/>— <em>Linux:</em> Multi-SSH Terminal (single &amp; multi-server), Get Root Password (vCenter API with auto-login console), SCP Browser
+          <br/>— <em>Misc:</em> iDRAC Query, Redfish API Explorer, PowerCLI (vCenter), Root Access Audit, PCI Server Console
+          <br/>— <em>CHGTASK:</em> Mount Activity Checker, Implementation Step Manager
+          <br/>— <em>Deployments (Mass Matter):</em> Server Deployment Filtering, Agent Classification, ECN Email Generator, MECM Deployment Status Tracking, Historical Data
+          <br/>— <em>Admin:</em> Access Control Manager (group &amp; user-level permissions), Usage Analytics, User Command Tracking, Kickout Session, Feedback
+          <br/>— Currently extending with VM Disk Add &amp; Expand (multi-VM, SCSI-aware) — planned for OLAM conversion and ServiceNow integration.
+        </li>
+        <li><strong style="color:var(--text)">AskMyServer</strong> <span class="tag" style="font-size:0.58rem; vertical-align:middle; margin-left:0.3rem;">Dell Hackathon</span> — Solely designed, architected, and developed an AI-powered natural language server diagnostics platform built on MCP (Model Context Protocol) architecture. Adopted by the team, senior consultant, and manager for day-to-day operations.
+          <br/>— <em>Target Users:</em> Non-technical app/server owners — enabling self-service diagnostics and vulnerability checks without CLI knowledge or SME involvement.
+          <br/>— <em>Backend:</em> Dell GenAI Gateway as LLM proxy with dual-model routing — GPT-Powerful-120B for complex queries &amp; Zabbix graph generation, LLaMA 3.3-70B for live diagnostics and bulk server queries.
+          <br/>— <em>MCP Tool Servers:</em> Linux SSH (multi-server), Windows WinRM, OS Info/Inventory API, Zabbix MCP (prod &amp; nonprod).
+          <br/>— <em>Frontend:</em> Open WebUI with tool server integration, served via nginx SSL termination.
+          <br/>— <em>Infrastructure:</em> Podman + systemd deployment.
+          <br/>— <em>Impact:</em> Reduced server diagnostic time to under a minute — empowering server/app owners to investigate issues and check vulnerabilities independently, directly reducing unnecessary INC creation across the full supported fleet.
+        </li>
+      </ul>
+
+      <button class="achieve-btn" onclick="toggleAchievements(this)">
+        <span class="achieve-arrow">›</span> Achievements
+      </button>
+      <div class="achievements-panel">
+        <div class="achievements-inner">
+          <div class="achieve-label">Key Achievements</div>
+          <ul>
+            <li><strong>Oracle DB Server CPU &amp; RAM Resizing</strong> — Resolved kernel panic at the Linux/OS layer during system resizing. Collaborated cross-team with DBEs and SEs to reclaim 1,956 CPUs &amp; 15.6 TB of RAM, resulting in approximately <strong>USD 312K in cost savings</strong>.</li>
+            <li><strong>Multi Connection Manager</strong> — Expanded to a bigger audience; simplifies day-to-day work in bulk operations, applying pre-automation before implementing full automation.</li>
+            <li><strong>Grafana Agent Dashboard</strong> — Displays agent status for both Windows and Linux across supported servers, server health, trending, and history.</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="timeline-tags">
         <span class="tag">Python</span><span class="tag">React.js</span><span class="tag">Ansible</span>
-        <span class="tag">Jira</span><span class="tag">GitLab</span><span class="tag">IT Automation</span><span class="tag">OLAM</span>
-        <span class="tag">VMware</span><span class="tag">FastAPI</span>
+        <span class="tag">GitLab</span><span class="tag">OLAM</span><span class="tag">FastAPI</span>
+        <span class="tag">VMware</span><span class="tag">MCP</span><span class="tag">Grafana</span>
+        <span class="tag">IT Automation</span><span class="tag">ServiceNow</span>
       </div>
     </div>
 
@@ -173,6 +226,8 @@
     <div class="skill-card" data-skill="webdev"><span class="skill-icon">🌐</span>Web Development<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="automation"><span class="skill-icon">🔁</span>IT Automation<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="sre"><span class="skill-icon">🛡️</span>SRE<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="mcp"><span class="skill-icon">🤖</span>MCP / AI Tools<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="grafana"><span class="skill-icon">📈</span>Grafana<div class="skill-click-hint">click for details</div></div>
   </div>
 
   <div class="skills-cat">Hardware</div>
@@ -228,17 +283,18 @@ const skillsData = {
   },
   python: {
     icon:"🐍", title:"Python", where:"Dell Technologies – OS Engineering (L3)",
-    desc:"Used Python to build automation scripts and internal tooling at Dell, particularly for CVE scope-list generation and server compliance workflows.",
+    desc:"Used Python to build automation scripts and internal tooling at Dell, particularly for CVE scope-list generation, server compliance workflows, and full-stack internal platforms.",
     points:[
-      "Automated CVE scope-list generation as part of the Patchy Porter project.",
-      "Developed scripts to support patch management and server compliance processes.",
-      "Built backend logic for internal web-based tools used by the Operations team."
+      "Automated CVE scope-list generation as part of the Patchy-Porter project.",
+      "Built backend logic for MCM (Multi Connection Manager) and AskMyServer using Python/FastAPI.",
+      "Used for multithreaded bulk server operations processing 1000+ servers simultaneously.",
+      "Developed CHG-A-BOT for common CTASK automation (Expand Capacity, Mount Validation)."
     ],
-    tags:["Automation","Scripting","Dell","Patchy Porter","Internal Tools"]
+    tags:["Automation","Scripting","Dell","Patchy-Porter","FastAPI","CHG-A-BOT"]
   },
   reactjs: {
     icon:"⚛️", title:"React.js", where:"Dell Technologies – OS Engineering (L3)",
-    desc:"Used React.js to build the entire frontend for Multi Connection Manager (MCM) — your own centralised web tool at Dell — including dashboards, terminals, and admin panels.",
+    desc:"Used React.js to build the entire frontend for Multi Connection Manager (MCM) — a centralised web tool at Dell — including dashboards, terminals, and admin panels.",
     points:[
       "Built the MCM frontend: SSH terminals, RDP interface, LAPS/iDRAC/PowerCLI panels, and bulk operations UI.",
       "Developed Windows and Linux Agent Dashboards with real-time data, health checks, and CSV export.",
@@ -289,14 +345,15 @@ const skillsData = {
   },
   vmware: {
     icon:"📦", title:"VMware", where:"Dell Technologies · Nebula Systems",
-    desc:"Extensive hands-on experience with VMware across multiple roles — from deploying and maintaining virtual machines to performing migrations and managing vCenter environments.",
+    desc:"Extensive hands-on experience with VMware across multiple roles — from deploying virtual machines to managing vCenter environments and building tools on top of the vCenter API.",
     points:[
       "Managed VMware vCenter and vSphere environments at Dell and Nebula Systems.",
+      "Used vCenter API to build the Get Root Password feature with auto-login console inside MCM.",
       "Performed V2V migrations using vCenter Converter at Nebula Systems.",
       "Installed and configured VMware ESXi for server virtualisation.",
       "Monitored and maintained virtual infrastructure as part of daily operations."
     ],
-    tags:["VMware ESXi","vCenter","vSphere","Virtualisation","Dell","Nebula"]
+    tags:["VMware ESXi","vCenter","vSphere","Virtualisation","Dell","Nebula","vCenter API"]
   },
   proxmox: {
     icon:"🖥️", title:"Proxmox", where:"Personal / Lab Environment",
@@ -319,14 +376,15 @@ const skillsData = {
     tags:["oVirt","Open-Source","Virtualisation","Nebula","VMware"]
   },
   zabbix: {
-    icon:"📊", title:"Zabbix", where:"Nebula Systems",
-    desc:"Deployed and used Zabbix as a monitoring solution at Nebula Systems to proactively track server and network health across on-prem environments.",
+    icon:"📊", title:"Zabbix", where:"Nebula Systems · Dell Technologies",
+    desc:"Deployed and used Zabbix as a monitoring solution to proactively track server and network health. Also integrated Zabbix MCP into AskMyServer for AI-driven graph generation.",
     points:[
-      "Researched, developed, and implemented Zabbix for infrastructure monitoring.",
+      "Researched, developed, and implemented Zabbix for infrastructure monitoring at Nebula Systems.",
       "Configured dashboards and alerts for proactive incident detection.",
+      "Integrated Zabbix MCP (prod & nonprod) into AskMyServer for natural language graph generation.",
       "Monitored both physical and virtual server environments."
     ],
-    tags:["Monitoring","Zabbix","Nebula","Infrastructure","Alerts"]
+    tags:["Monitoring","Zabbix","Nebula","Dell","Infrastructure","Alerts","MCP"]
   },
   librenms: {
     icon:"📡", title:"LibreNMS", where:"Nebula Systems",
@@ -344,7 +402,8 @@ const skillsData = {
     points:[
       "Managed and resolved incident tickets for 30,000+ Linux and 25,000+ Windows servers.",
       "Tracked change requests and coordinated with the Change Coordinator via ServiceNOW.",
-      "Consistently ranked Top 3 performer in FY24 &amp; FY25 for ticket resolution volume."
+      "Consistently ranked Top 3 performer in FY24 & FY25 for ticket resolution volume.",
+      "MCM planned for ServiceNow integration as part of VM Disk Add & Expand automation workflows."
     ],
     tags:["Ticketing","Incident Mgmt","Dell","ServiceNOW","Operations"]
   },
@@ -359,36 +418,38 @@ const skillsData = {
     tags:["Ticketing","Open-Source","Help Desk","Velo","Nebula"]
   },
   mariadb: {
-    icon:"🗄️", title:"MariaDB / MySQL", where:"Personal / Lab",
-    desc:"Hands-on experience with MariaDB and MySQL for basic database administration — creating databases, managing privileges, and querying data.",
+    icon:"🗄️", title:"MariaDB / MySQL / PostgreSQL", where:"Personal / Lab",
+    desc:"Hands-on experience with MariaDB, MySQL, and PostgreSQL for basic database administration — creating databases, managing privileges, and querying data for internal tools.",
     points:[
       "Created and managed databases for internal tools and lab projects.",
       "Configured user privileges and access controls.",
-      "Used for backend data storage in web-based tooling projects."
+      "Used for backend data storage in web-based tooling projects including MCM."
     ],
-    tags:["MariaDB","MySQL","Database","Privileges","SQL"]
+    tags:["MariaDB","MySQL","PostgreSQL","Database","Privileges","SQL"]
   },
   webdev: {
     icon:"🌐", title:"Web Development", where:"Dell Technologies – OS Engineering (L3)",
-    desc:"Built the Multi Connection Manager (MCM) — a full centralised web-based tool for the Ops team — from scratch at Dell. Covers frontend dashboards, backend APIs, and real-time WebSocket terminals.",
+    desc:"Built Multi Connection Manager (MCM) and AskMyServer from scratch at Dell — full-stack web platforms covering frontend dashboards, backend APIs, and real-time WebSocket terminals.",
     points:[
       "Developed MCM featuring Linux SSH Terminal, Windows RDP, Get Root Password, LAPS retrieval, iDRAC queries, and PowerCLI execution.",
       "Built Windows and Linux Agent Dashboards with file-based caching, health checks, and CSV export.",
-      "Created an Admin Panel with usage analytics (daily/monthly/yearly breakdowns).",
+      "Developed AskMyServer — an AI-powered diagnostics platform using Open WebUI, served via nginx SSL.",
+      "Created Admin Panel with usage analytics (daily/monthly/yearly breakdowns), user command tracking, and kickout session.",
       "Integrated React.js frontend with Python/FastAPI backend and real-time WebSocket connections."
     ],
-    tags:["React.js","Python","FastAPI","WebSocket","Dashboard","Dell","MCM"]
+    tags:["React.js","Python","FastAPI","WebSocket","Dashboard","Dell","MCM","AskMyServer","nginx"]
   },
   automation: {
     icon:"🔁", title:"IT Automation", where:"Dell Technologies · Nebula Systems",
-    desc:"Automation is central to my work — from building MCM as my own tool at Dell, to completing Bi-Frost backlog items and deploying open-source tools at Nebula. Focused on reducing manual effort and improving consistency at scale.",
+    desc:"Automation is central to my work — from building MCM, AskMyServer, and CHG-A-BOT at Dell, to completing Bi-Frost backlog items. Focused on reducing manual effort at scale.",
     points:[
-      "Built Multi Connection Manager (MCM) — a full web-based tool for automating and centralising server operations across SSH, RDP, LAPS, iDRAC, and PowerCLI.",
-      "Assisted in finishing the Multiple-SSH backlog for the in-house Bi-Frost tool.",
-      "Automated kernel CVE scope-list generation via Patchy Porter for patch management.",
-      "Built Mass Matter — multithreaded bulk server operations processing 1000+ servers simultaneously with live progress tracking."
+      "Built MCM — centralised web platform automating server operations across SSH, RDP, LAPS, iDRAC, and PowerCLI.",
+      "Built CHG-A-BOT for common CTASK automation (Expand Capacity, Mount Validation).",
+      "Automated kernel CVE scope-list generation via Patchy-Porter for patch management.",
+      "Built Mass Matter — multithreaded bulk server operations processing 1000+ servers simultaneously with live progress tracking.",
+      "Developed AskMyServer enabling self-service server diagnostics without CLI knowledge — adopted for production use."
     ],
-    tags:["MCM","Bi-Frost","Patchy Porter","Mass Matter","Python","React.js","Dell","OLAM"]
+    tags:["MCM","CHG-A-BOT","Bi-Frost","Patchy-Porter","Mass Matter","AskMyServer","Python","React.js","Dell","OLAM"]
   },
   sre: {
     icon:"🛡️", title:"Site Reliability Engineering", where:"Dell Technologies · Certified",
@@ -400,6 +461,29 @@ const skillsData = {
       "Participated in Major Incident Management (MIM) for critical system recovery."
     ],
     tags:["SRE","Incident Mgmt","Reliability","Dell","Certified","Automation"]
+  },
+  mcp: {
+    icon:"🤖", title:"MCP / AI Integration", where:"Dell Technologies – OS Engineering (L3)",
+    desc:"Designed and built AskMyServer — an AI-powered server diagnostics platform on MCP (Model Context Protocol) architecture — solely from the ground up for the Dell Hackathon. Adopted by the team for production use.",
+    points:[
+      "Architected dual-model LLM routing: GPT-Powerful-120B for complex queries and Zabbix graph generation; LLaMA 3.3-70B for live diagnostics and bulk server queries.",
+      "Built MCP Tool Servers: Linux SSH (multi-server), Windows WinRM, OS Info/Inventory API, Zabbix MCP (prod & nonprod).",
+      "Deployed via Podman + systemd with Open WebUI frontend and nginx SSL termination.",
+      "Enabled non-technical app/server owners to run diagnostics and vulnerability checks without CLI knowledge.",
+      "Reduced server diagnostic time to under a minute; adopted by team, senior consultant, and manager for daily operations."
+    ],
+    tags:["MCP","LLM","AskMyServer","GenAI","GPT","LLaMA","Zabbix","Podman","Dell","Hackathon"]
+  },
+  grafana: {
+    icon:"📈", title:"Grafana", where:"Dell Technologies – OS Engineering (L3)",
+    desc:"Embedded Windows and Linux agent dashboards into Grafana as part of the Mass Matter project, providing real-time visibility across the supported server fleet.",
+    points:[
+      "Built Grafana dashboards covering agent version compliance, server health, TO tracking, and owner data enrichment.",
+      "Embedded dashboards into MCM for centralised access by the operations team.",
+      "Included historical data tracking for trend analysis.",
+      "Displayed agent status for both Windows and Linux across the full supported server fleet."
+    ],
+    tags:["Grafana","Dashboard","Monitoring","Mass Matter","Dell","Agent Compliance"]
   },
   poweredge: {
     icon:"🖨️", title:"Dell PowerEdge", where:"Dell Technologies · Nebula Systems",
@@ -432,14 +516,15 @@ const skillsData = {
     tags:["RAID","Storage","Dell","HP","Hardware","Data Centre"]
   },
   idrac: {
-    icon:"🔌", title:"iDRAC / iLO", where:"Nebula Systems · Velo Technologies",
-    desc:"Configured and used Dell iDRAC and HP iLO for out-of-band server management, remote monitoring, and maintenance across data centre operations.",
+    icon:"🔌", title:"iDRAC / iLO", where:"Dell Technologies · Nebula Systems · Velo Technologies",
+    desc:"Configured and used Dell iDRAC and HP iLO for out-of-band server management and remote monitoring. Also built iDRAC Query and Redfish API Explorer features directly into MCM.",
     points:[
       "Configured iDRAC on Dell PowerEdge servers for remote management and KVM access.",
       "Set up iLO on HP ProLiant systems for out-of-band monitoring.",
+      "Built iDRAC Query and Redfish API Explorer directly into MCM for team use.",
       "Used for remote troubleshooting and maintenance without physical data centre access."
     ],
-    tags:["iDRAC","iLO","Remote Mgmt","Dell","HP","Out-of-Band"]
+    tags:["iDRAC","iLO","Redfish API","Remote Mgmt","Dell","HP","Out-of-Band","MCM"]
   },
   migration: {
     icon:"🔀", title:"P2V / V2V Migration", where:"Nebula Systems",
@@ -534,7 +619,6 @@ document.querySelectorAll('.skill-card').forEach(card => {
     const s = skillsData[key];
     if (!s) return;
 
-    // populate modal
     document.getElementById('modalIcon').textContent = s.icon;
     document.getElementById('modalTitle').textContent = s.title;
     document.getElementById('modalWhere').textContent = s.where;
@@ -546,12 +630,10 @@ document.querySelectorAll('.skill-card').forEach(card => {
     const tags = document.getElementById('modalTags');
     tags.innerHTML = s.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
 
-    // highlight active card
     if (activeCard) activeCard.classList.remove('active');
     card.classList.add('active');
     activeCard = card;
 
-    // open
     modal.classList.add('open');
   });
 });
@@ -614,9 +696,19 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
   <h2 class="section-title">References</h2>
   <div class="edu-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px,1fr));">
     <div class="edu-card">
-      <div class="edu-year">Ex-Manager</div>
-      <div class="edu-name">Christine Lim</div>
-      <div class="edu-detail">Director, IT Technical Services · Dell<br/>+6012-4391928<br/>teikngo@gmail.com</div>
+      <div class="edu-year">Engineering Counterpart</div>
+      <div class="edu-name">Jesse Chan</div>
+      <div class="edu-detail">Senior Consultant, IT Infrastructure · Dell<br/>+6019-2632171<br/>Jesse.Chan@dell.com</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Manager</div>
+      <div class="edu-name">Chris Ong</div>
+      <div class="edu-detail">Senior Manager, IT Infrastructure · Dell<br/>+6012-3358530<br/>Chris.Ong@dell.com</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Teammate</div>
+      <div class="edu-name">Aqmal Zaki</div>
+      <div class="edu-detail">Senior Advisor, IT Infrastructure · Dell<br/>+6011-23546008<br/>aqmal.zaki@dell.com</div>
     </div>
     <div class="edu-card">
       <div class="edu-year">Co-Worker</div>
@@ -755,8 +847,7 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   ];
 
   let text, index, correct, wrong, startTime, interval, running = false, finished = false;
-  let states = [];
-  let spans = [];
+  let states = [], spans = [];
 
   const textEl = document.getElementById('typingText');
   const wpmEl = document.getElementById('wpm');
@@ -766,30 +857,22 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   const restartBtn = document.getElementById('typingRestart');
   const resultEl = document.getElementById('typingResult');
 
-  // Build spans once, update classes directly after that
   function buildSpans() {
-    textEl.innerHTML = '';
-    spans = [];
-    text.split('').forEach((ch, i) => {
+    textEl.innerHTML = ''; spans = [];
+    text.split('').forEach((ch) => {
       const span = document.createElement('span');
       span.className = 'char pending';
       span.textContent = ch === ' ' ? '\u00A0' : ch;
-      textEl.appendChild(span);
-      spans.push(span);
+      textEl.appendChild(span); spans.push(span);
     });
-    // set initial cursor
     if (spans[0]) spans[0].classList.add('cursor');
   }
 
-  // Only update the 3 spans that change per keystroke: prev, current, next
   function updateChar(prev, curr) {
-    // previous char: remove cursor, set correct/wrong
     if (prev >= 0 && spans[prev]) {
-      spans[prev].classList.remove('cursor');
-      spans[prev].classList.remove('pending');
+      spans[prev].classList.remove('cursor','pending');
       spans[prev].classList.add(states[prev] === 'correct' ? 'correct' : 'wrong');
     }
-    // current char: add cursor
     if (curr < spans.length && spans[curr]) {
       spans[curr].classList.add('cursor');
       spans[curr].scrollIntoView({ block:'nearest', inline:'nearest' });
@@ -800,78 +883,50 @@ document.querySelectorAll('.game-tab').forEach(tab => {
     text = sentences[Math.floor(Math.random() * sentences.length)];
     index = 0; correct = 0; wrong = 0; states = [];
     running = false; finished = false;
-    wpmEl.textContent = '0';
-    accEl.textContent = '—';
-    timerEl.textContent = '30s';
-    startBtn.style.display = 'inline-flex';
-    restartBtn.style.display = 'none';
-    resultEl.classList.remove('show');
-    buildSpans();
+    wpmEl.textContent = '0'; accEl.textContent = '—'; timerEl.textContent = '30s';
+    startBtn.style.display = 'inline-flex'; restartBtn.style.display = 'none';
+    resultEl.classList.remove('show'); buildSpans();
   }
 
   function startGame() {
-    running = true; finished = false;
-    index = 0; correct = 0; wrong = 0; states = [];
-    startBtn.style.display = 'none';
-    resultEl.classList.remove('show');
-    restartBtn.style.display = 'none';
-    buildSpans();
-    textEl.focus();
-    let remaining = 30;
-    timerEl.textContent = remaining + 's';
-    interval = setInterval(() => {
-      remaining--;
-      timerEl.textContent = remaining + 's';
-      if (remaining <= 0) { clearInterval(interval); endGame(); }
-    }, 1000);
+    running = true; finished = false; index = 0; correct = 0; wrong = 0; states = [];
+    startBtn.style.display = 'none'; resultEl.classList.remove('show'); restartBtn.style.display = 'none';
+    buildSpans(); textEl.focus();
+    let remaining = 30; timerEl.textContent = remaining + 's';
+    interval = setInterval(() => { remaining--; timerEl.textContent = remaining + 's'; if (remaining <= 0) { clearInterval(interval); endGame(); } }, 1000);
     startTime = Date.now();
   }
 
   function endGame() {
-    running = false; finished = true;
-    clearInterval(interval);
-    // remove cursor from last position
+    running = false; finished = true; clearInterval(interval);
     if (spans[index]) spans[index].classList.remove('cursor');
-    let elapsed = 30;
-    let wpm = Math.round((correct / 5) / (elapsed / 60));
+    let wpm = Math.round((correct / 5) / (30 / 60));
     let total = correct + wrong;
     let acc = total > 0 ? Math.round((correct / total) * 100) : 0;
-    wpmEl.textContent = wpm;
-    accEl.textContent = acc + '%';
+    wpmEl.textContent = wpm; accEl.textContent = acc + '%';
     document.getElementById('reswpm').textContent = wpm;
     document.getElementById('resacc').textContent = acc + '%';
     document.getElementById('rescorrect').textContent = correct;
     document.getElementById('reswrong').textContent = wrong;
-    resultEl.classList.add('show');
-    restartBtn.style.display = 'inline-flex';
+    resultEl.classList.add('show'); restartBtn.style.display = 'inline-flex';
   }
 
   textEl.addEventListener('keydown', (e) => {
-    if (!running || finished) return;
-    if (e.key.length !== 1) return;
-    e.preventDefault();
-    if (index >= text.length) return;
-
+    if (!running || finished || e.key.length !== 1) return;
+    e.preventDefault(); if (index >= text.length) return;
     states.push(e.key === text[index] ? 'correct' : 'wrong');
     if (states[index] === 'correct') correct++; else wrong++;
-
-    let prev = index;
-    index++;
-
-    // live update stats
+    let prev = index; index++;
     let total = correct + wrong;
     accEl.textContent = (total > 0 ? Math.round((correct / total) * 100) : 0) + '%';
     let elapsed = (Date.now() - startTime) / 1000 / 60;
     wpmEl.textContent = Math.round((correct / 5) / elapsed) || 0;
-
-    // only touch the spans that changed
     updateChar(prev, index);
-
     if (index >= text.length) endGame();
   });
 
   startBtn.addEventListener('click', startGame);
-  restartBtn.addEventListener('click', () => { init(); });
+  restartBtn.addEventListener('click', init);
   init();
 })();
 
@@ -909,9 +964,7 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   function init() {
     pool = shuffle(questions).slice(0, 10);
     current = 0; score = 0; answered = false;
-    scoreEl.textContent = '0';
-    nextBtn.style.display = 'none';
-    restartBtn.style.display = 'none';
+    scoreEl.textContent = '0'; nextBtn.style.display = 'none'; restartBtn.style.display = 'none';
     loadQuestion();
   }
 
@@ -920,35 +973,23 @@ document.querySelectorAll('.game-tab').forEach(tab => {
     const q = pool[current];
     numEl.textContent = (current + 1) + ' / ' + pool.length;
     cmdEl.textContent = q.cmd;
-    feedbackEl.className = 'quiz-feedback';
-    feedbackEl.textContent = '';
-
+    feedbackEl.className = 'quiz-feedback'; feedbackEl.textContent = '';
     let opts = shuffle(q.options);
-    optionsEl.innerHTML = opts.map((o, i) =>
-      '<button class="quiz-option" data-answer="' + i + '">' + o + '</button>'
-    ).join('');
-
+    optionsEl.innerHTML = opts.map((o, i) => '<button class="quiz-option" data-answer="' + i + '">' + o + '</button>').join('');
     optionsEl.querySelectorAll('.quiz-option').forEach((btn, i) => {
       btn.addEventListener('click', () => {
-        if (answered) return;
-        answered = true;
+        if (answered) return; answered = true;
         optionsEl.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
         if (opts[i] === q.correct) {
-          btn.classList.add('correct');
-          score++;
-          scoreEl.textContent = score;
-          feedbackEl.textContent = '✓ Correct!';
-          feedbackEl.className = 'quiz-feedback show correct-fb';
+          btn.classList.add('correct'); score++; scoreEl.textContent = score;
+          feedbackEl.textContent = '✓ Correct!'; feedbackEl.className = 'quiz-feedback show correct-fb';
         } else {
           btn.classList.add('wrong');
           feedbackEl.textContent = '✗ Wrong. The answer is: ' + q.correct;
           feedbackEl.className = 'quiz-feedback show wrong-fb';
-          optionsEl.querySelectorAll('.quiz-option').forEach(b => {
-            if (opts[Array.from(optionsEl.querySelectorAll('.quiz-option')).indexOf(b)] === q.correct) b.classList.add('correct');
-          });
+          optionsEl.querySelectorAll('.quiz-option').forEach(b => { if (opts[Array.from(optionsEl.querySelectorAll('.quiz-option')).indexOf(b)] === q.correct) b.classList.add('correct'); });
         }
-        if (current + 1 < pool.length) { nextBtn.style.display = 'inline-flex'; }
-        else { restartBtn.style.display = 'inline-flex'; }
+        if (current + 1 < pool.length) { nextBtn.style.display = 'inline-flex'; } else { restartBtn.style.display = 'inline-flex'; }
       });
     });
   }
@@ -961,35 +1002,17 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 // ─── PORT MATCHING GAME ───
 (function() {
   const allPorts = [
-    { service:"HTTP", port:80 },
-    { service:"HTTPS", port:443 },
-    { service:"SSH", port:22 },
-    { service:"FTP", port:21 },
-    { service:"SMTP", port:25 },
-    { service:"DNS", port:53 },
-    { service:"Telnet", port:23 },
-    { service:"POP3", port:110 },
-    { service:"IMAP", port:143 },
-    { service:"MySQL", port:3306 },
-    { service:"PostgreSQL", port:5432 },
-    { service:"RDP", port:3389 },
-    { service:"SFTP", port:22 },
-    { service:"LDAP", port:389 },
-    { service:"MongoDB", port:27017 },
-    { service:"Redis", port:6379 }
+    { service:"HTTP", port:80 }, { service:"HTTPS", port:443 }, { service:"SSH", port:22 },
+    { service:"FTP", port:21 }, { service:"SMTP", port:25 }, { service:"DNS", port:53 },
+    { service:"Telnet", port:23 }, { service:"POP3", port:110 }, { service:"IMAP", port:143 },
+    { service:"MySQL", port:3306 }, { service:"PostgreSQL", port:5432 }, { service:"RDP", port:3389 },
+    { service:"LDAP", port:389 }, { service:"MongoDB", port:27017 }, { service:"Redis", port:6379 }
   ];
 
-  // pick 8 unique-port entries
   function pickSet() {
-    let used = new Set();
-    let picked = [];
+    let used = new Set(), picked = [];
     let shuffled = [...allPorts].sort(() => Math.random() - 0.5);
-    for (let item of shuffled) {
-      if (!used.has(item.port) && picked.length < 8) {
-        used.add(item.port);
-        picked.push(item);
-      }
-    }
+    for (let item of shuffled) { if (!used.has(item.port) && picked.length < 8) { used.add(item.port); picked.push(item); } }
     return picked;
   }
 
@@ -1001,91 +1024,50 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   const resetBtn = document.getElementById('portRestart');
 
   function init() {
-    set = pickSet();
-    matched = new Set();
-    selectedService = null;
-    scoreEl.textContent = '0';
-    totalEl.textContent = set.length;
-    render();
+    set = pickSet(); matched = new Set(); selectedService = null;
+    scoreEl.textContent = '0'; totalEl.textContent = set.length; render();
   }
 
   function render() {
     let ports = set.map(s => s.port).sort(() => Math.random() - 0.5);
-    servicesEl.innerHTML = set.map(s =>
-      '<div class="port-item" data-service="' + s.service + '" data-port="' + s.port + '">' + s.service + '</div>'
-    ).join('');
-    numbersEl.innerHTML = ports.map(p =>
-      '<div class="port-item" data-port="' + p + '">' + p + '</div>'
-    ).join('');
-
-    servicesEl.querySelectorAll('.port-item').forEach(el => {
-      el.addEventListener('click', () => selectService(el));
-    });
-    numbersEl.querySelectorAll('.port-item').forEach(el => {
-      el.addEventListener('click', () => selectPort(el));
-    });
+    servicesEl.innerHTML = set.map(s => '<div class="port-item" data-service="' + s.service + '" data-port="' + s.port + '">' + s.service + '</div>').join('');
+    numbersEl.innerHTML = ports.map(p => '<div class="port-item" data-port="' + p + '">' + p + '</div>').join('');
+    servicesEl.querySelectorAll('.port-item').forEach(el => el.addEventListener('click', () => selectService(el)));
+    numbersEl.querySelectorAll('.port-item').forEach(el => el.addEventListener('click', () => selectPort(el)));
   }
 
   function selectService(el) {
     if (matched.has(el.dataset.service)) return;
     servicesEl.querySelectorAll('.port-item').forEach(e => e.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedService = el;
+    el.classList.add('selected'); selectedService = el;
   }
 
   function selectPort(el) {
-    if (!selectedService) return;
-    if (matched.has(selectedService.dataset.service)) return;
-
-    let correctPort = selectedService.dataset.port;
-    let clickedPort = el.dataset.port;
-
-    if (correctPort === clickedPort) {
-      // correct
-      selectedService.classList.remove('selected');
-      selectedService.classList.add('matched');
-      el.classList.add('matched');
-      matched.add(selectedService.dataset.service);
-      scoreEl.textContent = matched.size;
-      selectedService = null;
-      if (matched.size === set.length) {
-        setTimeout(() => { alert('🎉 You matched all ' + set.length + ' ports! Nice work!'); }, 400);
-      }
+    if (!selectedService || matched.has(selectedService.dataset.service)) return;
+    if (selectedService.dataset.port === el.dataset.port) {
+      selectedService.classList.remove('selected'); selectedService.classList.add('matched');
+      el.classList.add('matched'); matched.add(selectedService.dataset.service);
+      scoreEl.textContent = matched.size; selectedService = null;
+      if (matched.size === set.length) setTimeout(() => { alert('🎉 You matched all ' + set.length + ' ports! Nice work!'); }, 400);
     } else {
-      // wrong flash
-      el.classList.add('wrong-flash');
-      selectedService.classList.remove('selected');
-      setTimeout(() => { el.classList.remove('wrong-flash'); }, 500);
-      selectedService = null;
+      el.classList.add('wrong-flash'); selectedService.classList.remove('selected');
+      setTimeout(() => { el.classList.remove('wrong-flash'); }, 500); selectedService = null;
     }
   }
 
-  resetBtn.addEventListener('click', init);
-  init();
+  resetBtn.addEventListener('click', init); init();
 })();
 </script>
 
 <!-- INVISIBLE VISITOR TRACKER -->
 <script>
 (function() {
-  // FIXED: Correct API URL
   const API_URL = 'https://portfolio-8kk4.onrender.com';
-  
   async function trackVisit() {
     try {
-      await fetch(`${API_URL}/api/track`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-    } catch (error) {
-      // Silently fail - visitors never see errors
-      console.log('Analytics tracking failed');
-    }
+      await fetch(`${API_URL}/api/track`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+    } catch (error) { console.log('Analytics tracking failed'); }
   }
-  
-  // Track page view when loaded
   trackVisit();
 })();
 </script>
