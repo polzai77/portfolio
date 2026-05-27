@@ -1540,7 +1540,6 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <!-- THEME TOGGLE + HAMBURGER SCRIPT -->
 <script>
 (function() {
-  //theme toggle
   const btn = document.getElementById('themeToggle');
   const body = document.body;
 
@@ -1549,19 +1548,33 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   }
 
   const updateIcon = () => {
-    btn.innerHTML = body.classList.contains('light')
-      ? '<img src="https://cdn.simpleicons.org/sun/white" width="28">'
-      : '<img src="https://cdn.simpleicons.org/moonrepo/black" width="28">';
+    btn.innerHTML = `
+      <img 
+        src="${
+          body.classList.contains('light')
+            ? 'https://unpkg.com/heroicons@2.0.18/24/solid/sun.svg'
+            : 'https://unpkg.com/heroicons@2.0.18/24/solid/moon.svg'
+        }"
+        width="28"
+        style="${
+          body.classList.contains('light')
+            ? 'filter: invert(1);'
+            : ''
+        }"
+      >
+    `;
   };
 
   updateIcon();
 
   btn.onclick = () => {
     body.classList.toggle('light');
+
     localStorage.setItem(
       'theme',
       body.classList.contains('light') ? 'light' : 'dark'
     );
+
     updateIcon();
   };
 
