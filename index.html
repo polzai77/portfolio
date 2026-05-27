@@ -1548,19 +1548,17 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   }
 
   const updateIcon = () => {
+    const isLight = body.classList.contains('light');
+
     btn.innerHTML = `
       <img 
         src="${
-          body.classList.contains('light')
+          isLight
             ? 'https://unpkg.com/heroicons@2.0.18/24/solid/sun.svg'
             : 'https://unpkg.com/heroicons@2.0.18/24/solid/moon.svg'
         }"
         width="28"
-        style="${
-          body.classList.contains('dark')
-            ? 'filter: invert(1);'
-            : ''
-        }"
+        style="${!isLight ? 'filter: invert(1);' : ''}"
       >
     `;
   };
