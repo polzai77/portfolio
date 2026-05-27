@@ -148,10 +148,9 @@ nav {
 
 /* ─── HERO ─── */
 .hero {
-  min-height: calc(100vh - 4rem);
   display:flex; flex-direction:column;
   justify-content:center; align-items:flex-start;
-  padding: 5rem 2rem 4rem;
+  padding: 7rem 2rem 5rem;
   max-width:1100px; margin:0 auto; width:100%;
   position:relative;
 }
