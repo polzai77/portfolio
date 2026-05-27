@@ -23,20 +23,18 @@ app.add_middleware(
 
 # ─── SUPABASE SETUP ───
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://snocuimyqckoxwwkspwt.supabase.co")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")  # anon/service_role key from env
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")
 
 def supa_headers():
-    # Supports both legacy (service_role JWT) and new (sb_secret_*) key formats
     return {
         "apikey": SUPABASE_KEY,
         "Authorization": f"Bearer {SUPABASE_KEY}",
         "Content-Type": "application/json",
         "Prefer": "return=representation",
-        "x-supabase-api-key": SUPABASE_KEY   # new key format fallback
+        "x-supabase-api-key": SUPABASE_KEY
     }
 
 def supa_insert(ip: str, user_agent: str):
-    """Insert a visit row into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/visits",
         headers=supa_headers(),
@@ -45,16 +43,14 @@ def supa_insert(ip: str, user_agent: str):
     r.raise_for_status()
 
 def supa_get_all():
-    """Fetch all visits ordered by timestamp desc."""
     r = requests.get(
         f"{SUPABASE_URL}/rest/v1/visits?select=*&order=timestamp.desc",
         headers=supa_headers()
     )
     r.raise_for_status()
-    return r.json()  # list of dicts
+    return r.json()
 
 def supa_delete_by_ip(ip: str):
-    """Delete all visits for a given IP."""
     r = requests.delete(
         f"{SUPABASE_URL}/rest/v1/visits?ip=eq.{ip}",
         headers={**supa_headers(), "Prefer": "return=minimal"}
@@ -118,59 +114,129 @@ emerging technologies to enhance skills and drive innovation.
 
 EXPERIENCE:
 
-1. Dell Technologies (Dell IT)— Senior Analyst, OS Engineering (L3)
+1. Dell Technologies (Dell IT) — Senior Analyst, OS Engineering (L3)
    March 2025 – Present | Cyberjaya, On-site
-   Roles:
-   - Provide next-level escalation support for Linux & Windows environments, including on-call standby for Major Incident Management (MIM)
+   - L3 escalation support for Linux & Windows INC queue; on-call standby for Major Incident Management (MIM) — when on-call during a P1/escalated P3 incident, participates in the MIM call and contributes to post-incident RCA
    - Execute OS and application (process-level) CTASKs to ensure system stability and performance
-   - Integrate and enhance existing internal tools to align with company standards, incorporating automation practices to replace legacy manual methods
+   - Integrate and enhance existing internal tools to align with company standards, incorporating automation to replace legacy manual methods
+   - Drive modernisation of traditional manual workflows — identifying repetitive operational tasks and converting them into automated, scalable solutions (e.g. CHG-A-BOT replacing manual CTASKs, Mass Matter replacing manual agent deployment tracking, MCM replacing individual tool access with a centralised platform)
 
    Official Projects:
-   - Patchy-Porter: Automated kernel CVE scope-list generation and patch validation pipeline with cycle-based tracking, integrated with GitLab & OLAM for automated artifact retrieval
-   - Mass Matter: Agent deployment automation pipeline featuring server filtering for both OS types, environment-based deployment targeting, ECN email generator, MECM deployment status tracking (Windows), agent classification, and Windows & Linux agent dashboards embedded into Grafana covering agent version compliance, server health, TO tracking, and owner data enrichment. Historical data tracking included.
-   - CHG-A-BOT: Common CTASKs Automation (e.g. Expand Capacity / Mount Validation)
+   - Patchy-Porter: Automated kernel CVE scope-list generation (Phase 1) covering all supported Linux servers for kernel/OS CVE patching cycles. Output used internally before vendor engagement. Patch validation pipeline with cycle-based tracking, integrated with GitLab & OLAM for automated artifact retrieval. Collaborated with university team for AI-driven Phase 2.
+   - Mass Matter: Agent deployment automation pipeline covering 13-15 internal agents across the supported server fleet. Features: server filtering for both OS types, environment-based deployment targeting, ECN email generator (Ansible pipeline), MECM deployment status tracking (Windows), agent classification, Windows & Linux agent dashboards in Grafana (agent version compliance, server health, TO tracking, owner data enrichment, daily refresh from internal data). Historical data tracking included.
+   - CHG-A-BOT: Common CTASKs automation (Expand Capacity, Mount Validation)
 
    Self-Initiated Projects:
-   - MCM (Multi Connection Manager): Centralised role-based web platform for server operations
-   - AskMyServer (Dell Hackathon): AI-powered natural language server diagnostics platform on MCP architecture. Adopted by team, senior consultant, and manager for day-to-day operations.
+   - MCM (Multi Connection Manager): Centralised role-based web platform for server operations, used daily by 3-10 people across patching team, security team, L1 technical support, IRE team, and L3 team.
+     Windows: RDP Connections, LAPS Password Retrieval (WinRM), Windows Disk Expand & Search, File Share Browser (SMB)
+     Linux: Multi-SSH Terminal (single & multi-server), Get Root Password (vCenter API with auto-login console), SCP Browser
+     Misc: iDRAC Query, Redfish API Explorer, PowerCLI (vCenter), Root Access Audit (identifies unrotated root passwords across fleet; OLAM-based rotation for targeted servers — typically 5-20 servers per cycle out of 20,000+), PCI Server Console
+     CHGTASK: Mount Activity Checker, Implementation Step Manager, Expand Capacity for multiple servers across multiple locations, Datastore/Compute migration
+     Deployments (Mass Matter): Server Deployment Filtering, Agent Classification, ECN Email Generator, MECM Deployment Status Tracking, Historical Data, Custom Dashboard and Grafana Dashboard (linked)
+     Admin: Access Control Manager (group & user-level permissions), Usage Analytics, User Command Tracking, Kickout Session, Feedback
+   - AskMyServer (Dell Hackathon): Solely designed, architected, and developed an AI-powered natural language server diagnostics platform on MCP (Model Context Protocol) architecture. Selected as Top 15 finalist out of 90+ teams for Round 2 (Finals). Currently adopted by manager, OS Engineering counterpart, senior consultant, and hackathon team members for day-to-day operations.
+     Target Users: Non-technical app/server owners — self-service diagnostics and vulnerability checks without CLI knowledge
+     Backend: Dell GenAI Gateway — dual-model routing: GPT-Powerful-120B for complex queries & Zabbix graph generation, LLaMA 3.3-70B for live diagnostics and bulk server queries
+     MCP Tool Servers: Linux SSH (multi-server), Windows WinRM, OS Info/Inventory API, Zabbix MCP (prod & nonprod)
+     Frontend: Open WebUI with tool server integration, served via nginx SSL termination
+     Infrastructure: Podman + systemd deployment
+     Impact: Reduced server diagnostic time to under a minute; adopted for production use
 
    Achievements:
-   - Oracle DB Server CPU & RAM Resizing: Reclaimed 1,956 CPUs & 15.6 TB of RAM, ~USD 312K in cost savings
-   - Multi Connection Manager: Bigger audience, simplifies bulk operations
-   - Grafana Agent Dashboard: Agent status across supported servers
+   - Oracle DB Server CPU & RAM Resizing: Partnered with OS Engineering counterpart and collaborated with a DB Engineer to resolve a kernel panic issue triggered during resource reduction. Successfully reclaimed 1,956 CPUs & 15.6 TB RAM — ~USD 312K cost savings.
+   - AskMyServer Hackathon: Selected as Top 15 finalist out of 90+ teams — advanced to Round 2 Finals (2025). Result TBC.
+   - Multi Connection Manager: Used daily by 3-10 people across multiple teams; simplifies bulk operations at scale
+   - Grafana Agent Dashboard: Production dashboards showing agent deployment status, server health, trending, and history
 
 2. Dell Technologies — Analyst, IT Technical Services (Linux & Windows)
    April 2022 – March 2025 | 3 years | Hybrid
-   - Supported 30,000+ Linux servers and 25,000+ Windows servers
-   - 29% incident reduction via automation
-   - Top 3 performer FY24 & FY25
+   - Provided in-depth support for 30,000+ Linux servers and 25,000+ Windows servers
+   - Incident Management: Resolved INC queue for Linux & Windows Ops; participated in MIM for recovery and RCA (ITIL Incident, Change, Problem Management practices)
+   - Change support: Executed CTASKs from Change Coordinator; assisted deployment team with custom PowerShell scripts to remediate failed SCCM installations
+   - Developed Multi-SSH feature backlog item via in-house tool Bi-Frost; then built own full-scale tool MCM (Multi Connection Manager) with bulk operations including multi-server capacity expansion, datastore/compute migration, ECN email automation, MECM reporting, server filtering, and custom + Grafana dashboards
+   - Supported critical activities: Major Data Center Maintenance, Power Maintenance, Black Friday readiness
+   Achievements:
+   - GICC Bi-Frost Interactive Console Linux: Web console for zero-touch remote connections
+   - FY24Q2: 29% incident reduction across COE Server team
+   - Top 3 performer FY24 & FY25 for resolving user incidents and task creation
 
 3. Velo Technologies & Nebula Systems — System Engineer
-   May 2020 – April 2022 | On-site
-   - Server & Network Administration: Windows Server, Linux, VMware ESXi, Cisco IOS, PFSense, OPNSense, FSOS, HP ArubaOS
-   - Open-Source: Zabbix, LibreNMS, OpenNebula, VyOS, oVirt, Netbox
-   - P2V and V2V migrations using Veeam and vCenter Converter
+   May 2020 – April 2022 | 2 years | On-site
 
-4. Stardocs Sdn Bhd — System Programmer & Support (Contract, Nov 2019 – Jan 2020)
-5. Ministry of Health Malaysia (KKM) — Administrative & IT Officer Grade N41 (Contract, Jan 2019 – Oct 2019)
-6. Pacific Engineering Sdn Bhd — Intern R&D Engineer (Jun 2017 – Sep 2017)
+   Roles for Velo Technologies:
+   - IT infrastructure support for desktops, networks, security, and data center operations
+   - First-level user support, IT asset management, vendor coordination
+   - Maintained IT inventory and accurate asset tracking
+
+   Roles for Nebula Systems:
+   - Server & Network Administration: Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi (installed and configured from scratch — bare metal to production), vCenter (managed vCenter environment — VM provisioning, snapshots, resource pools, migrations for customer environments), Cisco IOS, PFSense, OPNSense, FS, Aruba
+   - Virtualisation: Created, configured, and managed VMs for customer environments using VMware ESXi and vCenter. Performed P2V and V2V migrations using Veeam and vCenter Converter.
+   - Open-Source Solutions: Deployed and configured Zabbix from scratch (dashboards, alerts, proactive monitoring of physical and virtual infrastructure). LibreNMS for network device monitoring and topology discovery. OpenNebula — installed from scratch and migrated production workloads from vCenter to OpenNebula for a real client environment. oVirt — evaluated as a vCenter replacement (lab/testing only; OpenNebula was chosen instead). VyOS — tested as a cost-saving routing solution but had roadblocks; not deployed in production. Netbox for IPAM and asset tracking.
+   - System Documentation: Used Netbox as single source of truth — server inventory, IPAM, rack layouts, network device configurations, structured cabling documentation. Maintained daily activity reports, system change logs, incident resolution records.
+   - Data Center Operations: Installed and maintained physical servers (Dell PowerEdge, HP ProLiant), networking equipment, and structured cabling in in-house and customer-owned data centers.
+
+4. Stardocs Sdn Bhd — System Programmer & Support
+   November 2019 – January 2020 | Contract | Subang
+   - Managed in-house systems, pre/post-sales technical support, IT consulting
+
+5. Ministry of Health Malaysia (KKM) — Administrative & IT Officer Grade N41
+   January 2019 – October 2019 | Contract | Putrajaya
+   - IT troubleshooting, vendor coordination, documentation, record-keeping
+
+6. Pacific Engineering Sdn Bhd — Intern R&D Engineer
+   June 2017 – September 2017
+   - Developed Arduino-based controller to monitor industrial machinery
 
 SKILLS:
-Software: Linux (RHEL, OL, Debian, Ubuntu, SUSE, CentOS), PowerShell, Bash, Python, Ansible, OLAM, Kubernetes (limited), VMware vCenter/vSphere/ESXi, Proxmox, oVirt, Zabbix, LibreNMS, Grafana, Zammad, ServiceNow, MariaDB, MySQL, PostgreSQL, React.js, FastAPI, WebSocket, nginx, MCP, LLM integration
+Software:
+- Linux: RHEL, OL, Debian, Ubuntu, SUSE, CentOS — L3 escalation support for 30,000+ servers at Dell; hands-on OS deployment and maintenance at Nebula
+- Scripting: PowerShell (certified; 25,000+ Windows servers at Dell — custom scripts for SCCM remediation, bulk ops), Bash (automation via Bi-Frost), Python (multithreaded bulk ops processing 1000+ servers simultaneously; FastAPI backends; widely used by patching, security, L1, IRE, and L3 teams via MCM)
+- Automation: Ansible (Patchy-Porter CVE pipeline; Mass Matter agent deployment; OLAM-based root password rotation in MCM; ECN email automation pipeline), OLAM (Oracle Linux Automation Manager), CHG-A-BOT, Mass Matter, Patchy-Porter
+- Virtualisation: VMware ESXi (installed from scratch at Nebula), vCenter (managed — VM provisioning, snapshots, resource pools, migrations; vCenter API integration in MCM for auto-login console), OpenNebula (installed from scratch at Nebula; migrated production client workloads from vCenter to OpenNebula), oVirt (evaluated as vCenter replacement — lab/testing only; OpenNebula chosen), Proxmox (lab), VyOS (tested as cost-saving router — not deployed in production), Kubernetes (INC-based familiarity — troubleshot Kubernetes-related incidents at Dell; familiar with Docker/Podman at production level)
+- Monitoring: Zabbix (deployed from scratch at Nebula — dashboards, alerts, proactive monitoring; integrated Zabbix MCP into AskMyServer at Dell for AI graph generation across prod and nonprod), LibreNMS (network device monitoring and topology discovery at Nebula), Grafana (built production agent deployment dashboards — Mass Matter; daily refresh from internal data; used by whole ops team)
+- Incident Management: L3 escalation for Linux & Windows INC queue; CTASK execution; MIM participation for critical recovery and RCA — aligns with ITIL Incident, Change, and Problem Management
+- Vulnerability Management: Phase 1 of Patchy-Porter — automated CVE scope-list generation and patch validation pipeline before vendor engagement; Phase 2 with university team for AI-driven implementation
+- Windows Server: INC support for 25,000+ Windows servers; SCCM remediation scripts; MECM deployment tracking via Mass Matter
+- Ticketing: ServiceNow (primary ITSM at Dell — top 3 performer FY24 & FY25), Zammad (help desk at Velo/Nebula)
+- Database: MariaDB, MySQL, PostgreSQL (create DB, manage privileges, basic admin for internal tools)
+- Web Development: React.js (MCM frontend — SSH terminals, dashboards, admin panels), FastAPI, Python, WebSocket, nginx
+- AI/MCP: Model Context Protocol (built AskMyServer — adopted in production), LLM integration, GenAI, Podman
+- SRE: SRE Foundation certified; applied SRE practices at Dell — 29% incident reduction, MIM, reliability via tooling
 
-Hardware: Dell PowerEdge, HP ProLiant, RAID, iDRAC, iLO, P2V/V2V (Veeam, vCenter Converter)
+Hardware:
+- Dell PowerEdge (install, configure, maintain — iDRAC, RAID, Redfish API Explorer in MCM)
+- HP ProLiant (install, iLO configuration, maintenance in customer data centers)
+- RAID configuration, iDRAC, iLO
+- P2V and V2V migration using Veeam and vCenter Converter
 
-Networking: Cisco IOS, PFSense, OPNSense, FSOS, HP ArubaOS, Netbox, VyOS
+Networking:
+- Cisco IOS (switch/router config at Nebula — VLANs, routing, structured cabling)
+- PFSense (firewall, NAT, routing rules)
+- OPNSense (firewall, network policy)
+- FS switches (VLAN and port config at Nebula)
+- Aruba (wireless AP config, SSID management)
+- Netbox (IPAM, rack documentation, asset tracking — single source of truth at Nebula)
+- VyOS
+
+Documentation: Netbox (IPAM, rack layouts, asset inventory), daily activity reports, change logs, incident resolution records, structured cabling documentation
 
 CERTIFICATIONS:
-- SRE Foundation Certification
+- Site Reliability Engineering (SRE) Foundation Certification
 - Red Hat System Administration I (RH124)
 - Introduction to Windows PowerShell 5.1
 - Windows PowerShell: IT Management
 
 EDUCATION:
-- Bachelor's Degree in Computer & Communication Engineering — UKM, 2014-2018
-- Matriculation in Physics — Penang Matriculation College, 2013-2014
+- Bachelor's Degree in Computer & Communication Engineering — National University of Malaysia (UKM), 2014-2018
+- Matriculation in Physics (Module 2) — Penang Matriculation College, 2013-2014
+
+REFERENCES (6 total):
+1. Jesse Chan — Senior Consultant, IT Infrastructure · Dell | +6019-2632171 | Jesse.Chan@dell.com (Engineering Counterpart)
+2. Chris Ong — Senior Manager, IT Infrastructure · Dell | +6012-3358530 | Chris.Ong@dell.com (Manager)
+3. Aqmal Zaki — Senior Advisor, IT Infrastructure · Dell | +6011-23546008 | aqmal.zaki@dell.com (Teammate)
+4. Shahmat Dahlan — Consultant, IT Infrastructure · Dell | +6016-8826130 | shahmat.dahlan@dell.com (Co-Worker)
+5. Ben Chin — CEO · Velo Technologies | +6012-2055522 | ben.chin@velo-technologies.com (Ex-Manager)
+6. Javier Wong — CEO · Nebula Systems | +6012-2086226 | javier.wong@nebula-sys.com (Ex-Manager)
 """
 
 JD_MATCH_PROMPT = """
@@ -186,8 +252,8 @@ CRITICAL RULES FOR SCORING:
 - If the JD's core focus is fundamentally different from Amirul's core expertise, reflect that in the score.
 - Don't inflate scores to be nice. A 60% match should be scored 60%, not 75%.
 
-Amirul's CORE strengths: Linux/OS administration at scale, infrastructure automation (Python, Bash, Ansible), building internal web platforms, Incident Management, VMware/virtualisation.
-Amirul's SECONDARY skills: Networking (Cisco, PFSense, ArubaOS) — Nebula 2020-2022 only; Windows server — supporting role; Database — basic usage; Kubernetes — limited explicitly stated.
+Amirul's CORE strengths: Linux/OS administration at scale (30,000+ servers), infrastructure automation (Python, Bash, Ansible), building internal web platforms (MCM, AskMyServer), Incident/Change Management (ITIL), VMware/virtualisation, modernising traditional manual workflows into automated scalable solutions.
+Amirul's SECONDARY skills: Networking (Cisco, PFSense, Aruba) — Nebula 2020-2022 only; Windows server — supporting role at Dell; Database — basic usage; Kubernetes — limited explicitly stated.
 
 Analyze the JD and provide:
 1. Overall match percentage (brutally honest)
@@ -255,7 +321,7 @@ async def get_stats():
     today = datetime.utcnow().date().isoformat()
     visits_today = sum(1 for v in visits if v["timestamp"].startswith(today))
 
-    recent_visits = visits[:50]  # already ordered desc from Supabase
+    recent_visits = visits[:50]
 
     return {
         "total_visits": total_visits,
@@ -269,7 +335,6 @@ async def get_stats():
 
 @app.delete("/api/visits/delete")
 async def delete_visits_by_ip(ip: str = Query(..., description="IP address to delete")):
-    """Delete all visit records for a given IP address."""
     try:
         supa_delete_by_ip(ip)
     except Exception as e:
