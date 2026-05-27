@@ -38,6 +38,17 @@ body.light .achievements-inner { background: #f5f5f0; }
 body.light h1 { color: #1a1a2e !important; }
 body.light .hero h1 .accent { color: var(--accent) !important; }
 
+/* Fix ALL hardcoded white/light text in light mode */
+body.light h2,
+body.light .section-title,
+body.light .timeline-company,
+body.light .modal-title,
+body.light .edu-name,
+body.light .quiz-q { color: #1a1a2e !important; }
+body.light .timeline-desc li strong,
+body.light .achievements-inner li strong { color: #1a1a2e !important; }
+body.light .chat-panel-name { color: #1a1a2e !important; }
+
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; font-size: var(--font-base, 15px); }
 
@@ -137,13 +148,12 @@ nav {
 
 /* ─── HERO ─── */
 .hero {
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
   display:flex; flex-direction:column;
   justify-content:center; align-items:flex-start;
-  padding: 5rem 2rem 2rem;
+  padding: 5rem 2rem 4rem;
   max-width:1100px; margin:0 auto; width:100%;
   position:relative;
-  padding-bottom: 3rem;
 }
 .hero-tag {
   font-size:0.7rem;
