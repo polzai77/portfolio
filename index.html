@@ -1543,12 +1543,39 @@ document.querySelectorAll('.game-tab').forEach(tab => {
   // Theme toggle
   const btn = document.getElementById('themeToggle');
   const body = document.body;
+
+  const SUN_ICON = 'https://unpkg.com/heroicons@2.0.18/24/solid/sun.svg';
+  const MOON_ICON = 'https://unpkg.com/heroicons@2.0.18/24/solid/moon.svg';
+
+  const setThemeIcon = (isLight) => {
+    btn.innerHTML = `
+      <img 
+        src="${isLight ? SUN_ICON : MOON_ICON}" 
+        alt="Theme Icon"
+        width="20"
+        height="20"
+      >
+    `;
+  };
+
   const saved = localStorage.getItem('theme');
-  if (saved === 'light') { body.classList.add('light'); btn.textContent = '☀️'; }
+
+  if (saved === 'light') {
+    body.classList.add('light');
+    setThemeIcon(true);
+  } else {
+    setThemeIcon(false);
+  }
+
   btn.addEventListener('click', () => {
     const isLight = body.classList.toggle('light');
-    btn.textContent = isLight ? '☀️' : '🌙';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+    setThemeIcon(isLight);
+
+    localStorage.setItem(
+      'theme',
+      isLight ? 'light' : 'dark'
+    );
   });
 
   // Hamburger menu
