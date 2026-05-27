@@ -1,5 +1,5 @@
 """
-Portfolio API - Visitor Tracker + Gemini CV Chat
+Portfolio API - Visitor Tracker + Gemini CV Chat (with Groq fallback)
 """
 
 from fastapi import FastAPI, Request
@@ -26,6 +26,30 @@ app.add_middleware(
 # ─── GEMINI SETUP ───
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
+
+# ─── GROQ SETUP (fallback) ───
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+
+def call_groq(prompt: str) -> str:
+    """Call Groq API as fallback when Gemini fails"""
+    if not GROQ_API_KEY:
+        raise Exception("Groq API key not configured")
+    response = requests.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": "llama-3.3-70b-versatile",
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 2000,
+            "temperature": 0.7
+        },
+        timeout=30
+    )
+    data = response.json()
+    return data["choices"][0]["message"]["content"]
 
 # ─── CV CONTEXT ───
 CV_CONTEXT = """
@@ -332,28 +356,46 @@ async def get_stats():
 # ─── CHAT ENDPOINT ───
 @app.post("/api/chat")
 async def chat_with_cv(req: ChatRequest):
-    if not gemini_client:
+    if not gemini_client and not GROQ_API_KEY:
         return {"reply": "AI chat is not configured yet. Please contact Amirul directly at amirularif9577@gmail.com"}
 
-    try:
-        # Truncate message if too long (PDF uploads can be huge)
-        message = req.message
-        if len(message) > 15000:
-            message = message[:15000] + "\n\n[Content truncated for length...]"
+    # Truncate message if too long (PDF uploads can be huge)
+    message = req.message
+    if len(message) > 15000:
+        message = message[:15000] + "\n\n[Content truncated for length...]"
 
-        if req.is_jd_match:
-            prompt = JD_MATCH_PROMPT.format(cv=CV_CONTEXT, jd=message)
-        else:
-            prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{message}"
+    if req.is_jd_match:
+        prompt = JD_MATCH_PROMPT.format(cv=CV_CONTEXT, jd=message)
+    else:
+        prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{message}"
 
-        response = gemini_client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
-        )
-        return {"reply": response.text}
+    # Try Gemini first
+    if gemini_client:
+        try:
+            response = gemini_client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
+            return {"reply": response.text, "model": "gemini"}
+        except Exception as e:
+            import traceback
+            print(f"Gemini failed, trying Groq fallback: {e}")
+            print(traceback.format_exc())
 
-    except Exception as e:
-        import traceback
-        print(f"Gemini error: {e}")
-        print(traceback.format_exc())
-        return {"reply": "Sorry, I'm having trouble connecting right now. Please try again or contact Amirul directly at amirularif9577@gmail.com"}
+    # Fallback to Groq
+    if GROQ_API_KEY:
+        try:
+            reply = call_groq(prompt)
+            return {"reply": reply, "model": "groq"}
+        except Exception as e:
+            import traceback
+            print(f"Groq also failed: {e}")
+            print(traceback.format_exc())
+
+    return {"reply": "Sorry, I'm having trouble connecting right now. Please try again or contact Amirul directly at amirularif9577@gmail.com"}
+
+
+# ─── KEEP ALIVE ENDPOINT ───
+@app.get("/api/ping")
+async def ping():
+    return {"status": "alive", "timestamp": datetime.now().isoformat()}

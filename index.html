@@ -1385,12 +1385,24 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <script>
 (function() {
   const API_URL = 'https://portfolio-8kk4.onrender.com';
+
+  // Track page visit
   async function trackVisit() {
     try {
       await fetch(`${API_URL}/api/track`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
     } catch (error) { console.log('Analytics tracking failed'); }
   }
+
+  // Keep Render alive - ping every 10 minutes to prevent cold start
+  async function keepAlive() {
+    try {
+      await fetch(`${API_URL}/api/ping`);
+    } catch (e) {}
+  }
+
   trackVisit();
+  keepAlive();
+  setInterval(keepAlive, 10 * 60 * 1000); // every 10 minutes
 })();
 </script>
 
