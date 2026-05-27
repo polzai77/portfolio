@@ -46,11 +46,12 @@ GitHub: https://github.com/polzai77
 Portfolio: https://polzai77.github.io/portfolio/
 
 PROFESSIONAL SUMMARY:
-Experienced Infrastructure Specialist with over 5 years of expertise as a Linux Administrator.
-Proficient in deploying and managing Linux-based systems, installing and configuring hardware
-in data centers including servers and network switches. Skilled in software installation for
-both physical and virtual machines. Passionate about continuous learning and staying up to date
-with emerging technologies to enhance skills and drive innovation.
+Experienced Infrastructure Specialist with 7+ years across Linux administration,
+data center operations, and infrastructure automation. Proficient in managing
+Linux-based systems at enterprise scale, driving automation initiatives that
+reduce operational toil, and building AI-powered internal tools adopted in
+production. Passionate about continuous learning and staying up to date with
+emerging technologies to enhance skills and drive innovation.
 
 EXPERIENCE:
 
