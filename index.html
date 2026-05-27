@@ -414,6 +414,55 @@ body.light .achievements-inner li strong { color: #1a1a2e !important; }
 }
 .subnet-example:hover { opacity: 0.8; }
 
+/* ─── GROUP SKILL CARD (Server, P2V/V2V) ─── */
+.skill-group-card {
+  cursor: default !important;
+  position: relative;
+}
+.skill-group-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(0,229,255,0.1);
+}
+.skill-group-pills {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.skill-sub-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.58rem;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.skill-sub-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,229,255,0.2);
+}
+.skill-sub-pill.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+/* Fix HP logo visibility in light mode */
+body.light .skill-sub-pill img[src*="hp-black"],
+body.light .skill-icon img[src*="hp-black"] {
+  filter: none;
+}
+
 /* ─── THEME TOGGLE BUTTON ─── */
 .theme-toggle {
   background: none;
@@ -674,18 +723,123 @@ body.light .achievements-inner li strong { color: #1a1a2e !important; }
 
   <div class="skills-cat">Hardware</div>
   <div class="skills-grid">
-    <div class="skill-card" data-skill="poweredge"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/dell.svg" width="28" height="28"/></span>Dell PowerEdge<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="proliant"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="28" height="28"/></span>HP ProLiant<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="veeam"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/veeam.svg" width="28" height="28"/></span>Veeam<div class="skill-click-hint">click for details</div></div>
+    <!-- SERVER GROUP CARD -->
+    <div class="skill-card skill-group-card" data-group="server">
+      <span class="skill-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="3" width="20" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <rect x="2" y="10" width="20" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <rect x="2" y="17" width="20" height="4" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <circle cx="19" cy="5.5" r="0.9" fill="currentColor"/>
+          <circle cx="19" cy="12.5" r="0.9" fill="currentColor"/>
+          <circle cx="17" cy="5.5" r="0.9" fill="currentColor"/>
+          <circle cx="17" cy="12.5" r="0.9" fill="currentColor"/>
+          <rect x="4.5" y="4.5" width="6" height="2" rx="0.5" fill="currentColor" opacity="0.35"/>
+          <rect x="4.5" y="11.5" width="6" height="2" rx="0.5" fill="currentColor" opacity="0.35"/>
+        </svg>
+      </span>
+      Server
+      <div class="skill-group-pills">
+        <span class="skill-sub-pill" data-skill="poweredge">
+          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/dell.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>Dell
+        </span>
+        <span class="skill-sub-pill" data-skill="proliant">
+          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>HP
+        </span>
+      </div>
+      <div class="skill-click-hint">click brand for details</div>
+    </div>
+
+    <!-- P2V / V2V GROUP CARD -->
+    <div class="skill-card skill-group-card" data-group="p2v">
+      <span class="skill-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Physical server box -->
+          <rect x="1" y="13" width="9" height="7" rx="1.2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="1" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+          <circle cx="8.2" cy="14.6" r="0.7" fill="currentColor"/>
+          <!-- Virtual machine box -->
+          <rect x="14" y="4" width="9" height="7" rx="1.2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="3 1.5"/>
+          <line x1="14" y1="7" x2="23" y2="7" stroke="currentColor" stroke-width="1.1" opacity="0.5" stroke-dasharray="3 1.5"/>
+          <circle cx="21.2" cy="5.6" r="0.7" fill="currentColor" opacity="0.7"/>
+          <!-- Arrow -->
+          <path d="M10.5 12 C10.5 9 13.5 9 13.5 11.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <polyline points="11.5,9.8 13.5,11.2 15,9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </span>
+      P2V / V2V
+      <div class="skill-group-pills">
+        <span class="skill-sub-pill" data-skill="veeam">
+          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/veeam.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>Veeam
+        </span>
+        <span class="skill-sub-pill" data-skill="vcenterconv">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:3px;"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M14 9l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>vCenter Conv
+        </span>
+      </div>
+      <div class="skill-click-hint">click tool for details</div>
+    </div>
   </div>
 
   <div class="skills-cat">Networking</div>
   <div class="skills-grid">
-    <div class="skill-card" data-skill="cisco"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="28" height="28"/></span>Cisco IOS<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="pfsense"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/pfsense-black.svg" width="28" height="28"/></span>PFSense<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="opnsense"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/opnsense.svg" width="28" height="28"/></span>OPNSense<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="aruba"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg" width="28" height="28"/></span>HP ArubaOS<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="fsos"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" width="28" height="28"/></span>FSOS<div class="skill-click-hint">click for details</div></div>
+
+    <!-- SWITCH GROUP CARD -->
+    <div class="skill-card skill-group-card" data-group="switch">
+      <span class="skill-icon">
+        <!-- Network switch: layered ports top & bottom, uplink arrows -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="8" width="22" height="8" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <rect x="3.5" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
+          <rect x="6.8" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
+          <rect x="10.1" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
+          <rect x="13.4" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
+          <rect x="16.7" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
+          <circle cx="20.8" cy="12" r="0.8" fill="currentColor"/>
+          <line x1="5" y1="8" x2="5" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <polyline points="3.5,6.2 5,4.5 6.5,6.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="12" y1="8" x2="12" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <polyline points="10.5,6.2 12,4.5 13.5,6.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="19" y1="16" x2="19" y2="19" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <polyline points="17.5,17.8 19,19.5 20.5,17.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </span>
+      Switch
+      <div class="skill-group-pills">
+        <span class="skill-sub-pill" data-skill="cisco">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>Cisco
+        </span>
+        <span class="skill-sub-pill" data-skill="aruba">
+          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>HP Aruba
+        </span>
+        <span class="skill-sub-pill" data-skill="fsos">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:3px;"><rect x="2" y="7" width="20" height="10" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="12" r="1.2" fill="currentColor"/><circle cx="10" cy="12" r="1.2" fill="currentColor"/></svg>FS
+        </span>
+      </div>
+      <div class="skill-click-hint">click brand for details</div>
+    </div>
+
+    <!-- FIREWALL GROUP CARD -->
+    <div class="skill-card skill-group-card" data-group="firewall">
+      <span class="skill-icon">
+        <!-- Shield with flame/lock -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+          <path d="M9.5 15.5c0-2 1-3 1.5-4 .5 1 .5 1.5.5 1.5s1-1.5 1-3c1 1 1.5 2.5 1.5 3.5 0 1.7-1.35 3-3 3s-3-1.3-3-3Z" fill="currentColor" opacity="0.7"/>
+          <circle cx="12" cy="13.8" r="1" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </span>
+      Firewall
+      <div class="skill-group-pills">
+        <span class="skill-sub-pill" data-skill="pfsense">
+          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/pfsense-black.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>pfSense
+        </span>
+        <span class="skill-sub-pill" data-skill="opnsense">
+          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/opnsense.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>OPNsense
+        </span>
+      </div>
+      <div class="skill-click-hint">click brand for details</div>
+    </div>
+
     <div class="skill-card" data-skill="netbox"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/netbox.svg" width="28" height="28"/></span>Netbox<div class="skill-click-hint">click for details</div></div>
   </div>
 </section>
@@ -955,7 +1109,7 @@ const skillsData = {
     tags:["Veeam","Backup","Migration","VMware","Nebula","Recovery"]
   },
   cisco: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="32" height="32"/>', title:"Cisco IOS", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="32" height="32"/>', title:"Cisco", where:"Nebula Systems",
     desc:"Installed, configured, and maintained Cisco IOS network devices as part of data centre networking at Nebula Systems.",
     points:[
       "Configured Cisco switches and routers for in-house and customer data centres.",
@@ -985,24 +1139,25 @@ const skillsData = {
     tags:["OPNSense","Open-Source","Firewall","Networking","Nebula"]
   },
   aruba: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg" width="32" height="32"/>', title:"HP ArubaOS", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="32" height="32"/>', title:"HP Aruba", where:"Nebula Systems",
     desc:"Configured and maintained HP Aruba wireless access points and network switches using ArubaOS at Nebula Systems.",
     points:[
       "Configured HP Aruba access points for wireless network coverage.",
       "Managed ArubaOS settings for SSID, security, and traffic management.",
       "Supported wireless infrastructure in data centre and office environments."
     ],
-    tags:["HP ArubaOS","Wireless","Networking","Nebula","Access Points"]
+    tags:["HP Aruba","ArubaOS","Wireless","Networking","Nebula","Access Points"]
   },
   fsos: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" width="32" height="32"/>', title:"FSOS", where:"Nebula Systems",
-    desc:"Worked with FSOS (FS.com Network Operating System) for switch configuration and management as part of data centre networking at Nebula Systems.",
+    icon:'<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="10" rx="2" stroke="#00e5ff" stroke-width="1.8"/><circle cx="6" cy="12" r="1.4" fill="#00e5ff"/><circle cx="10" cy="12" r="1.4" fill="#00e5ff"/><circle cx="14" cy="12" r="1.4" fill="#00e5ff" opacity="0.5"/><circle cx="18" cy="12" r="1.4" fill="#00e5ff" opacity="0.3"/></svg>',
+    title:"FS", where:"Nebula Systems",
+    desc:"Worked with FS.com switches running FSOS (FS.com Network Operating System) for switch configuration and data centre networking at Nebula Systems.",
     points:[
-      "Configured FS switches running FSOS for data centre connectivity.",
+      "Configured FS.com switches running FSOS for data centre connectivity.",
       "Managed port configurations and VLANs based on infrastructure requirements.",
       "Maintained switch health and performance as part of network operations."
     ],
-    tags:["FSOS","Switches","Networking","Nebula","Data Centre"]
+    tags:["FS","FSOS","Switches","Networking","Nebula","Data Centre"]
   },
   netbox: {
     icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/netbox.svg" width="32" height="32"/>', title:"Netbox", where:"Nebula Systems",
@@ -1013,6 +1168,18 @@ const skillsData = {
       "Used as the single source of truth for infrastructure asset tracking."
     ],
     tags:["Netbox","IPAM","Documentation","Open-Source","Nebula","Asset Mgmt"]
+  },
+  vcenterconv: {
+    icon:'<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#00e5ff" stroke-width="1.8"/><path d="M8 12h8M14 9l3 3-3 3" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    title:"vCenter Converter", where:"Nebula Systems",
+    desc:"Used VMware vCenter Converter as a core migration tool at Nebula Systems to perform physical-to-virtual (P2V) and virtual-to-virtual (V2V) workload migrations.",
+    points:[
+      "Performed P2V migrations — converting physical servers into VMware virtual machines without downtime.",
+      "Conducted V2V migrations between different hypervisor formats and vCenter environments.",
+      "Used alongside Veeam for comprehensive migration and backup coverage.",
+      "Ensured minimal disruption to production workloads during conversion processes."
+    ],
+    tags:["vCenter Converter","P2V","V2V","VMware","Migration","Nebula"]
   }
 };
 
@@ -1020,34 +1187,50 @@ const modal = document.getElementById('skillModal');
 const modalClose = document.getElementById('modalClose');
 let activeCard = null;
 
-document.querySelectorAll('.skill-card').forEach(card => {
+function openSkillModal(key, sourceEl) {
+  const s = skillsData[key];
+  if (!s) return;
+
+  document.getElementById('modalIcon').innerHTML = s.icon;
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalWhere').textContent = s.where;
+  document.getElementById('modalDesc').textContent = s.desc;
+
+  const pts = document.getElementById('modalPoints');
+  pts.innerHTML = s.points.map(p => '<li>' + p + '</li>').join('');
+
+  const tags = document.getElementById('modalTags');
+  tags.innerHTML = s.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
+
+  if (activeCard) activeCard.classList.remove('active');
+  if (sourceEl) { sourceEl.classList.add('active'); activeCard = sourceEl; }
+
+  modal.classList.add('open');
+}
+
+// Regular skill cards (non-group)
+document.querySelectorAll('.skill-card:not(.skill-group-card)').forEach(card => {
   card.addEventListener('click', () => {
     const key = card.getAttribute('data-skill');
-    const s = skillsData[key];
-    if (!s) return;
+    openSkillModal(key, card);
+  });
+});
 
-    document.getElementById('modalIcon').innerHTML = s.icon;
-    document.getElementById('modalTitle').textContent = s.title;
-    document.getElementById('modalWhere').textContent = s.where;
-    document.getElementById('modalDesc').textContent = s.desc;
-
-    const pts = document.getElementById('modalPoints');
-    pts.innerHTML = s.points.map(p => '<li>' + p + '</li>').join('');
-
-    const tags = document.getElementById('modalTags');
-    tags.innerHTML = s.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
-
-    if (activeCard) activeCard.classList.remove('active');
-    card.classList.add('active');
-    activeCard = card;
-
-    modal.classList.add('open');
+// Sub-pills inside group cards
+document.querySelectorAll('.skill-sub-pill').forEach(pill => {
+  pill.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const key = pill.getAttribute('data-skill');
+    openSkillModal(key, pill);
   });
 });
 
 function closeModal() {
   modal.classList.remove('open');
-  if (activeCard) { activeCard.classList.remove('active'); activeCard = null; }
+  if (activeCard) {
+    activeCard.classList.remove('active');
+    activeCard = null;
+  }
 }
 
 modalClose.addEventListener('click', closeModal);
