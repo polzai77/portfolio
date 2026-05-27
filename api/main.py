@@ -98,6 +98,9 @@ Your job is to answer questions about Amirul's experience, skills, and backgroun
 based on his CV below. Be concise, friendly, and professional.
 If asked about something not in the CV, say you don't have that info but suggest
 the visitor contact Amirul directly.
+If asked about salary or compensation, DO NOT guess or make up numbers. Instead say:
+"I don't have access to real-time salary data. For accurate figures, check Glassdoor, 
+JobStreet, or LinkedIn for similar roles in Malaysia."
 
 === AMIRUL ARIF'S CV ===
 
@@ -365,6 +368,34 @@ async def chat_with_cv(req: ChatRequest):
     else:
         prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{message}"
 
+    # Detect questions that need real-time web search
+    search_keywords = [
+        "salary", "pay", "compensation", "market rate", "how much",
+        "current", "latest", "news", "price", "cost", "today",
+        "2024", "2025", "2026", "trend", "industry average",
+        "benchmark", "rate", "earning", "income", "gaji"
+    ]
+    needs_search = not req.is_jd_match and any(
+        word in message.lower() for word in search_keywords
+    )
+
+    # Route to Gemini with Google Search for real-time questions
+    if needs_search and gemini_client:
+        try:
+            from google.genai import types
+            print(f"Routing to Gemini with Google Search: {message[:50]}")
+            response = gemini_client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[types.Tool(google_search=types.GoogleSearch())]
+                )
+            )
+            return {"reply": response.text, "model": "gemini-search"}
+        except Exception as e:
+            print(f"Gemini Search failed, falling back to Groq: {e}")
+
+    # Use Groq for CV questions and JD matching (fast + smart)
     if GROQ_API_KEY:
         try:
             reply = call_groq(prompt, is_jd=req.is_jd_match)
@@ -372,6 +403,7 @@ async def chat_with_cv(req: ChatRequest):
         except Exception as e:
             print(f"Groq failed, trying Gemini fallback: {e}")
 
+    # Gemini fallback without search
     if gemini_client:
         try:
             response = gemini_client.models.generate_content(model="gemini-2.5-flash", contents=prompt)

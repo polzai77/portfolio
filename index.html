@@ -1964,7 +1964,7 @@ function closeDrawer() {
       // Update model indicator in header
       if (data.model) {
         var statusEl = document.querySelector('.chat-panel-status');
-        if (statusEl) statusEl.innerHTML = 'Powered by ' + (data.model === 'groq' ? 'Groq · LLaMA 3.1' : 'Gemini 2.5 Flash');
+        if (statusEl) statusEl.innerHTML = 'Powered by ' + (data.model === 'groq' ? 'Groq · LLaMA 3.1' : 'Gemini 2.5 Flash · Google Search 🔍');
       }
       // Clear PDF after use
       if (pdfText) removePdf();
