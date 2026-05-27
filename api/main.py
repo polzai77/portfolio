@@ -31,25 +31,35 @@ gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 def call_groq(prompt: str) -> str:
-    """Call Groq API as fallback when Gemini fails"""
+    """Call Groq API as primary - try fast model first, fallback to larger"""
     if not GROQ_API_KEY:
         raise Exception("Groq API key not configured")
-    response = requests.post(
-        "https://api.groq.com/openai/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json"
-        },
-        json={
-            "model": "llama-3.3-70b-versatile",
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 2000,
-            "temperature": 0.7
-        },
-        timeout=30
-    )
-    data = response.json()
-    return data["choices"][0]["message"]["content"]
+
+    # Try llama-3.1-8b-instant first (14,400 req/day free)
+    for model in ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"]:
+        try:
+            response = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {GROQ_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": 2000,
+                    "temperature": 0.7
+                },
+                timeout=30
+            )
+            data = response.json()
+            if "choices" in data:
+                return data["choices"][0]["message"]["content"]
+        except Exception as e:
+            print(f"Groq model {model} failed: {e}")
+            continue
+
+    raise Exception("All Groq models failed")
 
 # ─── CV CONTEXT ───
 CV_CONTEXT = """
@@ -356,7 +366,7 @@ async def get_stats():
 # ─── CHAT ENDPOINT ───
 @app.post("/api/chat")
 async def chat_with_cv(req: ChatRequest):
-    if not gemini_client and not GROQ_API_KEY:
+    if not GROQ_API_KEY and not gemini_client:
         return {"reply": "AI chat is not configured yet. Please contact Amirul directly at amirularif9577@gmail.com"}
 
     # Truncate message if too long (PDF uploads can be huge)
@@ -369,7 +379,17 @@ async def chat_with_cv(req: ChatRequest):
     else:
         prompt = f"{CV_CONTEXT}\n\n=== VISITOR QUESTION ===\n{message}"
 
-    # Try Gemini first
+    # Try Groq first (faster, more stable)
+    if GROQ_API_KEY:
+        try:
+            reply = call_groq(prompt)
+            return {"reply": reply, "model": "groq"}
+        except Exception as e:
+            import traceback
+            print(f"Groq failed, trying Gemini fallback: {e}")
+            print(traceback.format_exc())
+
+    # Fallback to Gemini
     if gemini_client:
         try:
             response = gemini_client.models.generate_content(
@@ -379,17 +399,7 @@ async def chat_with_cv(req: ChatRequest):
             return {"reply": response.text, "model": "gemini"}
         except Exception as e:
             import traceback
-            print(f"Gemini failed, trying Groq fallback: {e}")
-            print(traceback.format_exc())
-
-    # Fallback to Groq
-    if GROQ_API_KEY:
-        try:
-            reply = call_groq(prompt)
-            return {"reply": reply, "model": "groq"}
-        except Exception as e:
-            import traceback
-            print(f"Groq also failed: {e}")
+            print(f"Gemini also failed: {e}")
             print(traceback.format_exc())
 
     return {"reply": "Sorry, I'm having trouble connecting right now. Please try again or contact Amirul directly at amirularif9577@gmail.com"}
