@@ -676,9 +676,6 @@ body.light .achievements-inner li strong { color: #1a1a2e !important; }
   <div class="skills-grid">
     <div class="skill-card" data-skill="poweredge"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/dell.svg" width="28" height="28"/></span>Dell PowerEdge<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="proliant"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="28" height="28"/></span>HP ProLiant<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="raid"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" width="28" height="28"/></span>RAID Config<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="idrac"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original.svg" width="28" height="28"/></span>iDRAC / iLO<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="migration"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="28" height="28"/></span>P2V / V2V Migration<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="veeam"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/veeam.svg" width="28" height="28"/></span>Veeam<div class="skill-click-hint">click for details</div></div>
   </div>
 
@@ -946,38 +943,6 @@ const skillsData = {
       "Supported hardware-to-software installation based on client requirements."
     ],
     tags:["HP ProLiant","Hardware","iLO","Data Centre","Nebula"]
-  },
-  raid: {
-    icon:'💾', title:"RAID Configuration", where:"Nebula Systems · Velo Technologies",
-    desc:"Configured and maintained RAID arrays on Dell PowerEdge and HP ProLiant servers to ensure data redundancy and performance in data centre environments.",
-    points:[
-      "Configured RAID 0, 1, 5, and 10 arrays based on workload requirements.",
-      "Managed RAID controllers on both Dell and HP server platforms.",
-      "Ensured data redundancy and storage performance for production systems."
-    ],
-    tags:["RAID","Storage","Dell","HP","Hardware","Data Centre"]
-  },
-  idrac: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original.svg" width="32" height="32"/>', title:"iDRAC / iLO", where:"Dell Technologies · Nebula Systems · Velo Technologies",
-    desc:"Configured and used Dell iDRAC and HP iLO for out-of-band server management and remote monitoring. Also built iDRAC Query and Redfish API Explorer features directly into MCM.",
-    points:[
-      "Configured iDRAC on Dell PowerEdge servers for remote management and KVM access.",
-      "Set up iLO on HP ProLiant systems for out-of-band monitoring.",
-      "Built iDRAC Query and Redfish API Explorer directly into MCM for team use.",
-      "Used for remote troubleshooting and maintenance without physical data centre access."
-    ],
-    tags:["iDRAC","iLO","Redfish API","Remote Mgmt","Dell","HP","Out-of-Band","MCM"]
-  },
-  migration: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="32" height="32"/>', title:"P2V / V2V Migration", where:"Nebula Systems",
-    desc:"Performed physical-to-virtual and virtual-to-virtual migrations using Veeam and VMware vCenter Converter at Nebula Systems to modernise and consolidate server infrastructure.",
-    points:[
-      "Executed P2V migrations to move physical servers into VMware virtual environments.",
-      "Performed V2V migrations using vCenter Converter for platform consolidation.",
-      "Used Veeam for backup and migration workflows to ensure data integrity.",
-      "Validated migrated systems for performance and stability post-migration."
-    ],
-    tags:["P2V","V2V","Veeam","vCenter Converter","VMware","Nebula"]
   },
   veeam: {
     icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/veeam.svg" width="32" height="32"/>', title:"Veeam", where:"Nebula Systems",
