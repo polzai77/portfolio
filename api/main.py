@@ -149,7 +149,7 @@ EXPERIENCE:
 
    Achievements:
    - Oracle DB Server CPU & RAM Resizing: Partnered with OS Engineering counterpart and collaborated with a DB Engineer to resolve a kernel panic issue triggered during resource reduction. Successfully reclaimed 1,956 CPUs & 15.6 TB RAM — ~USD 312K cost savings.
-   - AskMyServer Hackathon: Selected as Top 15 finalist out of 90+ teams — advanced to Round 2 Finals (2025). Result TBC.
+   - AskMyServer Hackathon: Selected as Top 15 finalist out of 90+ teams — advanced to Round 2 Finals. Result TBC.
    - Multi Connection Manager: Used daily by 3-10 people across multiple teams; simplifies bulk operations at scale
    - Grafana Agent Dashboard: Production dashboards showing agent deployment status, server health, trending, and history
 
