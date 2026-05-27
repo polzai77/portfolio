@@ -1540,43 +1540,30 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <!-- THEME TOGGLE + HAMBURGER SCRIPT -->
 <script>
 (function() {
-  // Theme toggle
+  //theme toggle
   const btn = document.getElementById('themeToggle');
   const body = document.body;
 
-  const SUN_ICON = 'https://unpkg.com/heroicons@2.0.18/24/solid/sun.svg';
-  const MOON_ICON = 'https://unpkg.com/heroicons@2.0.18/24/solid/moon.svg';
-
-  const setThemeIcon = (isLight) => {
-    btn.innerHTML = `
-      <img 
-        src="${isLight ? SUN_ICON : MOON_ICON}" 
-        alt="Theme Icon"
-        width="20"
-        height="20"
-      >
-    `;
-  };
-
-  const saved = localStorage.getItem('theme');
-
-  if (saved === 'light') {
+  if (localStorage.getItem('theme') === 'light') {
     body.classList.add('light');
-    setThemeIcon(true);
-  } else {
-    setThemeIcon(false);
   }
 
-  btn.addEventListener('click', () => {
-    const isLight = body.classList.toggle('light');
+  const updateIcon = () => {
+    btn.innerHTML = body.classList.contains('light')
+      ? '<img src="https://cdn.simpleicons.org/sun/white" width="28">'
+      : '<img src="https://cdn.simpleicons.org/moonrepo/black" width="28">';
+  };
 
-    setThemeIcon(isLight);
+  updateIcon();
 
+  btn.onclick = () => {
+    body.classList.toggle('light');
     localStorage.setItem(
       'theme',
-      isLight ? 'light' : 'dark'
+      body.classList.contains('light') ? 'light' : 'dark'
     );
-  });
+    updateIcon();
+  };
 
   // Hamburger menu
   const hamburger = document.getElementById('navHamburger');
