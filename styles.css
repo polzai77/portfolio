@@ -1,26 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg: #0a0a0f;
-  --bg-card: #12121a;
-  --bg-card-hover: #1a1a2a;
-  --accent: #00e5ff;
-  --accent-dim: rgba(0,229,255,0.15);
-  --accent2: #b388ff;
-  --text: #e2e2e8;
-  --text-dim: #6b6b78;
-  --border: rgba(255,255,255,0.06);
+  /* ─── DARK MODE (default) ─── */
+  --bg: #0d0d14;
+  --bg-card: #14141f;
+  --bg-card-hover: #1c1c2e;
+  --accent: #38bdf8;
+  --accent-dim: rgba(56,189,248,0.12);
+  --accent2: #a78bfa;
+  --text: #e8e8f0;
+  --text-dim: #8888a0;
+  --border: rgba(255,255,255,0.07);
+  --font-base: 15px;
 }
 
+/* ─── LIGHT MODE ─── */
+body.light {
+  --bg: #f5f5f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ebebeb;
+  --accent: #0369a1;
+  --accent-dim: rgba(3,105,161,0.1);
+  --accent2: #7c3aed;
+  --text: #1a1a2e;
+  --text-dim: #52526a;
+  --border: rgba(0,0,0,0.09);
+}
+body.light .glow-blob { background: var(--accent); opacity:0.05; }
+body.light body::before { opacity:0.01; }
+body.light nav { background: rgba(245,245,240,0.88); }
+body.light .timeline::before { background: linear-gradient(to bottom, var(--accent), transparent); }
+body.light .timeline-item::before { background: var(--accent); border-color: var(--bg); }
+body.light .btn-primary { color:#fff; }
+body.light .quiz-option { background: #f0f0f0; }
+body.light .typing-text { background: #f0f0f0; }
+body.light .achievements-inner { background: #f5f5f0; }
+
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior:smooth; font-size: var(--font-base, 15px); }
 
 body {
   font-family: 'IBM Plex Mono', monospace;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
+  font-size: 0.95rem;
 }
 
 /* ─── NOISE OVERLAY ─── */
@@ -54,7 +79,7 @@ nav {
 .nav-links a {
   color: var(--text-dim);
   text-decoration:none;
-  font-size:0.75rem;
+  font-size:0.78rem;
   text-transform:uppercase;
   letter-spacing:0.12em;
   transition: color 0.3s;
@@ -141,7 +166,7 @@ nav {
 .hero h1 .accent { color: var(--accent); }
 .hero-sub {
   margin-top:1.5rem;
-  font-size:0.92rem;
+  font-size:0.98rem;
   color: var(--text-dim);
   max-width:580px;
   line-height:1.9;
@@ -190,7 +215,7 @@ nav {
 /* ─── SECTION COMMON ─── */
 section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 .section-label {
-  font-size:0.68rem;
+  font-size:0.72rem;
   text-transform:uppercase;
   letter-spacing:0.22em;
   color: var(--accent);
@@ -233,7 +258,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   box-shadow: 0 0 10px var(--accent);
 }
 .timeline-date {
-  font-size:0.7rem;
+  font-size:0.75rem;
   color: var(--accent);
   letter-spacing:0.1em;
   text-transform:uppercase;
@@ -241,19 +266,19 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 }
 .timeline-company {
   font-family:'Syne',sans-serif;
-  font-size:1.2rem;
+  font-size:1.25rem;
   font-weight:600;
   color:#fff;
 }
 .timeline-role {
-  font-size:0.82rem;
+  font-size:0.88rem;
   color: var(--text-dim);
   margin-bottom:0.8rem;
 }
 .timeline-desc {
-  font-size:0.82rem;
+  font-size:0.88rem;
   color: var(--text-dim);
-  line-height:2;
+  line-height:2.1;
 }
 .timeline-desc li { margin-bottom:0.3rem; list-style:none; padding-left:1rem; position:relative; }
 .timeline-desc li::before { content:'›'; position:absolute; left:0; color:var(--accent); }
@@ -262,7 +287,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-top:0.9rem;
 }
 .tag {
-  font-size:0.65rem;
+  font-size:0.7rem;
   padding:0.28rem 0.7rem;
   border-radius:20px;
   background: var(--accent-dim);
@@ -319,7 +344,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-bottom:0.6rem;
 }
 .achievements-inner li {
-  font-size:0.78rem;
+  font-size:0.84rem;
   color: var(--text-dim);
   padding:0.4rem 0 0.4rem 1rem;
   position:relative;
@@ -343,7 +368,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   border-radius:8px;
   padding:1.1rem 0.9rem;
   text-align:center;
-  font-size:0.76rem;
+  font-size:0.82rem;
   color: var(--text-dim);
   transition: all 0.3s;
   cursor:pointer;
@@ -364,7 +389,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 }
 .skill-icon { font-size:1.4rem; margin-bottom:0.4rem; display:block; }
 .skill-click-hint {
-  font-size:0.58rem;
+  font-size:0.64rem;
   color: var(--text-dim);
   margin-top:0.3rem;
   opacity:0.7;
@@ -427,14 +452,14 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-top:0.15rem;
 }
 .modal-desc {
-  font-size:0.8rem;
+  font-size:0.86rem;
   color: var(--text-dim);
   line-height:1.9;
   margin-bottom:1rem;
 }
 .modal-points { list-style:none; margin-bottom:1rem; }
 .modal-points li {
-  font-size:0.78rem;
+  font-size:0.84rem;
   color: var(--text-dim);
   padding:0.28rem 0 0.28rem 1rem;
   position:relative;
@@ -490,7 +515,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   flex-shrink:0;
 }
 .cert-name {
-  font-size:0.8rem;
+  font-size:0.86rem;
   color: var(--text);
   line-height:1.5;
 }
@@ -527,7 +552,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-bottom:0.3rem;
 }
 .edu-detail {
-  font-size:0.76rem;
+  font-size:0.82rem;
   color: var(--text-dim);
   line-height: 1.6;
 }
@@ -541,7 +566,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 .contact-wrapper .section-label { justify-content:center; }
 .contact-wrapper .section-title { text-align:center; }
 .contact-sub {
-  font-size:0.82rem;
+  font-size:0.88rem;
   color: var(--text-dim);
   margin-bottom:2rem;
   line-height:1.8;
@@ -612,7 +637,7 @@ footer {
   margin-bottom:0.5rem;
 }
 .quiz-q {
-  font-size:0.86rem;
+  font-size:0.92rem;
   color:#fff;
   font-weight:500;
   line-height:1.6;
@@ -624,7 +649,7 @@ footer {
   border-radius:7px;
   padding:0.7rem 1rem;
   font-family:'IBM Plex Mono',monospace;
-  font-size:0.78rem;
+  font-size:0.84rem;
   color: var(--text-dim);
   cursor:pointer;
   transition: all 0.25s;
@@ -636,7 +661,7 @@ footer {
 .quiz-option:disabled { cursor:default; }
 .quiz-feedback {
   margin-top:0.8rem;
-  font-size:0.76rem;
+  font-size:0.82rem;
   display:none;
   line-height:1.6;
 }
@@ -689,7 +714,7 @@ footer {
   border-radius:7px;
   padding:0.65rem 0.8rem;
   font-family:'IBM Plex Mono',monospace;
-  font-size:0.76rem;
+  font-size:0.82rem;
   color: var(--text-dim);
   cursor:pointer;
   text-align:center;
