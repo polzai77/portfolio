@@ -1,5 +1,5 @@
 {
-  "total_visits": 289,
+  "total_visits": 290,
   "unique_visitors": [
     "175.139.100.69",
     "27.125.240.206",
@@ -31,7 +31,8 @@
     "172.225.77.50",
     "27.125.247.197",
     "172.224.240.20",
-    "27.125.247.7"
+    "27.125.247.7",
+    "27.125.244.249"
   ],
   "visits": [
     {
@@ -1478,6 +1479,11 @@
       "timestamp": "2026-05-27T09:27:05.899728",
       "ip": "60.48.72.246",
       "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+    },
+    {
+      "timestamp": "2026-05-27T11:16:44.744381",
+      "ip": "27.125.244.249",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 26_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23E261 Instagram 430.0.0.32.70 (iPhone14,3; iOS 26_4_2; en_US; en; scale=3.00; 1284x2778; IABMV/1; 972915403) Safari/604.1"
     }
   ]
 }
