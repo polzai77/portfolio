@@ -35,6 +35,8 @@ body.light .btn-primary { color:#fff; }
 body.light .quiz-option { background: #f0f0f0; }
 body.light .typing-text { background: #f0f0f0; }
 body.light .achievements-inner { background: #f5f5f0; }
+body.light h1 { color: #1a1a2e !important; }
+body.light .hero h1 .accent { color: var(--accent) !important; }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; font-size: var(--font-base, 15px); }
@@ -45,7 +47,7 @@ body {
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /* ─── NOISE OVERLAY ─── */
@@ -138,9 +140,10 @@ nav {
   min-height: 100vh;
   display:flex; flex-direction:column;
   justify-content:center; align-items:flex-start;
-  padding: 5rem 2rem 3rem;
+  padding: 5rem 2rem 2rem;
   max-width:1100px; margin:0 auto; width:100%;
   position:relative;
+  padding-bottom: 3rem;
 }
 .hero-tag {
   font-size:0.7rem;
@@ -166,7 +169,7 @@ nav {
 .hero h1 .accent { color: var(--accent); }
 .hero-sub {
   margin-top:1.5rem;
-  font-size:0.98rem;
+  font-size:1.05rem;
   color: var(--text-dim);
   max-width:580px;
   line-height:1.9;
@@ -180,7 +183,7 @@ nav {
   padding:0.7rem 1.4rem;
   border-radius:6px;
   font-family:'IBM Plex Mono',monospace;
-  font-size:0.75rem;
+  font-size:0.8rem;
   text-decoration:none;
   text-transform:uppercase;
   letter-spacing:0.1em;
@@ -215,7 +218,7 @@ nav {
 /* ─── SECTION COMMON ─── */
 section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 .section-label {
-  font-size:0.72rem;
+  font-size:0.76rem;
   text-transform:uppercase;
   letter-spacing:0.22em;
   color: var(--accent);
@@ -258,7 +261,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   box-shadow: 0 0 10px var(--accent);
 }
 .timeline-date {
-  font-size:0.75rem;
+  font-size:0.8rem;
   color: var(--accent);
   letter-spacing:0.1em;
   text-transform:uppercase;
@@ -266,17 +269,17 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 }
 .timeline-company {
   font-family:'Syne',sans-serif;
-  font-size:1.25rem;
+  font-size:1.3rem;
   font-weight:600;
   color:#fff;
 }
 .timeline-role {
-  font-size:0.88rem;
+  font-size:0.92rem;
   color: var(--text-dim);
   margin-bottom:0.8rem;
 }
 .timeline-desc {
-  font-size:0.88rem;
+  font-size:0.95rem;
   color: var(--text-dim);
   line-height:2.1;
 }
@@ -287,8 +290,8 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-top:0.9rem;
 }
 .tag {
-  font-size:0.7rem;
-  padding:0.28rem 0.7rem;
+  font-size:0.75rem;
+  padding:0.3rem 0.75rem;
   border-radius:20px;
   background: var(--accent-dim);
   color: var(--accent);
@@ -344,7 +347,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-bottom:0.6rem;
 }
 .achievements-inner li {
-  font-size:0.84rem;
+  font-size:0.9rem;
   color: var(--text-dim);
   padding:0.4rem 0 0.4rem 1rem;
   position:relative;
@@ -368,7 +371,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   border-radius:8px;
   padding:1.1rem 0.9rem;
   text-align:center;
-  font-size:0.82rem;
+  font-size:0.88rem;
   color: var(--text-dim);
   transition: all 0.3s;
   cursor:pointer;
@@ -389,7 +392,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 }
 .skill-icon { font-size:1.4rem; margin-bottom:0.4rem; display:block; }
 .skill-click-hint {
-  font-size:0.64rem;
+  font-size:0.7rem;
   color: var(--text-dim);
   margin-top:0.3rem;
   opacity:0.7;
@@ -452,14 +455,14 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-top:0.15rem;
 }
 .modal-desc {
-  font-size:0.86rem;
+  font-size:0.92rem;
   color: var(--text-dim);
   line-height:1.9;
   margin-bottom:1rem;
 }
 .modal-points { list-style:none; margin-bottom:1rem; }
 .modal-points li {
-  font-size:0.84rem;
+  font-size:0.9rem;
   color: var(--text-dim);
   padding:0.28rem 0 0.28rem 1rem;
   position:relative;
@@ -515,7 +518,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   flex-shrink:0;
 }
 .cert-name {
-  font-size:0.86rem;
+  font-size:0.92rem;
   color: var(--text);
   line-height:1.5;
 }
@@ -552,7 +555,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
   margin-bottom:0.3rem;
 }
 .edu-detail {
-  font-size:0.82rem;
+  font-size:0.88rem;
   color: var(--text-dim);
   line-height: 1.6;
 }
@@ -566,7 +569,7 @@ section { padding: 5rem 2rem; max-width:1100px; margin:0 auto; }
 .contact-wrapper .section-label { justify-content:center; }
 .contact-wrapper .section-title { text-align:center; }
 .contact-sub {
-  font-size:0.88rem;
+  font-size:0.94rem;
   color: var(--text-dim);
   margin-bottom:2rem;
   line-height:1.8;
@@ -605,7 +608,7 @@ footer {
   border-radius:6px;
   padding:0.55rem 1rem;
   font-family:'IBM Plex Mono',monospace;
-  font-size:0.72rem;
+  font-size:0.76rem;
   color: var(--text-dim);
   cursor:pointer;
   text-transform:uppercase;
@@ -637,7 +640,7 @@ footer {
   margin-bottom:0.5rem;
 }
 .quiz-q {
-  font-size:0.92rem;
+  font-size:1rem;
   color:#fff;
   font-weight:500;
   line-height:1.6;
@@ -649,7 +652,7 @@ footer {
   border-radius:7px;
   padding:0.7rem 1rem;
   font-family:'IBM Plex Mono',monospace;
-  font-size:0.84rem;
+  font-size:0.9rem;
   color: var(--text-dim);
   cursor:pointer;
   transition: all 0.25s;
@@ -661,7 +664,7 @@ footer {
 .quiz-option:disabled { cursor:default; }
 .quiz-feedback {
   margin-top:0.8rem;
-  font-size:0.82rem;
+  font-size:0.88rem;
   display:none;
   line-height:1.6;
 }
@@ -671,7 +674,7 @@ footer {
 .quiz-score {
   display:flex; gap:1.5rem; margin-bottom:1rem; flex-wrap:wrap;
 }
-.quiz-score span { font-size:0.72rem; color: var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; }
+.quiz-score span { font-size:0.76rem; color: var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; }
 .quiz-score strong { color: var(--accent); }
 .quiz-nav {
   display:flex; gap:0.7rem; margin-top:1rem; flex-wrap:wrap;
@@ -714,7 +717,7 @@ footer {
   border-radius:7px;
   padding:0.65rem 0.8rem;
   font-family:'IBM Plex Mono',monospace;
-  font-size:0.82rem;
+  font-size:0.88rem;
   color: var(--text-dim);
   cursor:pointer;
   text-align:center;
