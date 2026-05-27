@@ -66,10 +66,15 @@ gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
 # ─── GROQ SETUP (fallback) ───
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
-def call_groq(prompt: str) -> str:
+def call_groq(prompt: str, is_jd: bool = False) -> str:
     if not GROQ_API_KEY:
         raise Exception("Groq API key not configured")
-    for model in ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"]:
+    # Use smarter model for JD matching, fast model for regular chat
+    if is_jd:
+        models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+    else:
+        models = ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"]
+    for model in models:
         try:
             response = requests.post(
                 "https://api.groq.com/openai/v1/chat/completions",
@@ -169,7 +174,7 @@ EXPERIENCE:
    - Maintained IT inventory and accurate asset tracking
 
    Roles for Nebula Systems:
-   - Server & Network Administration: Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi (installed and configured from scratch — bare metal to production), vCenter (managed vCenter environment — VM provisioning, snapshots, resource pools, migrations for customer environments), Cisco IOS, PFSense, OPNSense, FS, Aruba
+   - Server & Network Administration: Windows Server, Linux (Ubuntu, CentOS, Debian), VMware ESXi (installed and configured from scratch — bare metal to production), vCenter (managed vCenter environment — VM provisioning, snapshots, resource pools, migrations for customer environments), Cisco IOS, PFSense, OPNSense, FSOS, HP ArubaOS
    - Virtualisation: Created, configured, and managed VMs for customer environments using VMware ESXi and vCenter. Performed P2V and V2V migrations using Veeam and vCenter Converter.
    - Open-Source Solutions: Deployed and configured Zabbix from scratch (dashboards, alerts, proactive monitoring of physical and virtual infrastructure). LibreNMS for network device monitoring and topology discovery. OpenNebula — installed from scratch and migrated production workloads from vCenter to OpenNebula for a real client environment. oVirt — evaluated as a vCenter replacement (lab/testing only; OpenNebula was chosen instead). VyOS — tested as a cost-saving routing solution but had roadblocks; not deployed in production. Netbox for IPAM and asset tracking.
    - System Documentation: Used Netbox as single source of truth — server inventory, IPAM, rack layouts, network device configurations, structured cabling documentation. Maintained daily activity reports, system change logs, incident resolution records.
@@ -213,8 +218,8 @@ Networking:
 - Cisco IOS (switch/router config at Nebula — VLANs, routing, structured cabling)
 - PFSense (firewall, NAT, routing rules)
 - OPNSense (firewall, network policy)
-- FS switches (VLAN and port config at Nebula)
-- Aruba (wireless AP config, SSID management)
+- FSOS/FS switches (VLAN and port config at Nebula)
+- HP ArubaOS (wireless AP config, SSID management)
 - Netbox (IPAM, rack documentation, asset tracking — single source of truth at Nebula)
 - VyOS
 
@@ -251,6 +256,9 @@ CRITICAL RULES FOR SCORING:
 - Be realistic about years of experience depth — 6 months of exposure ≠ 3 years of hands-on.
 - If the JD's core focus is fundamentally different from Amirul's core expertise, reflect that in the score.
 - Don't inflate scores to be nice. A 60% match should be scored 60%, not 75%.
+- DO NOT mark something as a gap (❌) if it is clearly described with real experience in the CV. Read carefully.
+- Incident Management IS a core part of Amirul's role — he handles L3 INC queue, MIM on-call, and CTASKs daily. Never mark this as a gap.
+- Zabbix IS a real skill — deployed from scratch, production use, MCP integration. Mark as strong if JD mentions monitoring.
 
 Amirul's CORE strengths: Linux/OS administration at scale (30,000+ servers), infrastructure automation (Python, Bash, Ansible), building internal web platforms (MCM, AskMyServer), Incident/Change Management (ITIL), VMware/virtualisation, modernising traditional manual workflows into automated scalable solutions.
 Amirul's SECONDARY skills: Networking (Cisco, PFSense, Aruba) — Nebula 2020-2022 only; Windows server — supporting role at Dell; Database — basic usage; Kubernetes — limited explicitly stated.
@@ -359,7 +367,7 @@ async def chat_with_cv(req: ChatRequest):
 
     if GROQ_API_KEY:
         try:
-            reply = call_groq(prompt)
+            reply = call_groq(prompt, is_jd=req.is_jd_match)
             return {"reply": reply, "model": "groq"}
         except Exception as e:
             print(f"Groq failed, trying Gemini fallback: {e}")
