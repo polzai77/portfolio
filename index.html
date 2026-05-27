@@ -1607,6 +1607,11 @@ document.querySelectorAll('.game-tab').forEach(tab => {
       var data = await res.json();
       removeTyping(tid);
       addMessage('ai', data.reply || 'Sorry, could not get a response. Try again!');
+      // Update model indicator in header
+      if (data.model) {
+        var statusEl = document.querySelector('.chat-panel-status');
+        if (statusEl) statusEl.innerHTML = 'Powered by ' + (data.model === 'groq' ? 'Groq · LLaMA 3.1' : 'Gemini 2.5 Flash');
+      }
       // Clear PDF after use
       if (pdfText) removePdf();
     } catch(err) {
