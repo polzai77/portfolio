@@ -263,7 +263,7 @@ CRITICAL RULES FOR SCORING:
 - Incident Management IS a core part of Amirul's role — he handles L3 INC queue, MIM on-call, and CTASKs daily. Never mark this as a gap.
 - Zabbix IS a real skill — deployed from scratch, production use, MCP integration. Mark as strong if JD mentions monitoring.
 
-Amirul's CORE strengths: Linux/OS administration at scale (30,000+ servers), infrastructure automation (Python, Bash, Ansible), building internal web platforms (MCM, AskMyServer), Incident/Change Management (ITIL), VMware/virtualisation, modernising traditional manual workflows into automated scalable solutions.
+Amirul's CORE strengths: Linux/OS administration at scale (30,000+ servers), infrastructure automation (Python, Bash, Ansible), Web development, building internal web platforms (MCM, AskMyServer), Incident/Change Management (ITIL), VMware/virtualisation, modernising traditional manual workflows into automated scalable solutions.
 Amirul's SECONDARY skills: Networking (Cisco, PFSense, Aruba) — Nebula 2020-2022 only; Windows server — supporting role at Dell; Database — basic usage; Kubernetes — limited explicitly stated.
 
 Analyze the JD and provide:
