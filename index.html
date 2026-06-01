@@ -414,55 +414,6 @@ body.light .achievements-inner li strong { color: #1a1a2e !important; }
 }
 .subnet-example:hover { opacity: 0.8; }
 
-/* ─── GROUP SKILL CARD (Server, P2V/V2V) ─── */
-.skill-group-card {
-  cursor: default !important;
-  position: relative;
-}
-.skill-group-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 12px rgba(0,229,255,0.1);
-}
-.skill-group-pills {
-  display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-.skill-sub-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 0.22rem 0.55rem;
-  font-size: 0.58rem;
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.skill-sub-pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-dim);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0,229,255,0.2);
-}
-.skill-sub-pill.active {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-dim);
-}
-/* Fix HP logo visibility in light mode */
-body.light .skill-sub-pill img[src*="hp-black"],
-body.light .skill-icon img[src*="hp-black"] {
-  filter: none;
-}
-
 /* ─── THEME TOGGLE BUTTON ─── */
 .theme-toggle {
   background: none;
@@ -706,141 +657,35 @@ body.light .skill-icon img[src*="hp-black"] {
     <div class="skill-card" data-skill="bash"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" width="28" height="28"/></span>Bash<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="ansible"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-original.svg" width="28" height="28"/></span>Ansible<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="kubernetes"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg" width="28" height="28"/></span>Kubernetes<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="vmware"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vmware.svg" width="28" height="28"/></span>VMware<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="proxmox"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/proxmox.svg" width="28" height="28"/></span>Proxmox<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="ovirt"><span class="skill-icon"><img src="https://www.ovirt.org/images/profile-logo.svg" width="28" height="28"/></span>oVirt<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="zabbix"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/zabbix.svg" width="28" height="28"/></span>Zabbix<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="librenms"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/librenms-black.svg" width="28" height="28"/></span>LibreNMS<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="servicenow"><span class="skill-icon"><img src="https://www.vectorlogo.zone/logos/servicenow/servicenow-icon.svg" width="28" height="28" style="filter:hue-rotate(140deg) saturate(2) brightness(1.3);"/></span>ServiceNOW<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="vmware"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vmware/vmware-original.svg" width="28" height="28"/></span>VMware<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="proxmox"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/proxmox/proxmox-original.svg" width="28" height="28"/></span>Proxmox<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="ovirt"><span class="skill-icon"></span>oVirt<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="zabbix"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/zabbix.svg" width="28" height="28"/></span>Zabbix<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="librenms"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/librenms.svg" width="28" height="28"/></span>LibreNMS<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="servicenow"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/servicenow.svg" width="28" height="28"/></span>ServiceNOW<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="zammad"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/zammad.svg" width="28" height="28"/></span>Zammad<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="mariadb"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" width="28" height="28"/></span>MariaDB / MySQL<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="webdev"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="28" height="28"/></span>Web Development<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="automation"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-original.svg" width="28" height="28"/></span>IT Automation<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="automation"><span class="skill-icon"></span>IT Automation<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="sre"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prometheus/prometheus-original.svg" width="28" height="28"/></span>SRE<div class="skill-click-hint">click for details</div></div>
-    <div class="skill-card" data-skill="mcp"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" width="28" height="28"/></span>MCP / AI Tools<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="mcp"><span class="skill-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Model_Context_Protocol_logo.svg" width="28" height="28"/></span>MCP / AI Tools<div class="skill-click-hint">click for details</div></div>
     <div class="skill-card" data-skill="grafana"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" width="28" height="28"/></span>Grafana<div class="skill-click-hint">click for details</div></div>
   </div>
 
   <div class="skills-cat">Hardware</div>
   <div class="skills-grid">
-    <!-- SERVER GROUP CARD -->
-    <div class="skill-card skill-group-card" data-group="server">
-      <span class="skill-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="3" width="20" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
-          <rect x="2" y="10" width="20" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
-          <rect x="2" y="17" width="20" height="4" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
-          <circle cx="19" cy="5.5" r="0.9" fill="currentColor"/>
-          <circle cx="19" cy="12.5" r="0.9" fill="currentColor"/>
-          <circle cx="17" cy="5.5" r="0.9" fill="currentColor"/>
-          <circle cx="17" cy="12.5" r="0.9" fill="currentColor"/>
-          <rect x="4.5" y="4.5" width="6" height="2" rx="0.5" fill="currentColor" opacity="0.35"/>
-          <rect x="4.5" y="11.5" width="6" height="2" rx="0.5" fill="currentColor" opacity="0.35"/>
-        </svg>
-      </span>
-      Server
-      <div class="skill-group-pills">
-        <span class="skill-sub-pill" data-skill="poweredge">
-          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/dell.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>Dell
-        </span>
-        <span class="skill-sub-pill" data-skill="proliant">
-          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>HP
-        </span>
-      </div>
-      <div class="skill-click-hint">click brand for details</div>
-    </div>
-
-    <!-- P2V / V2V GROUP CARD -->
-    <div class="skill-card skill-group-card" data-group="p2v">
-      <span class="skill-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Physical server box -->
-          <rect x="1" y="13" width="9" height="7" rx="1.2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-          <line x1="1" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
-          <circle cx="8.2" cy="14.6" r="0.7" fill="currentColor"/>
-          <!-- Virtual machine box -->
-          <rect x="14" y="4" width="9" height="7" rx="1.2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="3 1.5"/>
-          <line x1="14" y1="7" x2="23" y2="7" stroke="currentColor" stroke-width="1.1" opacity="0.5" stroke-dasharray="3 1.5"/>
-          <circle cx="21.2" cy="5.6" r="0.7" fill="currentColor" opacity="0.7"/>
-          <!-- Arrow -->
-          <path d="M10.5 12 C10.5 9 13.5 9 13.5 11.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          <polyline points="11.5,9.8 13.5,11.2 15,9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </span>
-      P2V / V2V
-      <div class="skill-group-pills">
-        <span class="skill-sub-pill" data-skill="veeam">
-          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/veeam.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>Veeam
-        </span>
-        <span class="skill-sub-pill" data-skill="vcenterconv">
-          <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/vmware-vcenter.png" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>vCenter Conv
-        </span>
-      </div>
-      <div class="skill-click-hint">click tool for details</div>
-    </div>
+    <div class="skill-card" data-skill="serverhw"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/dell.svg" width="28" height="28"/></span>Server Hardware<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="raid"><span class="skill-icon"></span>RAID Config<div class="skill-click-hint">click for details</div></div></div>
+    <div class="skill-card" data-skill="migration"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="28" height="28"/></span>P2V / V2V Migration<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="veeam"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/veeam.svg" width="28" height="28"/></span>Veeam<div class="skill-click-hint">click for details</div></div>
   </div>
 
   <div class="skills-cat">Networking</div>
   <div class="skills-grid">
-
-    <!-- SWITCH GROUP CARD -->
-    <div class="skill-card skill-group-card" data-group="switch">
-      <span class="skill-icon">
-        <!-- Network switch: layered ports top & bottom, uplink arrows -->
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="8" width="22" height="8" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
-          <rect x="3.5" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
-          <rect x="6.8" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
-          <rect x="10.1" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
-          <rect x="13.4" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
-          <rect x="16.7" y="10.5" width="2.2" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
-          <circle cx="20.8" cy="12" r="0.8" fill="currentColor"/>
-          <line x1="5" y1="8" x2="5" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-          <polyline points="3.5,6.2 5,4.5 6.5,6.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <line x1="12" y1="8" x2="12" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-          <polyline points="10.5,6.2 12,4.5 13.5,6.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <line x1="19" y1="16" x2="19" y2="19" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-          <polyline points="17.5,17.8 19,19.5 20.5,17.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </span>
-      Switch
-      <div class="skill-group-pills">
-        <span class="skill-sub-pill" data-skill="cisco">
-          <img src="https://cdn.simpleicons.org/cisco/00e5ff" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>Cisco
-        </span>
-        <span class="skill-sub-pill" data-skill="aruba">
-          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>HP Aruba
-        </span>
-        <span class="skill-sub-pill" data-skill="fsos">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:3px;"><rect x="2" y="7" width="20" height="10" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="12" r="1.2" fill="currentColor"/><circle cx="10" cy="12" r="1.2" fill="currentColor"/></svg>FS
-        </span>
-      </div>
-      <div class="skill-click-hint">click brand for details</div>
-    </div>
-
-    <!-- FIREWALL GROUP CARD -->
-    <div class="skill-card skill-group-card" data-group="firewall">
-      <span class="skill-icon">
-        <!-- Shield with flame/lock -->
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
-          <path d="M9.5 15.5c0-2 1-3 1.5-4 .5 1 .5 1.5.5 1.5s1-1.5 1-3c1 1 1.5 2.5 1.5 3.5 0 1.7-1.35 3-3 3s-3-1.3-3-3Z" fill="currentColor" opacity="0.7"/>
-          <circle cx="12" cy="13.8" r="1" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-      </span>
-      Firewall
-      <div class="skill-group-pills">
-        <span class="skill-sub-pill" data-skill="pfsense">
-          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/pfsense-black.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>pfSense
-        </span>
-        <span class="skill-sub-pill" data-skill="opnsense">
-          <img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/opnsense.svg" width="12" height="12" style="vertical-align:middle;margin-right:3px;"/>OPNsense
-        </span>
-      </div>
-      <div class="skill-click-hint">click brand for details</div>
-    </div>
-
-    <div class="skill-card" data-skill="netbox"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/netbox.svg" width="28" height="28"/></span>Netbox<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="switchconfig"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="28" height="28"/></span>Switch Config<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="pfsense"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/pfsense.svg" width="28" height="28"/></span>PFSense<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="opnsense"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/opnsense.svg" width="28" height="28"/></span>OPNSense<div class="skill-click-hint">click for details</div></div>
+    <div class="skill-card" data-skill="netbox"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/netbox-full.svg" width="28" height="28"/></span>Netbox<div class="skill-click-hint">click for details</div></div>
   </div>
 </section>
 
@@ -937,7 +782,7 @@ const skillsData = {
     tags:["Containers","Orchestration","Dell","Automation"]
   },
   vmware: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vmware.svg" width="32" height="32"/>', title:"VMware", where:"Dell Technologies · Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vmware/vmware-original.svg" width="32" height="32"/>', title:"VMware", where:"Dell Technologies · Nebula Systems",
     desc:"Extensive hands-on experience with VMware across multiple roles — from deploying virtual machines to managing vCenter environments and building tools on top of the vCenter API.",
     points:[
       "Managed VMware vCenter and vSphere environments at Dell and Nebula Systems.",
@@ -949,7 +794,7 @@ const skillsData = {
     tags:["VMware ESXi","vCenter","vSphere","Virtualisation","Dell","Nebula","vCenter API"]
   },
   proxmox: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/proxmox.svg" width="32" height="32"/>', title:"Proxmox", where:"Personal / Lab Environment",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/proxmox/proxmox-original.svg" width="32" height="32"/>', title:"Proxmox", where:"Personal / Lab Environment",
     desc:"Used Proxmox as a virtualisation platform for hands-on lab environments, supporting learning and testing of server and networking configurations.",
     points:[
       "Set up and managed Proxmox VE clusters for local lab and testing purposes.",
@@ -959,7 +804,7 @@ const skillsData = {
     tags:["Proxmox VE","Virtualisation","Lab","Containers"]
   },
   ovirt: {
-    icon:'<img src="https://www.ovirt.org/images/profile-logo.svg" width="32" height="32"/>', title:"oVirt", where:"Nebula Systems",
+    icon:'<img src="https://www.ovirt.org/images/profile-logo.svg" width="32" height="32"/>',  title:"oVirt", where:"Nebula Systems",
     desc:"Researched, developed, and implemented oVirt as an open-source virtualisation solution at Nebula Systems, linked with VMware workflows.",
     points:[
       "Implemented oVirt as part of open-source infrastructure at Nebula Systems.",
@@ -969,7 +814,7 @@ const skillsData = {
     tags:["oVirt","Open-Source","Virtualisation","Nebula","VMware"]
   },
   zabbix: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/zabbix.svg" width="32" height="32"/>', title:"Zabbix", where:"Nebula Systems · Dell Technologies",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/zabbix.svg" width="32" height="32"/>', title:"Zabbix", where:"Nebula Systems · Dell Technologies",
     desc:"Deployed and used Zabbix as a monitoring solution to proactively track server and network health. Also integrated Zabbix MCP into AskMyServer for AI-driven graph generation.",
     points:[
       "Researched, developed, and implemented Zabbix for infrastructure monitoring at Nebula Systems.",
@@ -980,7 +825,7 @@ const skillsData = {
     tags:["Monitoring","Zabbix","Nebula","Dell","Infrastructure","Alerts","MCP"]
   },
   librenms: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/librenms-black.svg" width="32" height="32"/>', title:"LibreNMS", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/librenms.svg" width="32" height="32"/>', title:"LibreNMS", where:"Nebula Systems",
     desc:"Deployed LibreNMS as an open-source network monitoring tool at Nebula Systems to track network devices and structured cabling across data centres.",
     points:[
       "Implemented LibreNMS for network device monitoring at Nebula Systems.",
@@ -990,7 +835,7 @@ const skillsData = {
     tags:["Network Monitoring","LibreNMS","Open-Source","Nebula","Data Centre"]
   },
   servicenow: {
-    icon:'<img src="https://www.vectorlogo.zone/logos/servicenow/servicenow-icon.svg" width="32" height="32" style="filter:hue-rotate(140deg) saturate(2) brightness(1.3);"/>', title:"ServiceNOW", where:"Dell Technologies",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/servicenow.svg" width="32" height="32"/>', title:"ServiceNOW", where:"Dell Technologies",
     desc:"Used ServiceNOW as the primary ticketing and incident management platform at Dell to track, prioritise, and resolve server incidents across large-scale operations.",
     points:[
       "Managed and resolved incident tickets for 30,000+ Linux and 25,000+ Windows servers.",
@@ -1033,7 +878,7 @@ const skillsData = {
     tags:["React.js","Python","FastAPI","WebSocket","Dashboard","Dell","MCM","AskMyServer","nginx"]
   },
   automation: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-original.svg" width="32" height="32"/>', title:"IT Automation", where:"Dell Technologies · Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-original.svg" width="32" height="32"/>',  title:"IT Automation", where:"Dell Technologies · Nebula Systems",
     desc:"Automation is central to my work — from building MCM, AskMyServer, and CHG-A-BOT at Dell, to completing Bi-Frost backlog items. Focused on reducing manual effort at scale.",
     points:[
       "Built MCM — centralised web platform automating server operations across SSH, RDP, LAPS, iDRAC, and PowerCLI.",
@@ -1056,7 +901,7 @@ const skillsData = {
     tags:["SRE","Incident Mgmt","Reliability","Dell","Certified","Automation"]
   },
   mcp: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" width="32" height="32"/>', title:"MCP / AI Integration", where:"Dell Technologies – OS Engineering (L3)",
+    icon:'<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Model_Context_Protocol_logo.svg" width="32" height="32"/>', title:"MCP / AI Integration", where:"Dell Technologies – OS Engineering (L3)",
     desc:"Designed and built AskMyServer — an AI-powered server diagnostics platform on MCP (Model Context Protocol) architecture — solely from the ground up for the Dell Hackathon. Adopted by the team for production use.",
     points:[
       "Architected dual-model LLM routing: GPT-Powerful-120B for complex queries and Zabbix graph generation; LLaMA 3.3-70B for live diagnostics and bulk server queries.",
@@ -1079,7 +924,7 @@ const skillsData = {
     tags:["Grafana","Dashboard","Monitoring","Mass Matter","Dell","Agent Compliance"]
   },
   poweredge: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/dell.svg" width="32" height="32"/>', title:"Dell PowerEdge", where:"Dell Technologies · Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/dell.svg" width="32" height="32"/>',  title:"Dell PowerEdge", where:"Dell Technologies · Nebula Systems",
     desc:"Hands-on experience installing, configuring, and maintaining Dell PowerEdge servers from hardware to software — across data centre and virtualised environments.",
     points:[
       "Installed and configured Dell PowerEdge servers based on specific requirement needs.",
@@ -1089,7 +934,7 @@ const skillsData = {
     tags:["Dell PowerEdge","Hardware","RAID","iDRAC","Data Centre"]
   },
   proliant: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="32" height="32"/>', title:"HP ProLiant", where:"Nebula Systems · Velo Technologies",
+    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="32" height="32"/>',  title:"HP ProLiant", where:"Nebula Systems · Velo Technologies",
     desc:"Worked with HP ProLiant servers during infrastructure support and data centre operations at Nebula and Velo.",
     points:[
       "Installed and maintained HP ProLiant servers in customer and in-house data centres.",
@@ -1098,8 +943,40 @@ const skillsData = {
     ],
     tags:["HP ProLiant","Hardware","iLO","Data Centre","Nebula"]
   },
+  raid: {
+    icon:'💾',  title:"RAID Configuration", where:"Nebula Systems · Velo Technologies",
+    desc:"Configured and maintained RAID arrays on Dell PowerEdge and HP ProLiant servers to ensure data redundancy and performance in data centre environments.",
+    points:[
+      "Configured RAID 0, 1, 5, and 10 arrays based on workload requirements.",
+      "Managed RAID controllers on both Dell and HP server platforms.",
+      "Ensured data redundancy and storage performance for production systems."
+    ],
+    tags:["RAID","Storage","Dell","HP","Hardware","Data Centre"]
+  },
+  idrac: {
+    icon:'🔌',  title:"iDRAC / iLO", where:"Dell Technologies · Nebula Systems · Velo Technologies",
+    desc:"Configured and used Dell iDRAC and HP iLO for out-of-band server management and remote monitoring. Also built iDRAC Query and Redfish API Explorer features directly into MCM.",
+    points:[
+      "Configured iDRAC on Dell PowerEdge servers for remote management and KVM access.",
+      "Set up iLO on HP ProLiant systems for out-of-band monitoring.",
+      "Built iDRAC Query and Redfish API Explorer directly into MCM for team use.",
+      "Used for remote troubleshooting and maintenance without physical data centre access."
+    ],
+    tags:["iDRAC","iLO","Redfish API","Remote Mgmt","Dell","HP","Out-of-Band","MCM"]
+  },
+  migration: {
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="32" height="32"/>', title:"P2V / V2V Migration", where:"Nebula Systems",
+    desc:"Performed physical-to-virtual and virtual-to-virtual migrations using Veeam and VMware vCenter Converter at Nebula Systems to modernise and consolidate server infrastructure.",
+    points:[
+      "Executed P2V migrations to move physical servers into VMware virtual environments.",
+      "Performed V2V migrations using vCenter Converter for platform consolidation.",
+      "Used Veeam for backup and migration workflows to ensure data integrity.",
+      "Validated migrated systems for performance and stability post-migration."
+    ],
+    tags:["P2V","V2V","Veeam","vCenter Converter","VMware","Nebula"]
+  },
   veeam: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/veeam.svg" width="32" height="32"/>', title:"Veeam", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/veeam.svg" width="32" height="32"/>', title:"Veeam", where:"Nebula Systems",
     desc:"Used Veeam for backup, recovery, and migration workflows at Nebula Systems to protect and move server workloads across virtualised environments.",
     points:[
       "Configured Veeam backup jobs for VMware virtual machines.",
@@ -1109,7 +986,7 @@ const skillsData = {
     tags:["Veeam","Backup","Migration","VMware","Nebula","Recovery"]
   },
   cisco: {
-    icon:'<img src="https://cdn.simpleicons.org/cisco/00e5ff" width="32" height="32"/>', title:"Cisco", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="32" height="32"/>', title:"Cisco IOS", where:"Nebula Systems",
     desc:"Installed, configured, and maintained Cisco IOS network devices as part of data centre networking at Nebula Systems.",
     points:[
       "Configured Cisco switches and routers for in-house and customer data centres.",
@@ -1118,8 +995,38 @@ const skillsData = {
     ],
     tags:["Cisco IOS","Networking","Switches","Routers","Nebula","Data Centre"]
   },
+  switchconfig: {
+    icon:'<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" width="32" height="32"/>',
+    title:"Switch Configuration",
+    where:"Nebula Systems · Dell Technologies",
+    desc:"Hands-on experience configuring and managing network switches across multiple platforms. Covers fundamental and advanced switch configuration including trunking, aggregation, BGP, and Direct Internet Access (DIA).",
+    points:[
+      "Cisco IOS: VLAN configuration, trunking (802.1Q), port-channel/LAG, BGP routing, static routes, ACLs, STP.",
+      "HP ArubaOS: Wireless and wired switch configuration, SSID management, VLAN assignment.",
+      "FSOS (FS.com): Data center switch setup, port configuration, VLAN trunking per KB and vendor documentation.",
+      "Direct Internet Access (DIA) setup and BGP peer configuration.",
+      "Structured cabling and physical switch installation in data centers.",
+      "Followed vendor KB and best practice documentation for all configurations."
+    ],
+    tags:["Cisco IOS","HP ArubaOS","FSOS","BGP","VLANs","Trunking","LAG","DIA","Nebula","Dell"]
+  },
+  serverhw: {
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/dell.svg" width="32" height="32"/>',
+    title:"Server Hardware",
+    where:"Dell Technologies · Nebula Systems · Velo Technologies",
+    desc:"Extensive hands-on experience with enterprise server hardware from Dell and HP — from physical installation to remote management via iDRAC and iLO.",
+    points:[
+      "Dell PowerEdge: Installation, configuration, and maintenance from hardware to OS level.",
+      "HP ProLiant: Server setup, iLO configuration, and maintenance in customer data centers.",
+      "iDRAC / iLO: Out-of-band remote management, KVM access, hardware health monitoring.",
+      "Configure RAID arrays (RAID 0/1/5/10) on both Dell and HP platforms.",
+      "Built iDRAC Query and Redfish API Explorer features directly into MCM for team use.",
+      "P2V and V2V migrations using Veeam and vCenter Converter."
+    ],
+    tags:["Dell PowerEdge","HP ProLiant","iDRAC","iLO","Redfish API","RAID","Data Centre","MCM"]
+  },
   pfsense: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/pfsense-black.svg" width="32" height="32"/>', title:"PFSense", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/pfsense.svg" width="32" height="32"/>', title:"PFSense", where:"Nebula Systems",
     desc:"Configured and maintained PFSense as a firewall and network security appliance at Nebula Systems for data centre and client environments.",
     points:[
       "Set up PFSense firewalls for network segmentation and security.",
@@ -1129,7 +1036,7 @@ const skillsData = {
     tags:["PFSense","Firewall","Security","Networking","Nebula"]
   },
   opnsense: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/opnsense.svg" width="32" height="32"/>', title:"OPNSense", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/opnsense.svg" width="32" height="32"/>', title:"OPNSense", where:"Nebula Systems",
     desc:"Deployed and configured OPNSense as an open-source firewall and network management platform at Nebula Systems.",
     points:[
       "Installed and configured OPNSense for network security and routing.",
@@ -1139,28 +1046,27 @@ const skillsData = {
     tags:["OPNSense","Open-Source","Firewall","Networking","Nebula"]
   },
   aruba: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/hp-black.svg" width="32" height="32"/>', title:"HP Aruba", where:"Nebula Systems",
+    icon:'🛜',  title:"HP ArubaOS", where:"Nebula Systems",
     desc:"Configured and maintained HP Aruba wireless access points and network switches using ArubaOS at Nebula Systems.",
     points:[
       "Configured HP Aruba access points for wireless network coverage.",
       "Managed ArubaOS settings for SSID, security, and traffic management.",
       "Supported wireless infrastructure in data centre and office environments."
     ],
-    tags:["HP Aruba","ArubaOS","Wireless","Networking","Nebula","Access Points"]
+    tags:["HP ArubaOS","Wireless","Networking","Nebula","Access Points"]
   },
   fsos: {
-    icon:'<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="10" rx="2" stroke="#00e5ff" stroke-width="1.8"/><circle cx="6" cy="12" r="1.4" fill="#00e5ff"/><circle cx="10" cy="12" r="1.4" fill="#00e5ff"/><circle cx="14" cy="12" r="1.4" fill="#00e5ff" opacity="0.5"/><circle cx="18" cy="12" r="1.4" fill="#00e5ff" opacity="0.3"/></svg>',
-    title:"FS", where:"Nebula Systems",
-    desc:"Worked with FS.com switches running FSOS (FS.com Network Operating System) for switch configuration and data centre networking at Nebula Systems.",
+    icon:'🛜',  title:"FSOS", where:"Nebula Systems",
+    desc:"Worked with FSOS (FS.com Network Operating System) for switch configuration and management as part of data centre networking at Nebula Systems.",
     points:[
-      "Configured FS.com switches running FSOS for data centre connectivity.",
+      "Configured FS switches running FSOS for data centre connectivity.",
       "Managed port configurations and VLANs based on infrastructure requirements.",
       "Maintained switch health and performance as part of network operations."
     ],
-    tags:["FS","FSOS","Switches","Networking","Nebula","Data Centre"]
+    tags:["FSOS","Switches","Networking","Nebula","Data Centre"]
   },
   netbox: {
-    icon:'<img src="https://cdn.jsdelivr.net/npm/@loganmarchione/homelab-svg-assets@latest/assets/netbox.svg" width="32" height="32"/>', title:"Netbox", where:"Nebula Systems",
+    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/netbox-full.svg" width="32" height="32"/>', title:"Netbox", where:"Nebula Systems",
     desc:"Implemented and used Netbox as an open-source IPAM and infrastructure documentation tool at Nebula Systems to track and manage network and server assets.",
     points:[
       "Deployed Netbox for IP address management (IPAM) and network documentation.",
@@ -1168,18 +1074,6 @@ const skillsData = {
       "Used as the single source of truth for infrastructure asset tracking."
     ],
     tags:["Netbox","IPAM","Documentation","Open-Source","Nebula","Asset Mgmt"]
-  },
-  vcenterconv: {
-    icon:'<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/vmware-vcenter.png" width="32" height="32"/>',
-    title:"vCenter Converter", where:"Nebula Systems",
-    desc:"Used VMware vCenter Converter as a core migration tool at Nebula Systems to perform physical-to-virtual (P2V) and virtual-to-virtual (V2V) workload migrations.",
-    points:[
-      "Performed P2V migrations — converting physical servers into VMware virtual machines without downtime.",
-      "Conducted V2V migrations between different hypervisor formats and vCenter environments.",
-      "Used alongside Veeam for comprehensive migration and backup coverage.",
-      "Ensured minimal disruption to production workloads during conversion processes."
-    ],
-    tags:["vCenter Converter","P2V","V2V","VMware","Migration","Nebula"]
   }
 };
 
@@ -1187,50 +1081,34 @@ const modal = document.getElementById('skillModal');
 const modalClose = document.getElementById('modalClose');
 let activeCard = null;
 
-function openSkillModal(key, sourceEl) {
-  const s = skillsData[key];
-  if (!s) return;
-
-  document.getElementById('modalIcon').innerHTML = s.icon;
-  document.getElementById('modalTitle').textContent = s.title;
-  document.getElementById('modalWhere').textContent = s.where;
-  document.getElementById('modalDesc').textContent = s.desc;
-
-  const pts = document.getElementById('modalPoints');
-  pts.innerHTML = s.points.map(p => '<li>' + p + '</li>').join('');
-
-  const tags = document.getElementById('modalTags');
-  tags.innerHTML = s.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
-
-  if (activeCard) activeCard.classList.remove('active');
-  if (sourceEl) { sourceEl.classList.add('active'); activeCard = sourceEl; }
-
-  modal.classList.add('open');
-}
-
-// Regular skill cards (non-group)
-document.querySelectorAll('.skill-card:not(.skill-group-card)').forEach(card => {
+document.querySelectorAll('.skill-card').forEach(card => {
   card.addEventListener('click', () => {
     const key = card.getAttribute('data-skill');
-    openSkillModal(key, card);
-  });
-});
+    const s = skillsData[key];
+    if (!s) return;
 
-// Sub-pills inside group cards
-document.querySelectorAll('.skill-sub-pill').forEach(pill => {
-  pill.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const key = pill.getAttribute('data-skill');
-    openSkillModal(key, pill);
+    document.getElementById('modalIcon').innerHTML = s.icon;
+    document.getElementById('modalTitle').textContent = s.title;
+    document.getElementById('modalWhere').textContent = s.where;
+    document.getElementById('modalDesc').textContent = s.desc;
+
+    const pts = document.getElementById('modalPoints');
+    pts.innerHTML = s.points.map(p => '<li>' + p + '</li>').join('');
+
+    const tags = document.getElementById('modalTags');
+    tags.innerHTML = s.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
+
+    if (activeCard) activeCard.classList.remove('active');
+    card.classList.add('active');
+    activeCard = card;
+
+    modal.classList.add('open');
   });
 });
 
 function closeModal() {
   modal.classList.remove('open');
-  if (activeCard) {
-    activeCard.classList.remove('active');
-    activeCard = null;
-  }
+  if (activeCard) { activeCard.classList.remove('active'); activeCard = null; }
 }
 
 modalClose.addEventListener('click', closeModal);
@@ -1723,41 +1601,16 @@ document.querySelectorAll('.game-tab').forEach(tab => {
 <!-- THEME TOGGLE + HAMBURGER SCRIPT -->
 <script>
 (function() {
+  // Theme toggle
   const btn = document.getElementById('themeToggle');
   const body = document.body;
-
-  if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light');
-  }
-
-  const updateIcon = () => {
-    const isLight = body.classList.contains('light');
-
-    btn.innerHTML = `
-      <img 
-        src="${
-          isLight
-            ? 'https://unpkg.com/heroicons@2.0.18/24/solid/sun.svg'
-            : 'https://unpkg.com/heroicons@2.0.18/24/solid/moon.svg'
-        }"
-        width="28"
-        style="${!isLight ? 'filter: invert(1);' : ''}"
-      >
-    `;
-  };
-
-  updateIcon();
-
-  btn.onclick = () => {
-    body.classList.toggle('light');
-
-    localStorage.setItem(
-      'theme',
-      body.classList.contains('light') ? 'light' : 'dark'
-    );
-
-    updateIcon();
-  };
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { body.classList.add('light'); btn.textContent = '☀️'; }
+  btn.addEventListener('click', () => {
+    const isLight = body.classList.toggle('light');
+    btn.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
 
   // Hamburger menu
   const hamburger = document.getElementById('navHamburger');
@@ -1964,7 +1817,14 @@ function closeDrawer() {
       // Update model indicator in header
       if (data.model) {
         var statusEl = document.querySelector('.chat-panel-status');
-        if (statusEl) statusEl.innerHTML = 'Powered by ' + (data.model === 'groq' ? 'Groq · LLaMA 3.1' : 'Gemini 2.5 Flash · Google Search 🔍');
+        if (statusEl) {
+          var modelName = {
+            'groq': 'Groq · LLaMA 3.1',
+            'gemini': 'Gemini 2.5 Flash',
+            'gemini-search': 'Gemini 2.5 Flash · Google Search 🔍'
+          }[data.model] || data.model;
+          statusEl.innerHTML = 'Powered by ' + modelName;
+        }
       }
       // Clear PDF after use
       if (pdfText) removePdf();

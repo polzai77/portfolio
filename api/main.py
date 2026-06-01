@@ -207,7 +207,8 @@ Software:
 - Windows Server: INC support for 25,000+ Windows servers; SCCM remediation scripts; MECM deployment tracking via Mass Matter
 - Ticketing: ServiceNow (primary ITSM at Dell — top 3 performer FY24 & FY25), Zammad (help desk at Velo/Nebula)
 - Database: MariaDB, MySQL, PostgreSQL (create DB, manage privileges, basic admin for internal tools)
-- Web Development: React.js (MCM frontend — SSH terminals, dashboards, admin panels), FastAPI, Python, WebSocket, nginx
+- Web Development: React.js (MCM frontend — SSH terminals, dashboards, admin panels), FastAPI, Python, WebSocket, nginx. React.js is the foundation of Next.js — transferable to Next.js with minimal ramp-up.
+- Infrastructure as Code (IaC): Ansible (declarative configuration-as-code — same mindset as Terraform/Bicep; defines desired infrastructure state in code). OLAM pipelines. This IaC approach is transferable to Terraform/Bicep/ARM templates.
 - AI/MCP: Model Context Protocol (built AskMyServer — adopted in production), LLM integration, GenAI, Podman
 - SRE: SRE Foundation certified; applied SRE practices at Dell — 29% incident reduction, MIM, reliability via tooling
 
@@ -262,8 +263,11 @@ CRITICAL RULES FOR SCORING:
 - DO NOT mark something as a gap (❌) if it is clearly described with real experience in the CV. Read carefully.
 - Incident Management IS a core part of Amirul's role — he handles L3 INC queue, MIM on-call, and CTASKs daily. Never mark this as a gap.
 - Zabbix IS a real skill — deployed from scratch, production use, MCP integration. Mark as strong if JD mentions monitoring.
+- React.js IS transferable to Next.js — Next.js is built on React. Mark as partial match, not a gap.
+- Ansible/OLAM experience demonstrates IaC mindset — transferable to Terraform/Bicep/ARM templates. Mark as partial match, not a gap.
+- Git/version control — Amirul uses GitLab for Patchy-Porter and other projects. Mark as strong if JD mentions Git.
 
-Amirul's CORE strengths: Linux/OS administration at scale (30,000+ servers), infrastructure automation (Python, Bash, Ansible), Web development, building internal web platforms (MCM, AskMyServer), Incident/Change Management (ITIL), VMware/virtualisation, modernising traditional manual workflows into automated scalable solutions.
+Amirul's CORE strengths: Linux/OS administration at scale (30,000+ servers), infrastructure automation (Python, Bash, Ansible), building internal web platforms (MCM, AskMyServer), Incident/Change Management (ITIL), VMware/virtualisation, modernising traditional manual workflows into automated scalable solutions.
 Amirul's SECONDARY skills: Networking (Cisco, PFSense, Aruba) — Nebula 2020-2022 only; Windows server — supporting role at Dell; Database — basic usage; Kubernetes — limited explicitly stated.
 
 Analyze the JD and provide:
