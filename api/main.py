@@ -135,7 +135,7 @@ EXPERIENCE:
    - CHG-A-BOT: Common CTASKs automation (Expand Capacity, Mount Validation)
 
    Self-Initiated Projects:
-   - MCM (Multi Connection Manager): Centralised role-based web platform for server operations, used daily by 3-10 people across patching team, security team, L1 technical support, IRE team, and L3 team.
+   - MCM (Multi Connection Manager): Centralised role-based internal web tool for server operations, used daily by 3-10 people across patching team, security team, L1 technical support, IRE team, and L3 team.
      Windows: RDP Connections, LAPS Password Retrieval (WinRM), Windows Disk Expand & Search, File Share Browser (SMB)
      Linux: Multi-SSH Terminal (single & multi-server), Get Root Password (vCenter API with auto-login console), SCP Browser
      Misc: iDRAC Query, Redfish API Explorer, PowerCLI (vCenter), Root Access Audit (identifies unrotated root passwords across fleet; OLAM-based rotation for targeted servers — typically 5-20 servers per cycle out of 20,000+), PCI Server Console
