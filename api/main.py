@@ -142,7 +142,7 @@ EXPERIENCE:
      CHGTASK: Mount Activity Checker, Implementation Step Manager, Expand Capacity for multiple servers across multiple locations, Datastore/Compute migration
      Deployments (Mass Matter): Server Deployment Filtering, Agent Classification, ECN Email Generator, MECM Deployment Status Tracking, Historical Data, Custom Dashboard and Grafana Dashboard (linked)
      Admin: Access Control Manager (group & user-level permissions), Usage Analytics, User Command Tracking, Kickout Session, Feedback
-   - AskMyServer (Dell Hackathon): Solely designed, architected, and developed an AI-powered natural language server diagnostics platform on MCP (Model Context Protocol) architecture. Runner Up out of 56 teams at Dell Hackathon Finals. Currently adopted by manager, OS Engineering counterpart, senior consultant, and hackathon team members for day-to-day operations.
+   - AskMyServer (Dell Hackathon): Assigned as sole developer within the hackathon team — solely designed, architected, and coded an AI-powered natural language server diagnostics platform on MCP (Model Context Protocol) architecture. Runner Up out of 56 teams at Dell Hackathon Finals. Currently adopted by manager, OS Engineering counterpart, senior consultant, and hackathon team members for day-to-day operations.
      Target Users: Non-technical app/server owners — self-service diagnostics and vulnerability checks without CLI knowledge
      Backend: Dell GenAI Gateway — dual-model routing: GPT-Powerful-120B for complex queries & Zabbix graph generation, LLaMA 3.3-70B for live diagnostics and bulk server queries
      MCP Tool Servers: Linux SSH (multi-server), Windows WinRM, OS Info/Inventory API, Zabbix MCP (prod & nonprod)
