@@ -142,7 +142,7 @@ EXPERIENCE:
      CHGTASK: Mount Activity Checker, Implementation Step Manager, Expand Capacity for multiple servers across multiple locations, Datastore/Compute migration
      Deployments (Mass Matter): Server Deployment Filtering, Agent Classification, ECN Email Generator, MECM Deployment Status Tracking, Historical Data, Custom Dashboard and Grafana Dashboard (linked)
      Admin: Access Control Manager (group & user-level permissions), Usage Analytics, User Command Tracking, Kickout Session, Feedback
-   - AskMyServer (Dell Hackathon): Solely designed, architected, and developed an AI-powered natural language server diagnostics platform on MCP (Model Context Protocol) architecture. Selected as Top 15 finalist out of 90+ teams for Round 2 (Finals). Currently adopted by manager, OS Engineering counterpart, senior consultant, and hackathon team members for day-to-day operations.
+   - AskMyServer (Dell Hackathon): Solely designed, architected, and developed an AI-powered natural language server diagnostics platform on MCP (Model Context Protocol) architecture. Runner Up out of 56 teams at Dell Hackathon Finals. Currently adopted by manager, OS Engineering counterpart, senior consultant, and hackathon team members for day-to-day operations.
      Target Users: Non-technical app/server owners — self-service diagnostics and vulnerability checks without CLI knowledge
      Backend: Dell GenAI Gateway — dual-model routing: GPT-Powerful-120B for complex queries & Zabbix graph generation, LLaMA 3.3-70B for live diagnostics and bulk server queries
      MCP Tool Servers: Linux SSH (multi-server), Windows WinRM, OS Info/Inventory API, Zabbix MCP (prod & nonprod)
@@ -152,7 +152,7 @@ EXPERIENCE:
 
    Achievements:
    - Oracle DB Server CPU & RAM Resizing: Partnered with OS Engineering counterpart and collaborated with a DB Engineer to resolve a kernel panic issue triggered during resource reduction. Successfully reclaimed 1,956 CPUs & 15.6 TB RAM — ~USD 312K cost savings.
-   - AskMyServer Hackathon: Selected as Top 15 finalist out of 90+ teams — advanced to Round 2 Finals. Result TBC.
+   - AskMyServer Hackathon: Runner Up out of 56 teams — Dell Hackathon Finals.
    - Multi Connection Manager: Used daily by 3-10 people across multiple teams; simplifies bulk operations at scale
    - Grafana Agent Dashboard: Production dashboards showing agent deployment status, server health, trending, and history
 
